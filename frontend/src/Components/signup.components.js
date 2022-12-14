@@ -1,9 +1,21 @@
 import React, { Component } from 'react'
-export default class Login extends Component {
+export default class SignUp extends Component {
   render() {
     return (
       <form>
-        <h3>User Login In</h3>
+        <h3>User Sign Up</h3>
+        <div className="mb-3">
+          <label>First name</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="First name"
+          />
+        </div>
+        <div className="mb-3">
+          <label>Last name</label>
+          <input type="text" className="form-control" placeholder="Last name" />
+        </div>
         <div className="mb-3">
           <label>Email address</label>
           <input
@@ -20,23 +32,14 @@ export default class Login extends Component {
             placeholder="Enter password"
           />
         </div>
-        <div className="mb-3">
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
-          </div>
-        </div>
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
-            Submit
+            Sign Up
           </button>
         </div>
+        <p className="forgot-password text-right">
+          Already registered <a href="/sign-in">sign in?</a>
+        </p>
       </form>
     )
   }
