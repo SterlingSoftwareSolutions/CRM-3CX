@@ -3,9 +3,9 @@ export default class SignUp extends Component {
   render() {
     return (
       <form>
-        <h3>User Sign Up</h3>
+        <h3>Customer Details</h3>
         <div className="mb-3">
-          <label>First name</label>
+          <label>Phone Number</label>
           <input
             type="text"
             className="form-control"
@@ -13,7 +13,7 @@ export default class SignUp extends Component {
           />
         </div>
         <div className="mb-3">
-          <label>Last name</label>
+          <label>Name</label>
           <input type="text" className="form-control" placeholder="Last name" />
         </div>
         <div className="mb-3">
