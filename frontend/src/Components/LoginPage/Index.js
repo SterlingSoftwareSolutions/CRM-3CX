@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-export default class Login extends Component {
-  render() {
-    return (
-      <div className="auth-wrapper">
-         <div className="auth-inner">
-         <form>
+import React from 'react'
+
+function Index() {
+  return (
+    <div>
+       <form>
         <h3>User Login In</h3>
         <div className="mb-3">
           <label>Email address</label>
@@ -41,8 +40,7 @@ export default class Login extends Component {
         </div>
       </form>
     </div>
-  </div>
-      
-    )
-  }
+  )
 }
+
+export default Index

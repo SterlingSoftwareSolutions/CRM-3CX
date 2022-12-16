@@ -16,13 +16,12 @@ const Navbar = () => {
                    Login
                  </Link>
                </li>
-               {/* <li className="nav-item">
-                 <Link className="nav-link" to={'/Customer'}>
-                   Customer Page
+               <li className="nav-item">
+                 <Link className="nav-link" to={'/types'}>
+                   Types
                  </Link>
-               </li> */}
+               </li>
                <li className='nave-item'>
-
                 <Link className='nav-link' to={'/customeradd'}>
                   customeradd
                 </Link>
