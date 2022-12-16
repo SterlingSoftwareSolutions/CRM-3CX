@@ -29,7 +29,7 @@ function App() {
                </li> */}
                <li className='nave-item'>
                 <Link className='nav-link' to={'/customeradd'}>
-                  CustomerAdd
+                  customeradd
                 </Link>
                </li>
              </ul>
