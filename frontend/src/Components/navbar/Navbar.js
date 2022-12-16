@@ -7,7 +7,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
          <div className="container">
            <Link className="navbar-brand" to={'/sign-in'}>
-             Novel CRM
+             novel CRM
            </Link>
            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
              <ul className="navbar-nav ml-auto">
@@ -22,7 +22,7 @@ const Navbar = () => {
                  </Link>
                </li> */}
                <li className='nave-item'>
-                
+
                 <Link className='nav-link' to={'/customeradd'}>
                   customeradd
                 </Link>
