@@ -4,7 +4,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './Components/LoginPage/login.component';
 import './Components/LoginPage/login.css'
-import CustomerAdd from './MultiForm/CustomerAdd';
+import CustomerAdd from './Components/MultiForm/CustomerAdd';
 import Navbar from './Components/navbar/Navbar';
 
 function App() {
