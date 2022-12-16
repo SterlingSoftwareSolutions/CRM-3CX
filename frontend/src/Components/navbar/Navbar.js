@@ -22,6 +22,7 @@ const Navbar = () => {
                  </Link>
                </li> */}
                <li className='nave-item'>
+                
                 <Link className='nav-link' to={'/customeradd'}>
                   customeradd
                 </Link>
