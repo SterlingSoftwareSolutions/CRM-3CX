@@ -55,6 +55,7 @@ body, html, .App, #root, .auth-wrapper {
 }
 .custom-control-label {
   font-weight: 400;
+  padding-left: 10px;
 }
 .forgot-password,
 .forgot-password a {
@@ -66,4 +67,13 @@ body, html, .App, #root, .auth-wrapper {
 }
 .forgot-password a {
   color: var(--main-bg-color);
+}
+i {
+  position: absolute;
+  top: 52.5%;
+  right: 39%;
+}
+i:hover {
+  color: var(--main-bg-color);
+  cursor: pointer;
 }
