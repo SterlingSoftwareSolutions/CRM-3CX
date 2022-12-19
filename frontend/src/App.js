@@ -7,6 +7,7 @@ import CustomerAdd from './Components/LoginPage/CustomerAdd';
 import Navbar from './Components/navbar/Navbar';
 import Index from './Components/LoginPage/Index';
 import Types from './Components/LoginPage/Types';
+import Inquiry from './Components/LoginPage/Inquiry';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
              <Route path="/sign-in" element={<Index/>} />
              <Route path ="/types" element={<Types/>}/>
              <Route path="/customeradd" element={<CustomerAdd/>}/>
-             
+             <Route path="/inquiry" element={<Inquiry/>}/>
              
            </Routes>
          </div>
