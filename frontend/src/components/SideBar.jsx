@@ -16,8 +16,8 @@ const SideBar = ({children}) => {
     },
 
     {
-      path:"/users",
-      name:"User",
+      path:"/Agents",
+      name:"Agents",
       icon: <Person/>
     },
   ]
