@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerAddress extends Model
 {
     use HasFactory;
+    
+    public function customer()
+    {
+        $this->belongsTo(Customer::class);
+    }
 }

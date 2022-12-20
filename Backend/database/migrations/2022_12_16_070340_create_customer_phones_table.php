@@ -15,6 +15,13 @@ class CreateCustomerPhonesTable extends Migration
     {
         Schema::create('customer_phones', function (Blueprint $table) {
             $table->id();
+            $table->string('mobile');
+            $table->string('home');
+            $table->string('company');
+            $table->foreignId('customer_id')
+                ->references('id')
+                ->on('customers')
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

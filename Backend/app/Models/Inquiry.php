@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Inquiry extends Model
 {
     use HasFactory;
+
+    public function feedback()
+    {
+        return $this->hasOne(Feedback::class);
+    }
 }

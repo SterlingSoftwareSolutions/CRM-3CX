@@ -15,6 +15,11 @@ class CreateCustomerAddressesTable extends Migration
     {
         Schema::create('customer_addresses', function (Blueprint $table) {
             $table->id();
+            $table->string('address_line_1');
+            $table->string('address_line_2');
+            $table->foreignId('customer_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
