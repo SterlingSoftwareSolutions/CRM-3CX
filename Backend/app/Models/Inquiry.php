@@ -9,6 +9,17 @@ class Inquiry extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'customer_id',
+        'call_type_id',
+        'brand',
+        'brand_availability',
+        'action',
+        'product_category',
+        'status_remark'
+    ];
+
     public function feedback()
     {
         return $this->hasOne(Feedback::class);

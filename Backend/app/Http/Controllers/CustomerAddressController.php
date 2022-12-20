@@ -14,7 +14,7 @@ class CustomerAddressController extends Controller
      */
     public function index()
     {
-        //
+        return CustomerAddress::all();
     }
 
     /**
@@ -35,18 +35,22 @@ class CustomerAddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // validation
+        ]);
+
+        return CustomerAddress::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CustomerAddress  $customerAddress
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomerAddress $customerAddress)
+    public function show($id)
     {
-        //
+        return CustomerAddress::find($id);
     }
 
     /**
@@ -64,22 +68,25 @@ class CustomerAddressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CustomerAddress  $customerAddress
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CustomerAddress $customerAddress)
+    public function update(Request $request, $id)
     {
-        //
+        $customeraddress = CustomerAddress::findorfail($id);
+        $customeraddress->update($request->all());
+        return $customeraddress;
     }
+
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CustomerAddress  $customerAddress
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomerAddress $customerAddress)
+    public function destroy($id)
     {
-        //
+        CustomerAddress::destroy($id);
     }
 }

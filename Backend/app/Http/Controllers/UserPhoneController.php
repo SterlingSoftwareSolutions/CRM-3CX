@@ -14,7 +14,7 @@ class UserPhoneController extends Controller
      */
     public function index()
     {
-        //
+        return UserPhone::all();
     }
 
     /**
@@ -35,18 +35,22 @@ class UserPhoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // validation
+        ]);
+
+        return UserPhone::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\UserPhone  $userPhone
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserPhone $userPhone)
+    public function show($id)
     {
-        //
+        return UserPhone::find($id);
     }
 
     /**
@@ -64,22 +68,24 @@ class UserPhoneController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UserPhone  $userPhone
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserPhone $userPhone)
+    public function update(Request $request, $id)
     {
-        //
+        $userphone = UserPhone::findorfail($id);
+        $userphone->update($request->all());
+        return $userphone;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\UserPhone  $userPhone
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserPhone $userPhone)
+    public function destroy($id)
     {
-        //
+        UserPhone::destroy($id);
     }
 }

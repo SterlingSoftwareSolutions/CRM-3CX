@@ -9,6 +9,13 @@ class CustomerPhone extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'customer_id',
+        'mobile',
+        'home',
+        'company'
+    ];
+
     public function customer()
     {
         $this->belongsTo(Customer::class);
