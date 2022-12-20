@@ -1,3 +1,4 @@
+import './Sidebar.css'
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import {Dashboard, Person, Phone, PieChart} from '@mui/icons-material'
@@ -25,7 +26,7 @@ const SideBar = ({children}) => {
     <div className='container'>
       <div className="sidebar">
         <div className="top_section">
-        <img className='logo' src={require('../images/sterling_logo.png')}  alt=""/>
+        <img className='logo' src={require('../../images/sterling_logo.png')}  alt=""/>
         </div>
         {
           menuItem.map((item, index)=>(

@@ -1,0 +1,28 @@
+.top_section{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo{
+    width: 100%;
+  }
+
+.link{
+    display: flex;
+    align-items: center;
+    color: #555555;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+}
+
+.link:hover{
+    color: #1890FF;
+    background-color: #E6F7FF;
+}
+
+.link:active{
+    color: #1890FF;
+    background-color: #E6F7FF;
+}
