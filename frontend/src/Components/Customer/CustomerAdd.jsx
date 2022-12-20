@@ -1,8 +1,8 @@
-import React, { Component} from 'react'
-export default class CustomerAdd extends Component {
-  render() {
-    return (
-         <form>
+import React from 'react'
+
+const CustomerAdd = () => {
+  return (
+    <form>
         <br></br>
         <div className="mb-3">
           <label>Phone Number</label>
@@ -60,6 +60,7 @@ export default class CustomerAdd extends Component {
           </button>
         </div>
       </form>
-    )
-  }
+  )
 }
+
+export default CustomerAdd;

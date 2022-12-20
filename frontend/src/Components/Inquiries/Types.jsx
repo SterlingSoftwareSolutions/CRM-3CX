@@ -44,4 +44,4 @@ const Types = () => {
   )
 }
 
-export default Types
+export default Types;

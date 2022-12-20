@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-import {FaRegEyeSlash } from 'react-icons/fa';
+import { FaRegEyeSlash } from 'react-icons/fa';
+import './index.css'
 
 const eye = <FaRegEyeSlash icon ={FaRegEyeSlash}/>
 
-function Index() {
+const LoginPage = () => {
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePassword =() =>{
@@ -59,4 +60,4 @@ function Index() {
   )
 }
 
-export default Index
+export default LoginPage;
