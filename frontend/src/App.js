@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; 
 import LoginPage from './Pages/LoginPage/index';
 
