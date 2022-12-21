@@ -1,44 +1,58 @@
-import React, { useEffect , useState} from 'react';
+import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
-function PopUp() {
-  useEffect(()=>{
+const PopUp = () => {
+  useEffect(() => {
     handleShow(true);
-    }, [])
+  }, []);
+  //popup the page in this section 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // when call url hasn't number display "None"
+  const [url, setUrl] = useState("None");
+
+  //if call url has number remove the other sting and featch only number
+  useEffect(() => {
+    var url = window.location.href;
+    var page = url.substring(url.lastIndexOf("=") + 1);
+    setUrl(page);
+  });
+
   return (
     <div>
+      
       <Modal onHide={handleClose} show={show} toggle={() => setShow(!show)}>
         <ModalHeader toggle={() => setShow(!show)}>
+          {/* page header title */}
           <Modal.Title>Customer Add</Modal.Title>
         </ModalHeader>
 
         <Modal.Body>
           <Form>
+            {/* Genarate link addres phone text line */}
             <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control type="text" placeholder="phone number" autoFocus />
+              <Form.Control value={url} type="text" placeholder="phone number" autoFocus />
             </Form.Group>
-
+              {/* customer name text line */}
             <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
               <Form.Label>Customer Name</Form.Label>
               <Form.Control type="text" placeholder="Customer Name" autoFocus />
             </Form.Group>
+            {/* customer address text line */}
             <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
               <Form.Label>Customer Address</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Customer Address"
-                autoFocus
-              />
+              <Form.Control type="text" placeholder="Customer Address" autoFocus />
             </Form.Group>
+            {/* Location text line */}
             <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
               <Form.Label>Location</Form.Label>
               <Form.Control type="text" placeholder="Location" autoFocus />
             </Form.Group>
+            {/* email text line */}
             <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
               <Form.Label>Email Address</Form.Label>
               <Form.Control
@@ -47,6 +61,7 @@ function PopUp() {
                 autoFocus
               />
             </Form.Group>
+          {/* comment text line */}
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1">
@@ -56,22 +71,31 @@ function PopUp() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+         {/* close button */}
+          <Button
+            className="btn btn mt-3"
+            style={{ backgroundColor: "#16c5d5", color: "white" }}
+            onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+        {/* Next button */}
+          <Button
+            className="btn btn mt-3"
+            style={{ backgroundColor: "#16c5d5", color: "white" }}
+            onClick={handleClose}>
             Next
           </Button>
+
         </Modal.Footer>
       </Modal>
       <button
         className="btn btn mt-3"
-        style={{ backgroundColor: "#0c3629", color: "white" }}
+        style={{ backgroundColor: "#16c5d5", color: "white" }}
         onClick={() => handleShow(true)}>
         PopUp
       </button>
     </div>
   );
-}
+};
 
 export default PopUp;

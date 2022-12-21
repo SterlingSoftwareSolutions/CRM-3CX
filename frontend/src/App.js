@@ -1,11 +1,14 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; 
-import LoginPage from './Pages/LoginPage/index';
+import PopUp from './Components/PopCustomer/PopUp';
+// import LoginPage from './Pages/LoginPage/index';
+
 
 function App() {
   return (
     <div className="App">
-      <LoginPage/>
+      {/* <LoginPage/> */}
+      <PopUp />
     </div>
   );
 }
