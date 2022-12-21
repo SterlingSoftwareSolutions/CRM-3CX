@@ -10,6 +10,12 @@ class UserPhone extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'mobile',
+        'company'
+    ];
+
     public function user()
     {
         return $this->BelongsTo(User::class);
