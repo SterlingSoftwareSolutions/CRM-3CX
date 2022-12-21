@@ -45,12 +45,12 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  str  $phone
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($phone)
     {
-        return Customer::find($id);
+        return Customer::where('phone', $phone)->first();
     }
 
     /**
@@ -98,5 +98,15 @@ class CustomerController extends Controller
     public function search($name)
     {
         return Customer::where('name', 'like', '%'.$name.'%')->get();
+    }
+
+    /**
+     * Find customer by phone no
+     *
+     * @param  str  $phone
+     * @return \Illuminate\Http\Response
+     */
+    public function phone($phone)
+    {
     }
 }

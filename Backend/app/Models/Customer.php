@@ -11,15 +11,11 @@ class Customer extends Model
     
     protected $fillable = [
         'name',
+        'phone',
         'email',
         'location',
         'comment'
     ];
-
-    function phones()
-    {
-        return $this->hasMany(CustomerPhone::class);
-    }
 
     function addresses()
     {
