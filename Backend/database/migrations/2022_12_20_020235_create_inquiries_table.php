@@ -15,11 +15,11 @@ class CreateInquiriesTable extends Migration
     {
         Schema::create('inquiries', function (Blueprint $table) {
             $table->id();
-            $table->string('brand');
-            $table->string('brand_availability');
-            $table->string('product_category');
-            $table->string('action');
-            $table->string('status_remark');
+            $table->string('brand')->nullable();
+            $table->string('brand_availability')->nullable();
+            $table->string('product_category')->nullable();
+            $table->string('action')->nullable();
+            $table->string('status_remark')->nullable();
             
             $table->foreignId('user_id')
                 ->constrained()

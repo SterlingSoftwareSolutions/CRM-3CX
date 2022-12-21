@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
-
-    function phones()
-    {
-        return $this->hasMany(CustomerPhone::class);
-    }
+    
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'location',
+        'comment'
+    ];
 
     function addresses()
     {

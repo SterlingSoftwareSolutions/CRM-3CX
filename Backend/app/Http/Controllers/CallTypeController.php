@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CallType;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CallTypeController extends Controller
@@ -14,7 +15,7 @@ class CallTypeController extends Controller
      */
     public function index()
     {
-        //
+        return CallType::all();
     }
 
     /**
@@ -35,7 +36,11 @@ class CallTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // validation
+        ]);
+
+        return CallType::create($request->all());
     }
 
     /**
@@ -44,9 +49,9 @@ class CallTypeController extends Controller
      * @param  \App\Models\CallType  $callType
      * @return \Illuminate\Http\Response
      */
-    public function show(CallType $callType)
+    public function show($id)
     {
-        //
+        return CallType::find($id);
     }
 
     /**
@@ -67,19 +72,21 @@ class CallTypeController extends Controller
      * @param  \App\Models\CallType  $callType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CallType $callType)
+    public function update(Request $request, $id)
     {
-        //
+        $calltype = CallType::findorfail($id);
+        $calltype->update($request->all());
+        return $calltype;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CallType  $callType
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CallType $callType)
+    public function destroy($id)
     {
-        //
+        CallType::destroy($id);
     }
 }
