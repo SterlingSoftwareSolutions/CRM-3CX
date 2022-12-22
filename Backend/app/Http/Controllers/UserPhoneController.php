@@ -45,12 +45,12 @@ class UserPhoneController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\UserPhone  $userPhone
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(UserPhone  $userPhone)
     {
-        return UserPhone::find($id);
+        return $userPhone;
     }
 
     /**
@@ -68,24 +68,23 @@ class UserPhoneController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param  \App\Models\UserPhone  $userPhone
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, UserPhone  $userPhone)
     {
-        $userphone = UserPhone::findorfail($id);
-        $userphone->update($request->all());
-        return $userphone;
+        $userPhone->update($request->all());
+        return $userPhone;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  \App\Models\UserPhone  $userPhone
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(UserPhone  $userPhone)
     {
-        UserPhone::destroy($id);
+        $userPhone->delete();
     }
 }

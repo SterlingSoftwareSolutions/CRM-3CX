@@ -45,12 +45,12 @@ class FeedbackController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Feedback  $feedback)
     {
-        return Feedback::find($id);
+        return $feedback;
     }
 
     /**
@@ -68,12 +68,11 @@ class FeedbackController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Feedback  $feedback)
     {
-        $feedback = Feedback::findorfail($id);
         $feedback->update($request->all());
         return $feedback;
     }
@@ -81,11 +80,11 @@ class FeedbackController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Feedback  $feedback)
     {
-        Feedback::destroy($id);
+        $feedback->delete();
     }
 }

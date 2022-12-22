@@ -14,6 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+
         return Customer::all();
     }
 
@@ -36,7 +37,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'phone' => 'required|unique:customers'
         ]);
 
         return Customer::create($request->all());
@@ -50,13 +51,15 @@ class CustomerController extends Controller
      */
     public function show($phone)
     {
-        return Customer::where('phone', $phone)->first();
+        return Customer::where('phone', $phone)
+            ->with('customer_address')
+            ->get();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Customer  $customer
+     * @param  App\Models\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
@@ -68,45 +71,47 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  str $phone
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $phone)
     {
-        $customer = Customer::findorfail($id);
-        $customer->update($request->all());
-        return $customer;
+        $request->validate([
+            'phone' => 'unique:customers'
+        ]);
+
+        $customer = Customer::where('phone', $phone);
+        if ($customer->count() == 1) {
+            $customer->update($request->all());
+            return 0;
+        }
+        return 1; // customer doesn't exist
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  str $phone
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($phone)
     {
-        Customer::destroy($id);
+        $customer = Customer::where('phone', $phone);
+        if ($customer->count() == 1) {
+             $customer->delete();
+             return 0;
+        }
+        return 1; // customer doesn't exist
     }
 
     /**
-     * Find resources from storage
+     * Find resources from storage.
      *
      * @param  str  $name
      * @return \Illuminate\Http\Response
      */
     public function search($name)
     {
-        return Customer::where('name', 'like', '%'.$name.'%')->get();
-    }
-
-    /**
-     * Find customer by phone no
-     *
-     * @param  str  $phone
-     * @return \Illuminate\Http\Response
-     */
-    public function phone($phone)
-    {
+        return Customer::where('name', 'like', '%' . $name . '%')->get();
     }
 }

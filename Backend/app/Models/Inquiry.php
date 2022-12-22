@@ -20,6 +20,11 @@ class Inquiry extends Model
         'status_remark'
     ];
 
+    public function call_type()
+    {
+        return $this->hasOne(CallType::class);
+    }
+
     public function feedback()
     {
         return $this->hasOne(Feedback::class);

@@ -45,12 +45,12 @@ class InquiryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\Inquiry  $inquiry
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Inquiry  $inquiry)
     {
-        return Inquiry::find($id);
+        return $inquiry;
     }
 
 
@@ -69,12 +69,11 @@ class InquiryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param  \App\Models\Inquiry  $inquiry
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Inquiry  $inquiry)
     {
-        $inquiry = Inquiry::findorfail($id);
         $inquiry->update($request->all());
         return $inquiry;
     }
