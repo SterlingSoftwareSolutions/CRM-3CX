@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\CallType;
-use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CallTypeController extends Controller

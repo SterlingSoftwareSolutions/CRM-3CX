@@ -17,7 +17,7 @@ class Customer extends Model
         'comment'
     ];
 
-    function addresses()
+    function customer_address()
     {
         return $this->hasMany(CustomerAddress::class);
     }

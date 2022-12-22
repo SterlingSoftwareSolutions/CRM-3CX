@@ -16,6 +16,6 @@ class Feedback extends Model
 
     public function inquiry()
     {
-        $this->belongsTo(Inquiry::class);
+        return $this->belongsTo(Inquiry::class);
     }
 }
