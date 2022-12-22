@@ -6,26 +6,65 @@ const PopUp = () => {
   useEffect(() => {
     handleShow(true);
   }, []);
-  //popup the page in this section 
+
+  //popup the page in this section
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // when call url hasn't number display "None"
+  const api = "http://127.0.0.1:8000/api/customer/"; //api url
   const [url, setUrl] = useState("None");
+
+  //Get the data from api
+  const fetchData = (page) => {
+    try {
+      fetch(api + page)
+        .then((response) => response.json())
+        .then((customerdata) => setData(customerdata))
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   //if call url has number remove the other sting and featch only number
   useEffect(() => {
     var url = window.location.href;
     var page = url.substring(url.lastIndexOf("=") + 1);
     setUrl(page);
+    fetchData(page);
   });
+
+  const [data, setData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    location: "",
+    comment: "",
+  });
+
+  const onChangeValue = (key, value) => {
+    setData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  let handleSubmit = async (e) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
+    fetch(api, requestOptions)
+      .then((response) => response.json())
+      .then((response)=> console.log(response));
+    handleClose();
+  };
 
   return (
     <div>
-      
-      <Modal onHide={handleClose} show={show} toggle={() => setShow(!show)}>
-        <ModalHeader toggle={() => setShow(!show)}>
+      <Modal onHide={handleClose} show={show}>
+        <ModalHeader>
           {/* page header title */}
           <Modal.Title>Customer Add</Modal.Title>
         </ModalHeader>
@@ -33,59 +72,94 @@ const PopUp = () => {
         <Modal.Body>
           <Form>
             {/* Genarate link addres phone text line */}
-            <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
+            <Form.Group className="mb-3">
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control value={url} type="text" placeholder="phone number" autoFocus />
-            </Form.Group>
-              {/* customer name text line */}
-            <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
-              <Form.Label>Customer Name</Form.Label>
-              <Form.Control type="text" placeholder="Customer Name" autoFocus />
-            </Form.Group>
-            {/* customer address text line */}
-            <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
-              <Form.Label>Customer Address</Form.Label>
-              <Form.Control type="text" placeholder="Customer Address" autoFocus />
-            </Form.Group>
-            {/* Location text line */}
-            <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
-              <Form.Label>Location</Form.Label>
-              <Form.Control type="text" placeholder="Location" autoFocus />
-            </Form.Group>
-            {/* email text line */}
-            <Form.Group className="mb-3" controlId="PopUpForm.ControlInput1">
-              <Form.Label>Email Address</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="name@gmail.com"
-                autoFocus
+               // onChange={(e) => []}
+                id="phone"
+                value={url}
+                type="text"
+                placeholder="phone number"
+                
+                
               />
             </Form.Group>
-          {/* comment text line */}
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1">
+            {/* customer name text line */}
+            <Form.Group className="mb-3">
+              <Form.Label>Customer Name</Form.Label>
+              <Form.Control
+               // onChange={(e) => []}
+                id="name"
+                value={data.name}
+                type="text"
+                placeholder="Customer Name"
+                
+              />
+            </Form.Group>
+            {/* customer address text line */}
+            <Form.Group className="mb-3">
+              <Form.Label>Customer Address</Form.Label>
+              <Form.Control
+              // onChange={(e) => []}
+                id="CustomerAddress"
+                value={data.name}
+                type="text"
+                placeholder="Customer Address"
+               
+              />
+            </Form.Group>
+            {/* Location text line */}
+            <Form.Group className="mb-3">
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+              //  onChange={(e) => []}
+                id="Location"
+                value={data.location}
+                type="text"
+                placeholder="Location"
+                
+              />
+            </Form.Group>
+            {/* email text line */}
+            <Form.Group className="mb-3">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control
+              // onChange={(e) => []}
+                id="email"
+                value={data.email}
+                type="email"
+                placeholder="name@gmail.com"
+              
+              />
+            </Form.Group>
+            {/* comment text line */}
+            <Form.Group className="mb-3">
               <Form.Label>Comment</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Control
+                //onChange={(e) => []}
+                id="Comment"
+                value={data.comment}
+                as="textarea"
+                rows={3}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-         {/* close button */}
+          {/* close button */}
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
             onClick={handleClose}>
             Close
           </Button>
-        {/* Next button */}
+          {/* Next button */}
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
-            onClick={handleClose}>
+            onClick={(e) => handleSubmit(e)}>
             Next
           </Button>
-
         </Modal.Footer>
       </Modal>
       <button
