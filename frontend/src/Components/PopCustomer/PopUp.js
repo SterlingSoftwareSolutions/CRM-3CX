@@ -49,7 +49,10 @@ const PopUp = () => {
     setData((prev) => ({ ...prev, [key]: value }));
   };
 
+  //post method
   let handleSubmit = async (e) => {
+    data.phone =url;
+    console.log(data);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -57,9 +60,9 @@ const PopUp = () => {
     };
     fetch(api, requestOptions)
       .then((response) => response.json())
-      .then((response)=> console.log(response));
     handleClose();
   };
+
 
   return (
     <div>
@@ -75,70 +78,64 @@ const PopUp = () => {
             <Form.Group className="mb-3">
               <Form.Label>Phone Number</Form.Label>
               <Form.Control
-               // onChange={(e) => []}
+                onChange={(e) => onChangeValue("phone", e.target.value)}
                 id="phone"
                 value={url}
                 type="text"
                 placeholder="phone number"
-                
-                
               />
             </Form.Group>
             {/* customer name text line */}
             <Form.Group className="mb-3">
               <Form.Label>Customer Name</Form.Label>
               <Form.Control
-               // onChange={(e) => []}
+                onChange={(e) => onChangeValue("name", e.target.value)}
                 id="name"
-                value={data.name}
+                defaultValue={data.name}
                 type="text"
                 placeholder="Customer Name"
-                
               />
             </Form.Group>
             {/* customer address text line */}
             <Form.Group className="mb-3">
               <Form.Label>Customer Address</Form.Label>
               <Form.Control
-              // onChange={(e) => []}
+                onChange={(e) => onChangeValue("CustomerAddress", e.target.value)}
                 id="CustomerAddress"
-                value={data.name}
+                defaultValue={data.name}
                 type="text"
                 placeholder="Customer Address"
-               
               />
             </Form.Group>
             {/* Location text line */}
             <Form.Group className="mb-3">
               <Form.Label>Location</Form.Label>
               <Form.Control
-              //  onChange={(e) => []}
+                onChange={(e) => onChangeValue("location", e.target.value)}
                 id="Location"
-                value={data.location}
+                defaultValue={data.location}
                 type="text"
                 placeholder="Location"
-                
               />
             </Form.Group>
             {/* email text line */}
             <Form.Group className="mb-3">
               <Form.Label>Email Address</Form.Label>
               <Form.Control
-              // onChange={(e) => []}
+                onChange={(e) => onChangeValue("email", e.target.value)}
                 id="email"
-                value={data.email}
+                defaultValue={data.email}
                 type="email"
                 placeholder="name@gmail.com"
-              
               />
             </Form.Group>
             {/* comment text line */}
             <Form.Group className="mb-3">
               <Form.Label>Comment</Form.Label>
               <Form.Control
-                //onChange={(e) => []}
-                id="Comment"
-                value={data.comment}
+                onChange={(e) => onChangeValue("comment", e.target.value)}
+                id="comment"
+                defaultValue={data.comment}
                 as="textarea"
                 rows={3}
               />
