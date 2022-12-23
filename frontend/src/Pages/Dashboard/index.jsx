@@ -1,6 +1,7 @@
 import { Card, Col, Row } from 'antd';
 import React from 'react'
 import { PieChart, Pie, Tooltip, Cell, Legend, } from 'recharts';
+import './index.css'
 
 const projectdata = [
   {name: "Abans", value:207},
@@ -50,7 +51,7 @@ const Dashboard = () => {
     <Row>
       <Col span={12}>
         <div className="card">
-          <h2 className='title'>Project Vice calls</h2>
+          <h2 className='title'>Projectwise calls</h2>
           <h4>Total calls: </h4>
           <PieChart width={400} height={400}>
           <Pie
@@ -73,7 +74,7 @@ const Dashboard = () => {
       </Col>
       <Col span={12}>
       <div className="card">
-      <h2 className='title'>Agent Vice calls</h2>
+      <h2 className='title'>Agentwise calls</h2>
       <h4>Total calls: </h4>
       <PieChart width={400} height={400}>
       <Pie
@@ -199,3 +200,4 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+
