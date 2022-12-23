@@ -60,17 +60,6 @@ const Types = () => {
               </option>
             ))}
           </Form.Select>
-
-          {/* comment text line */}
-          <Form.Group className="mb-3">
-            <Form.Label>Comment</Form.Label>
-            <Form.Control
-              id="comment"
-              defaultValue=""
-              as="textarea"
-              rows={3}
-            />
-          </Form.Group>
         </Form>
         <Modal.Footer>
           {/* close button */}
