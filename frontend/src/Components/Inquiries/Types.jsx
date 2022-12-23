@@ -1,47 +1,95 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { Form, Modal, ModalHeader } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const Types = () => {
-  return (
-    <form>
-    <div className="mb-3">
-  <select className="form-control" >
-    <option value="1">Product Inquiry</option>
-    <option value="2">Special Daily Weekend Promotion</option>
-    <option value="3">Delivery Complalint</option>
-    <option value="4">Ac Instraliation</option>
-    <option value="5">Refund</option>
-    <option value="6">E-Invoice</option>
-    <option value="7">DOA</option>
-    <option value="8">Warranty Claim</option>
-    <option value="9">Payment Error</option>
-    <option value="10">Site Error</option>
-    <option value="11">Order Confirmation</option>
-    <option value="12">Quotation Inquiry</option>
-    <option value="13">Service Inquiry</option>
-    <option value="14">Showroom Inquiry</option>
-    <option value="15">Hire Purchasing</option>
-    <option value="16">Cash on Delivry</option>
-    <option value="17">Installments Plan Inquiry</option>
-    <option value="18">Wrong Number</option>        
-  </select>
-  </div>
-  <div className="mb-3">
-    <label>Comment</label>
-    <input
-      type="text"
-      className="form-control"
-      placeholder=""
-      style={{ height: "100px" }}
-    />
-  </div>
+  useEffect(() => {
+    handleShow(true);
+  }, []);
 
-  <div className="d-grid">
-    <button type="submit" className="btn btn-primary">
-      Next
-    </button>
-  </div>
-</form>
-  )
-}
+  //popup the page in this section
+  const [show, setShow] = useState(false);
+  const [arr, setArr] = useState([]);
+  const [filter, setFilter] = useState("");
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const api = "http://127.0.0.1:8000/api/call_type"; //api url
+
+  const fetchArray = async () => {
+    try {
+      let res = await fetch("http://127.0.0.1:8000/api/call_type");
+      res = await res.json();
+      if (res.error) {
+        console.error(res.error);
+        alert(res.error);
+      } else {
+        let arrayTemp = ["", ...new Set(res.map((item) => item))];
+        setArr(arrayTemp);
+        console.log(arr);
+      }
+    } catch (error) {
+      console.error(error);
+      alert(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchArray();
+  }, []);
+
+ 
+  return (
+    <Modal onHide={handleClose} show={show}>
+      <ModalHeader>
+        {/* page header title */}
+        <Modal.Title>Types</Modal.Title>
+      </ModalHeader>
+
+      <Modal.Body>
+        <Form>
+          {/* set the option value  */}
+          <Form.Select
+            aria-label="Default select example"
+            id="arrayselect"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}>
+            {arr.map((item, index) => (
+              <option key={index} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </Form.Select>
+
+          {/* comment text line */}
+          <Form.Group className="mb-3">
+            <Form.Label>Comment</Form.Label>
+            <Form.Control
+              id="comment"
+              defaultValue=""
+              as="textarea"
+              rows={3}
+            />
+          </Form.Group>
+        </Form>
+        <Modal.Footer>
+          {/* close button */}
+          <Button
+            className="btn btn mt-3"
+            style={{ backgroundColor: "#16c5d5", color: "white" }}
+            onClick={handleClose}>
+            Close
+          </Button>
+          {/* Next button */}
+          <Button
+            className="btn btn mt-3"
+            style={{ backgroundColor: "#16c5d5", color: "white" }}>
+            Next
+          </Button>
+        </Modal.Footer>
+      </Modal.Body>
+    </Modal>
+  );
+};
 
 export default Types;
