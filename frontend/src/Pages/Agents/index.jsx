@@ -1,9 +1,9 @@
 import React, { useState, Fragment } from 'react'
 import { nanoid} from 'nanoid';
 import './index.css';
-import data from "../../mock-data.json";
-import ReadOnlyRow from '../../Components/Rows/ReadOnlyRow';
-import EditableRow from '../../Components/Rows/EditableRow';
+import data from "./mock-data.json";
+import ReadOnlyRow from './Rows/ReadOnlyRow';
+import EditableRow from './Rows/EditableRow';
 
 const Agents = () => {
   const [agents, setAgents] = useState(data);

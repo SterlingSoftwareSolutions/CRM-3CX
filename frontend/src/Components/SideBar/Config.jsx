@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Agents from '../../Pages/Agents'
 import Calls from '../../Pages/Calls'
 import Dashboard from '../../Pages/Dashboard'
-import SideBar from '../SideBar/SideBar'
+import SideBar from './SideBar'
 
 const Config = () => {
   return (

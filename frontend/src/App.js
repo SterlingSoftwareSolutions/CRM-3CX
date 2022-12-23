@@ -1,6 +1,6 @@
 import './App.css'
 import React from 'react';
-import Config from './Components/Config/Config';
+import Config from './Components/SideBar/Config';
 import LoginPage from './Pages/LoginPage/index';
 
 function App() {
