@@ -21,7 +21,7 @@ const Agents = () => {
     unresolved:''
   });
 
-  const [editAgentId, seteditagentId] = useState(null);
+  const [editAgentId, seteditAgentId] = useState(null);
 
   const handleAddFormChange = (event) => {
     event.preventDefault();
@@ -53,30 +53,65 @@ const Agents = () => {
     const newAgent = {
       id: nanoid(),
       name: addFormData.name,
-      total: addFormData.total,
-      resolved: addFormData.resolved,
-      unresolved: addFormData.unresolved
+      total: 0,
+      resolved: 0,
+      unresolved: 0
     };
     const newAgents = [...agents,newAgent];
     setAgents(newAgents);
   };
 
-  const handleEditClick = (event, contact) => {
+  const handleEditFormSubmit = (event) => {
     event.preventDefault();
-    seteditagentId(contact.id)
+
+    const editedAgent={
+      id: editAgentId,
+      name: editFormData.name,
+      total: editFormData.total,
+      resolved: editFormData.resolved,
+      unresolved: editFormData.unresolved
+    }
+
+    const newAgents = [...agents];
+
+    const index = agents.findIndex((agent)=> agent.id === editAgentId);
+
+    newAgents[index] = editedAgent;
+
+    setAgents(newAgents)
+    seteditAgentId(null)
+  }
+
+  const handleEditClick = (event, agent) => {
+    event.preventDefault();
+    seteditAgentId(agent.id)
 
     const formValues = {
-      name:contact.name,
-      total:contact.total,
-      resolved:contact.resolved,
-      unresolved:contact.unresolved,
+      name:agent.name,
+      total:agent.total,
+      resolved:agent.resolved,
+      unresolved:agent.unresolved,
     }
     setEditFormData(formValues)
   };
+
+  const handleCancelClick = () => {
+    seteditAgentId(null);
+  }
+
+  const handleDeleleteClick = (agentId) =>{
+    const newAgents = [...agents];
+
+    const index = agents.findIndex((agent)=> agent.id === agentId);
+
+    newAgents.splice(index, 1);
+
+    setAgents(newAgents);
+  }
   
   return (
     <div className='agents'>
-      <form>
+      <form onSubmit={handleEditFormSubmit}>
       <table>
         <thead>
           <tr>
@@ -92,43 +127,28 @@ const Agents = () => {
             <Fragment>
               { editAgentId === agent.id ? (
               <EditableRow 
-              editFormData= {editFormData} 
-              handleEditFormChange = {handleAddFormChange}
+              editFormData= {editFormData}
+              agent={agent} 
+              handleEditFormChange = {handleEditFormChange}
+              handleCancelClick = {handleCancelClick}
               />
               ) : (
               <ReadOnlyRow 
               agent={agent}
               handleEditClick={handleEditClick}
+              handleDeleleteClick={handleDeleleteClick}
               /> )}   
             </Fragment>    
           )}
         </tbody>
       </table>
       </form>
-      <h2>Add a Contact</h2>
+      <h2>Add an Agent</h2>
       <form onSubmit={handleAddformSubmit}>
         <input type="text"
         name='name'
         required= 'required'
         placeholder='Enter a name...'
-        onChange={handleAddFormChange}
-        />
-        <input type="text"
-        name='total'
-        required= 'required'
-        placeholder='Enter total calls...'
-        onChange={handleAddFormChange}
-        />
-        <input type="text"
-        name='resolved'
-        required= 'required'
-        placeholder='Enter Resolved cases...'
-        onChange={handleAddFormChange}
-        />
-        <input type="text"
-        name='unresolved'
-        required= 'required'
-        placeholder='Enter Unresolved cases...'
         onChange={handleAddFormChange}
         />
         <button type='submit'>Add</button>

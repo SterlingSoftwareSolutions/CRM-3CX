@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EditableRow = ({editFormData, handleEditFormChange}) => {
+const EditableRow = ({agent, editFormData, handleEditFormChange, handleCancelClick}) => {
   return (
     <tr>
        <td>
@@ -8,39 +8,16 @@ const EditableRow = ({editFormData, handleEditFormChange}) => {
         name='name'
         required= 'required'
         placeholder='Enter a name...'
-        defaultvalue={editFormData.name}
+        value={editFormData.name}
         onChange={handleEditFormChange}
         />
        </td>
-       <td>
-       <input type="text"
-        name='total'
-        required= 'required'
-        placeholder='Enter total calls...'
-        value={editFormData.total}
-        onChange={handleEditFormChange}
-        />
-       </td>
-       <td>
-       <input type="text"
-        name='resolved'
-        required= 'required'
-        placeholder='Enter Resolved cases...'
-        value={editFormData.resolved}
-        onChange={handleEditFormChange}
-        />
-       </td> 
-       <td>
-       <input type="text"
-        name='unresolved'
-        required= 'required'
-        placeholder='Enter Unresolved cases...'
-        value={editFormData.unresolved}
-        onChange={handleEditFormChange}
-        />
-       </td>
+       <td>{agent.total}</td>
+        <td>{agent.resolved}</td>
+        <td>{agent.unresolved}</td>
        <td>
         <button type='submit'>Save</button>
+        <button type='button' onClick={handleCancelClick}>Cencel</button>
        </td>
     </tr>
   )

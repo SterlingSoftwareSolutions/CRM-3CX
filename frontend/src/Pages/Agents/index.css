@@ -38,6 +38,7 @@ button{
     border: none;
     cursor: pointer;
     border-radius: 3px;
+    margin: 2px;
 }
 
 button:hover{
