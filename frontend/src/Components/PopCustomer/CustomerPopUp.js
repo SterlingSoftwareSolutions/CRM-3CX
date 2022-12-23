@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Form, Modal, ModalHeader } from "react-bootstrap";
+import { Form, Modal, ModalHeader, Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import "./CustomerPopUp.css";
 
 const CustomerPopUp = () => {
   useEffect(() => {
@@ -63,99 +64,114 @@ const CustomerPopUp = () => {
   };
 
   return (
-    <div>
+    <div className="modal-style">
       <Modal onHide={handleClose} show={show}>
-        <ModalHeader>
+        <ModalHeader closeButton>
           {/* page header title */}
           <Modal.Title>Add Customer</Modal.Title>
         </ModalHeader>
 
         <Modal.Body>
-          <Form>
+          <Form className="form-style">
             {/* Genarate link addres phone text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("phone", e.target.value)}
-                id="phone"
-                value={url}
-                type="text"
-                placeholder="phone number"
-              />
-            </Form.Group>
-            {/* customer name text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Customer Name</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("name", e.target.value)}
-                id="name"
-                defaultValue={data.name}
-                type="text"
-                placeholder="Customer Name"
-              />
-            </Form.Group>
-            {/* customer address text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Customer Address</Form.Label>
-              <Form.Control
-                onChange={(e) =>
-                  onChangeValue("CustomerAddress", e.target.value)
-                }
-                id="CustomerAddress"
-                defaultValue={data.name}
-                type="text"
-                placeholder="Customer Address"
-              />
-            </Form.Group>
-            {/* Location text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Location</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("location", e.target.value)}
-                id="Location"
-                defaultValue={data.location}
-                type="text"
-                placeholder="Location"
-              />
-            </Form.Group>
-            {/* email text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("email", e.target.value)}
-                id="email"
-                defaultValue={data.email}
-                type="email"
-                placeholder="johndoe@abc.com"
-              />
-            </Form.Group>
-            {/* comment text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Comment</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("comment", e.target.value)}
-                id="comment"
-                defaultValue={data.comment}
-                as="textarea"
-                rows={3}
-                placeholder="Type Here...."
-              />
-            </Form.Group>
+            <Col>
+              <Row>
+                <Col>
+                  <Form.Group className="input-style">
+                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Control
+                      onChange={(e) => onChangeValue("phone", e.target.value)}
+                      id="phone"
+                      value={url}
+                      type="text"
+                      placeholder="phone number"
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  {/* customer name text line */}
+                  <Form.Group className="input-style">
+                    <Form.Label>Customer Name</Form.Label>
+                    <Form.Control
+                      onChange={(e) => onChangeValue("name", e.target.value)}
+                      id="name"
+                      defaultValue={data.name}
+                      type="text"
+                      placeholder="Customer Name"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  {/* email text line */}
+                  <Form.Group className="input-style">
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control
+                      onChange={(e) => onChangeValue("email", e.target.value)}
+                      id="email"
+                      defaultValue={data.email}
+                      type="email"
+                      placeholder="johndoe@abc.com"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  {/* customer address text line */}
+                  <Form.Group className="input-style">
+                    <Form.Label>Customer Address</Form.Label>
+                    <Form.Control
+                      onChange={(e) =>
+                        onChangeValue("CustomerAddress", e.target.value)
+                      }
+                      id="CustomerAddress"
+                      defaultValue={data.name}
+                      type="text"
+                      as="textarea"
+                      rows={1}
+                      placeholder="Customer Address"
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  {/* Location text line */}
+                  <Form.Group className="input-style">
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control
+                      onChange={(e) =>
+                        onChangeValue("location", e.target.value)
+                      }
+                      id="Location"
+                      defaultValue={data.location}
+                      type="text"
+                      placeholder="Location"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                {/* comment text line */}
+                <Form.Group className="input-style">
+                  <Form.Label>Comment</Form.Label>
+                  <Form.Control
+                    onChange={(e) => onChangeValue("comment", e.target.value)}
+                    id="comment"
+                    defaultValue={data.comment}
+                    as="textarea"
+                    rows={3}
+                    placeholder="Type Here...."
+                  />
+                </Form.Group>
+              </Row>
+            </Col>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          {/* close button */}
-          <Button
-            className="btn btn mt-3"
-            style={{ backgroundColor: "#16c5d5", color: "white" }}
-            onClick={handleClose}
-          >
-            Close
-          </Button>
           {/* Next button */}
           <Button
-            className="btn btn mt-3"
-            style={{ backgroundColor: "#16c5d5", color: "white" }}
+            className="btn btn mt-3 button-style"
             onClick={(e) => handleSubmit(e)}
           >
             Next
@@ -163,8 +179,7 @@ const CustomerPopUp = () => {
         </Modal.Footer>
       </Modal>
       <button
-        className="btn btn mt-3"
-        style={{ backgroundColor: "#16c5d5", color: "white" }}
+        className="btn btn mt-3 button-style"
         onClick={() => handleShow(true)}
       >
         PopUp
