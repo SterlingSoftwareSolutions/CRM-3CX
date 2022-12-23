@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { link } from 'react-router-dom'
+import Types from "../Inquiries/Types";
 
 const PopUp = () => {
   useEffect(() => {
@@ -152,10 +154,13 @@ const PopUp = () => {
           </Button>
           {/* Next button */}
           <Button
+           
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
             onClick={(e) => handleSubmit(e)}>
+              
             Next
+            <link to ={<Types/>}></link>
           </Button>
         </Modal.Footer>
       </Modal>

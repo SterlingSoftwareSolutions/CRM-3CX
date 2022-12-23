@@ -16,6 +16,7 @@ const Types = () => {
 
   const api = "http://127.0.0.1:8000/api/call_type"; //api url
 
+  //calling Api get method 
   const fetchArray = async () => {
     try {
       let res = await fetch("http://127.0.0.1:8000/api/call_type");
