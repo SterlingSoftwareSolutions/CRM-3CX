@@ -8,7 +8,7 @@ const EditableRow = ({editFormData, handleEditFormChange}) => {
         name='name'
         required= 'required'
         placeholder='Enter a name...'
-        value={editFormData.name}
+        defaultvalue={editFormData.name}
         onChange={handleEditFormChange}
         />
        </td>

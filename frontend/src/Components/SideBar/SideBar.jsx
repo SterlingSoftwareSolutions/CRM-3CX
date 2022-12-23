@@ -1,4 +1,5 @@
 import React from 'react'
+import './Sidebar.css'
 import { NavLink } from 'react-router-dom'
 import {Dashboard, Person, Phone } from '@mui/icons-material'
 import { FaUser } from 'react-icons/fa';

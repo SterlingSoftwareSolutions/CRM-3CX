@@ -10,50 +10,5 @@
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
-
-  *{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-  }
   
-  .container{
-    display: flex;
-  }
-  
-  .sidebar {
-    position: static;
-    top: 0;
-  }
-  .logo{
-    width: 100%;
-  }
-  main{
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .top_section{
-    align-items: center; 
-    padding: 20px;
-  }
-  
-  .link{
-    display: flex;
-    color: #1d1d1d;
-    padding: 10px;
-    gap: 15px;
-    transition: all 0.5s;
-  }
-  
-  .link:hover{
-    background-color: #E6F7FF;
-    color: #1677FF;
-  }
-  
-  .active{
-    background-color: #E6F7FF;
-    color: #1677FF; 
-  }
-  
-  
+ 
