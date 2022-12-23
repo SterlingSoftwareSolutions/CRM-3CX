@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
-const PopUp = () => {
+const CustomerPopUp = () => {
   useEffect(() => {
     handleShow(true);
   }, []);
@@ -51,25 +51,23 @@ const PopUp = () => {
 
   //post method
   let handleSubmit = async (e) => {
-    data.phone =url;
+    data.phone = url;
     console.log(data);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     };
-    fetch(api, requestOptions)
-      .then((response) => response.json())
+    fetch(api, requestOptions).then((response) => response.json());
     handleClose();
   };
-
 
   return (
     <div>
       <Modal onHide={handleClose} show={show}>
         <ModalHeader>
           {/* page header title */}
-          <Modal.Title>Customer Add</Modal.Title>
+          <Modal.Title>Add Customer</Modal.Title>
         </ModalHeader>
 
         <Modal.Body>
@@ -100,7 +98,9 @@ const PopUp = () => {
             <Form.Group className="mb-3">
               <Form.Label>Customer Address</Form.Label>
               <Form.Control
-                onChange={(e) => onChangeValue("CustomerAddress", e.target.value)}
+                onChange={(e) =>
+                  onChangeValue("CustomerAddress", e.target.value)
+                }
                 id="CustomerAddress"
                 defaultValue={data.name}
                 type="text"
@@ -126,7 +126,7 @@ const PopUp = () => {
                 id="email"
                 defaultValue={data.email}
                 type="email"
-                placeholder="name@gmail.com"
+                placeholder="johndoe@abc.com"
               />
             </Form.Group>
             {/* comment text line */}
@@ -138,6 +138,7 @@ const PopUp = () => {
                 defaultValue={data.comment}
                 as="textarea"
                 rows={3}
+                placeholder="Type Here...."
               />
             </Form.Group>
           </Form>
@@ -147,14 +148,16 @@ const PopUp = () => {
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
-            onClick={handleClose}>
+            onClick={handleClose}
+          >
             Close
           </Button>
           {/* Next button */}
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
-            onClick={(e) => handleSubmit(e)}>
+            onClick={(e) => handleSubmit(e)}
+          >
             Next
           </Button>
         </Modal.Footer>
@@ -162,11 +165,12 @@ const PopUp = () => {
       <button
         className="btn btn mt-3"
         style={{ backgroundColor: "#16c5d5", color: "white" }}
-        onClick={() => handleShow(true)}>
+        onClick={() => handleShow(true)}
+      >
         PopUp
       </button>
     </div>
   );
 };
 
-export default PopUp;
+export default CustomerPopUp;

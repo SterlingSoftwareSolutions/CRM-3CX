@@ -1,14 +1,13 @@
-import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; 
-import PopUp from './Components/PopCustomer/PopUp';
+import React from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
 // import LoginPage from './Pages/LoginPage/index';
-
 
 function App() {
   return (
     <div className="App">
       {/* <LoginPage/> */}
-      <PopUp />
+      <CustomerPopUp />
     </div>
   );
 }
