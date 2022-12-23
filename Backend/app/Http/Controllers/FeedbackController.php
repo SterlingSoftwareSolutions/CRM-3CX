@@ -14,7 +14,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        return Feedback::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class FeedbackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // validation
+        ]);
+
+        return Feedback::create($request->all());
     }
 
     /**
@@ -44,9 +48,9 @@ class FeedbackController extends Controller
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function show(Feedback $feedback)
+    public function show(Feedback  $feedback)
     {
-        //
+        return $feedback;
     }
 
     /**
@@ -67,9 +71,10 @@ class FeedbackController extends Controller
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Feedback $feedback)
+    public function update(Request $request, Feedback  $feedback)
     {
-        //
+        $feedback->update($request->all());
+        return $feedback;
     }
 
     /**
@@ -78,8 +83,8 @@ class FeedbackController extends Controller
      * @param  \App\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feedback $feedback)
+    public function destroy(Feedback  $feedback)
     {
-        //
+        $feedback->delete();
     }
 }

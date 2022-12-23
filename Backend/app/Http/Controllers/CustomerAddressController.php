@@ -14,7 +14,7 @@ class CustomerAddressController extends Controller
      */
     public function index()
     {
-        //
+        return CustomerAddress::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class CustomerAddressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // validation
+        ]);
+
+        return CustomerAddress::create($request->all());
     }
 
     /**
@@ -46,7 +50,7 @@ class CustomerAddressController extends Controller
      */
     public function show(CustomerAddress $customerAddress)
     {
-        //
+        return $customerAddress;
     }
 
     /**
@@ -69,7 +73,8 @@ class CustomerAddressController extends Controller
      */
     public function update(Request $request, CustomerAddress $customerAddress)
     {
-        //
+        $customerAddress->update($request->all());
+        return $customerAddress;
     }
 
     /**
@@ -80,6 +85,17 @@ class CustomerAddressController extends Controller
      */
     public function destroy(CustomerAddress $customerAddress)
     {
-        //
+        $customerAddress->delete();
+    }
+
+    /**
+     * find the customer this address is for
+     *
+     * @param \App\Models\CustomerAddress  $customerAddress
+     * @return \Illuminate\Http\Response
+     */
+    public function customer(CustomerAddress $customerAddress)
+    {
+        return $customerAddress->first()->customer()->first();
     }
 }

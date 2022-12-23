@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Feedback extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'inquiry_id',
+        'feedback'
+    ];
+
     public function inquiry()
     {
-        $this->belongsTo(Inquiry::class);
+        return $this->belongsTo(Inquiry::class);
     }
 }

@@ -14,7 +14,7 @@ class InquiryController extends Controller
      */
     public function index()
     {
-        //
+        return Inquiry::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class InquiryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // validation
+        ]);
+
+        return Inquiry::create($request->all());
     }
 
     /**
@@ -44,10 +48,11 @@ class InquiryController extends Controller
      * @param  \App\Models\Inquiry  $inquiry
      * @return \Illuminate\Http\Response
      */
-    public function show(Inquiry $inquiry)
+    public function show(Inquiry  $inquiry)
     {
-        //
+        return $inquiry;
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -67,19 +72,20 @@ class InquiryController extends Controller
      * @param  \App\Models\Inquiry  $inquiry
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inquiry $inquiry)
+    public function update(Request $request, Inquiry  $inquiry)
     {
-        //
+        $inquiry->update($request->all());
+        return $inquiry;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Inquiry  $inquiry
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inquiry $inquiry)
+    public function destroy($id)
     {
-        //
+        Inquiry::destroy($id);
     }
 }

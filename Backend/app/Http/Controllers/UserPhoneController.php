@@ -14,7 +14,7 @@ class UserPhoneController extends Controller
      */
     public function index()
     {
-        //
+        return UserPhone::all();
     }
 
     /**
@@ -35,7 +35,11 @@ class UserPhoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // validation
+        ]);
+
+        return UserPhone::create($request->all());
     }
 
     /**
@@ -44,9 +48,9 @@ class UserPhoneController extends Controller
      * @param  \App\Models\UserPhone  $userPhone
      * @return \Illuminate\Http\Response
      */
-    public function show(UserPhone $userPhone)
+    public function show(UserPhone  $userPhone)
     {
-        //
+        return $userPhone;
     }
 
     /**
@@ -67,9 +71,10 @@ class UserPhoneController extends Controller
      * @param  \App\Models\UserPhone  $userPhone
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserPhone $userPhone)
+    public function update(Request $request, UserPhone  $userPhone)
     {
-        //
+        $userPhone->update($request->all());
+        return $userPhone;
     }
 
     /**
@@ -78,8 +83,8 @@ class UserPhoneController extends Controller
      * @param  \App\Models\UserPhone  $userPhone
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserPhone $userPhone)
+    public function destroy(UserPhone  $userPhone)
     {
-        //
+        $userPhone->delete();
     }
 }

@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class CallType extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'comment'
+    ];
+
+    function inquiry()
+    {
+        return $this->hasMany(Inquiry::class);
+    }
 }
