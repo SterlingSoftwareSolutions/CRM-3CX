@@ -6,19 +6,19 @@ const SideNavBar = () => {
   const menuItems = [
     {
       text: "Dashboard",
-      icon: "icon/grid.svg",
+      icon: "icons/dashboard.png",
     },
     {
       text: "Inquire",
-      icon: "icon/grid.svg",
+      icon: "icons/inquirer.png",
     },
     {
       text: "Users",
-      icon: "icon/grid.svg",
+      icon: "icons/users.png",
     },
     {
       text: "Agents",
-      icon: "icon/grid.svg",
+      icon: "icons/agent.png",
     },
   ];
 
@@ -50,10 +50,11 @@ const SideNavBar = () => {
           </button>
         </div>
         <div className="nav-menu">
-          {menuItems.map((text, icon) => (
+          {menuItems.map(({ text, icons }) => (
             <a className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}>
-              <img src={icon} alt="img" srcSet="" />
+              <img src={icons} alt="" srcSet="" />
               {isExpanded && <p>{text}</p>}
+              {!isExpanded && <div className="tooltip">{text}</div>}
             </a>
           ))}
         </div>

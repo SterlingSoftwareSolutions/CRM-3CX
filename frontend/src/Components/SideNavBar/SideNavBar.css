@@ -105,6 +105,10 @@ nav.heading {
   border-radius: 10px;
   position: relative;
 }
+.menu-item-NX {
+  margin: auto;
+  width: 4.5em;
+}
 
 .menu-item:hover {
   background-color: var(--primary);
@@ -113,4 +117,20 @@ nav.heading {
 .menu-item img {
   width: 30px;
   padding: 0 20px;
+}
+.menu-item:hover > .tooltip {
+  display: block;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 99%;
+  bottom: 80%;
+  width: auto;
+  padding: 4px, 8px;
+  border-radius: 15px 15px 15px 0;
+  white-space: nowrap;
+  border: 2px solid var(--light);
+  background-color: var(--dark);
 }
