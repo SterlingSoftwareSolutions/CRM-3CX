@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Outlet, Link } from "react-router-dom";
 import "./SideNavBar.css";
 
 const SideNavBar = () => {
@@ -6,19 +7,23 @@ const SideNavBar = () => {
   const menuItems = [
     {
       text: "Dashboard",
-      icon: "icons/dashboard.png",
+      icon: "icon/grid.svg",
+      href: "/",
     },
     {
       text: "Inquire",
-      icon: "icons/inquirer.png",
+      icon: "icon/grid.svg",
+      href: "/inquire",
     },
     {
       text: "Users",
-      icon: "icons/users.png",
+      icon: "icon/grid.svg",
+      href: "/users",
     },
     {
       text: "Agents",
-      icon: "icons/agent.png",
+      icon: "icon/grid.svg",
+      href: "/agents",
     },
   ];
 
@@ -50,11 +55,10 @@ const SideNavBar = () => {
           </button>
         </div>
         <div className="nav-menu">
-          {menuItems.map(({ text, icons }) => (
-            <a className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}>
-              <img src={icons} alt="" srcSet="" />
+          {menuItems.map(({text, icon ,href}) => (
+            <a href={href} className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}>
+              <img src={icon} alt="img" srcSet="" />
               {isExpanded && <p>{text}</p>}
-              {!isExpanded && <div className="tooltip">{text}</div>}
             </a>
           ))}
         </div>
