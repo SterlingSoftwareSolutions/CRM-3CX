@@ -21,24 +21,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 // User Phones
-Route::resource('user_phone', UserPhoneController::class);
+Route::resource('user_phones', UserPhoneController::class);
 
 // Customers
-Route::resource('customer', CustomerController::class);
-Route::get('/customer/search/{name}',[CustomerController::class, 'search']);
+Route::resource('customers', CustomerController::class);
+Route::get('/customers/search/{name}',[CustomerController::class, 'search']);
 
 // Customer Addresses
-Route::resource('customer_address', CustomerAddressController::class);
-Route::get('/customer_address/{id}/customer',[CustomerAddressController::class, 'customer']);
+Route::resource('customer_addresses', CustomerAddressController::class);
+Route::get('/customer_addresses/{id}/customer',[CustomerAddressController::class, 'customer']);
 
 // Call types
-Route::resource('call_type', CallTypeController::class);
+Route::resource('call_types', CallTypeController::class);
 
 // Inquiries
-Route::resource('inquiry', InquiryController::class);
+Route::resource('inquiries', InquiryController::class);
 
 // Feedbacks
-Route::resource('feedback', FeedbackController::class);
+Route::resource('feedbacks', FeedbackController::class);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

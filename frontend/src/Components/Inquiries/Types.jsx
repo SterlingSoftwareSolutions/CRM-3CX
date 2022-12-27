@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { useHistory } from 'react-router-dom';
 
 const Types = () => {
   useEffect(() => {
     handleShow(true);
   }, []);
+
+// set data to the local session 
+  const historyNew = useHistory ();
+  
+  useEffect(() => {
+    const name = window.localStorage.getItem("name");
+    if (name) {
+      historyNew.push("/Inquiries");
+    }
+  }, [historyNew]);
+
+ 
+
+
 
   //popup the page in this section
   const [show, setShow] = useState(false);
@@ -19,7 +34,7 @@ const Types = () => {
   //calling Api get method 
   const fetchArray = async () => {
     try {
-      let res = await fetch("http://127.0.0.1:8000/api/call_type");
+      let res = await fetch(api);
       res = await res.json();
       if (res.error) {
         console.error(res.error);
