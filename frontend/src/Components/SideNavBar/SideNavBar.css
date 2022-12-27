@@ -105,10 +105,12 @@ nav.heading {
   border-radius: 10px;
   position: relative;
 }
+
 .menu-item-NX {
   margin: auto;
   width: 4.5em;
 }
+
 
 .menu-item:hover {
   background-color: var(--primary);
@@ -118,6 +120,7 @@ nav.heading {
   width: 30px;
   padding: 0 20px;
 }
+
 .menu-item:hover > .tooltip {
   display: block;
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import { Outlet, Link } from "react-router-dom";
+
 import "./SideNavBar.css";
 
 const SideNavBar = () => {
