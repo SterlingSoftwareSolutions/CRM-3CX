@@ -1,13 +1,11 @@
-
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
+import Dashboard from "./Pages/Dashboard/index";
 
 function App() {
   return (
     <div className="App">
-      {/* <LoginPage/> */}
-      <CustomerPopUp />
+      <Dashboard />
     </div>
   );
 }
