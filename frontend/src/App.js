@@ -1,11 +1,12 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Dashboard from "./Pages/Dashboard/index";
+import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
+import SideNavBar from "./Components/SideNavBar/SideNavBar";
 
 function App() {
   return (
     <div className="App">
-      <Dashboard />
+      <SideNavBar />
     </div>
   );
 }
