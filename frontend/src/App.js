@@ -6,8 +6,6 @@ import SideNavBar from "./Components/SideNavBar/SideNavBar";
 function App() {
   return (
     <div className="App">
-      {/* <LoginPage/> */}
-      {/* <CustomerPopUp /> */}
       <SideNavBar />
     </div>
   );
