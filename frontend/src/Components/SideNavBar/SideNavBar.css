@@ -1,5 +1,5 @@
 .side-nav-container {
-  background-color: var(--dark);
+  background-color: var(--body);
   width: 300px;
   height: 100vh;
   position: relative;
@@ -29,7 +29,7 @@ nav.heading {
 }
 
 .nav-brand img {
-  width: 40px;
+  width: 170px;
   padding: 0 10px;
 }
 
@@ -92,6 +92,24 @@ nav.heading {
 .nav-menu {
   grid-template-rows: repeat(4, 1fr);
   margin-top: 50px;
+  display: flex;
+}
+
+.nav-img {
+  margin-top: 70%;
+  width: 50px;
+  height: 50px;
+}
+
+.nav-img-NX {
+  margin-top: 70%;
+  width: 50px;
+  height: 50px;
+}
+
+.nav-menu-img {
+  width: 50px;
+  height: 50px;
 }
 
 .menu-item {
@@ -101,7 +119,7 @@ nav.heading {
   color: var(--light);
   text-decoration: none;
   text-transform: uppercase;
-  margin: auto 20px;
+  margin: auto 40px;
   border-radius: 10px;
   position: relative;
 }
