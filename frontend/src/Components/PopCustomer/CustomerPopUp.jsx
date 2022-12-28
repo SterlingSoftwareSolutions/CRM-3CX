@@ -50,7 +50,6 @@ const CustomerPopUp = () => {
     var page = url.substring(url.lastIndexOf("=") + 1);
     setUrl(page);
     fetchData(page);
-    // formRef.current.value = "Hello"
   }, []);
 
   const onChangeValue = (key, value) => {
@@ -60,16 +59,14 @@ const CustomerPopUp = () => {
   //post method
   let handleSubmit = async (e) => {
     data.phone = url;
-    const response =await fetch("http://127.0.0.1:8000/api/customers/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  console.log(response);
-  const result =await response.json();
-  console.log(result);
+    const response = await fetch(api, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
     handleClose();
   };
 
@@ -189,12 +186,6 @@ const CustomerPopUp = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <button
-        className="btn btn mt-3 button-style"
-        onClick={() => handleShow(true)}
-      >
-        PopUp
-      </button>
     </div>
   );
 };
