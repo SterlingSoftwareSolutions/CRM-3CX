@@ -9,13 +9,19 @@ const Types = () => {
   }, []);
 
 
-
   //popup the page in this section
   const [show, setShow] = useState(false);
   const [arr, setArr] = useState([]);
   const [filter, setFilter] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  //save data localstorage 
+  const [value, setvalue] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem('value', JSON.stringify(filter));
+  }, [filter]);
 
   const api = "http://127.0.0.1:8000/api/call_types"; //api url
 
