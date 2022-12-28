@@ -4,7 +4,6 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
 import Dashboard from "./Pages/Dashboard/index";
 import SideNavBar from "./Components/SideNavBar/SideNavBar";
-import Types from "./Components/Inquiries/Types";
 import { Col, Row } from "antd";
 
 function App() {
@@ -20,8 +19,6 @@ function App() {
             <Route path="agents" element={<CustomerPopUp />} />
             <Route path="contact" element={<Dashboard />} />
             <Route path="*" element={<Dashboard />} />
-            <Route path="/customer/:phone" element={<CustomerPopUp />} />
-            <Route path="/types" element={<Types />} />
           </Routes>
         </Col>
       </BrowserRouter>
