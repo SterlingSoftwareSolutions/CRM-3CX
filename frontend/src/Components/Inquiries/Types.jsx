@@ -3,11 +3,9 @@ import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 const Types = () => {
-
   useEffect(() => {
     handleShow(true);
   }, []);
-
 
   //popup the page in this section
   const [show, setShow] = useState(false);
@@ -16,16 +14,15 @@ const Types = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //save data localstorage 
-  const [value, setvalue] = useState([]);
-
+  //save data localstorage
   useEffect(() => {
-    localStorage.setItem('value', JSON.stringify(filter));
+    localStorage.setItem("value", JSON.stringify(filter));
   }, [filter]);
 
-  const api = "http://127.0.0.1:8000/api/call_types"; //api url
+  //Get api url
+  const api = "http://127.0.0.1:8000/api/call_types";
 
-  //calling Api get method 
+  //calling Api get method
   const fetchArray = async () => {
     try {
       let res = await fetch(api);
@@ -48,7 +45,6 @@ const Types = () => {
     fetchArray();
   }, []);
 
- 
   return (
     <Modal onHide={handleClose} show={show}>
       <ModalHeader>
