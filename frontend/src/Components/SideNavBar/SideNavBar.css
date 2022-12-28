@@ -1,5 +1,4 @@
 .side-nav-container {
-
   background-color: var(--body);
   width: 180px;
 
@@ -7,7 +6,7 @@
   position: relative;
   color: var(--dark);
   transition: 0.4s;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5)
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .side-nav-container-NX {
