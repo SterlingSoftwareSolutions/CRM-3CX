@@ -5,14 +5,16 @@ import Button from "react-bootstrap/Button";
 import "./CustomerPopUp.css";
 
 const CustomerPopUp = () => {
-  useEffect(() => {
-    handleShow(true);
-  }, []);
-
-  //popup the page in this section
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const api = "http://127.0.0.1:8000/api/customers/"; //api url
+  const [url, setUrl] = useState("None");
+  const [Iscostomer_available, setcustomeravailability] = useState(false);
+
+  const [customer_address, setCustomerData] = useState({
+    address_line_1: "",
+  });
   const [data, setData] = useState({
     name: "",
     phone: "",
@@ -21,17 +23,15 @@ const CustomerPopUp = () => {
     comment: "",
   });
 
-  const api = "http://127.0.0.1:8000/api/customers/"; //api url
-  const [url, setUrl] = useState("None");
-
-  //Get the data from api
-  const fetchData = (page) => {
+  const fetchData = (customer_number) => {
     try {
-      fetch(api + page)
+      fetch(api + customer_number)
         .then((response) => response.json())
-        .then((customerdata) => {
+        .then(async (customerdata) => {
           if (customerdata.success) {
             setData(customerdata.data);
+            await setCustomerData(customerdata.data.customer_address[0]);
+            setcustomeravailability(true);
           } else {
             setData(emptyObject);
           }
@@ -44,19 +44,21 @@ const CustomerPopUp = () => {
     }
   };
 
-  //if call url has number remove the other sting and featch only number
   useEffect(() => {
     var url = window.location.href;
-    var page = url.substring(url.lastIndexOf("=") + 1);
-    setUrl(page);
-    fetchData(page);
+    var customer_number = url.substring(url.lastIndexOf("=") + 1);
+    setUrl(customer_number);
+    fetchData(customer_number);
+    handleShow(true);
   }, []);
 
   const onChangeValue = (key, value) => {
     setData((prev) => ({ ...prev, [key]: value }));
   };
+  const onChangeAddressValue = (key, value) => {
+    setCustomerData((prev) => ({ ...prev, [key]: value }));
+  };
 
-  //post method
   let handleSubmit = async (e) => {
     data.phone = url;
     const response = await fetch(api, {
@@ -90,6 +92,7 @@ const CustomerPopUp = () => {
                       onChange={(e) => onChangeValue("phone", e.target.value)}
                       id="phone"
                       value={url}
+                      disabled
                       type="text"
                       placeholder="phone number"
                     />
@@ -120,7 +123,7 @@ const CustomerPopUp = () => {
                       id="email"
                       defaultValue={data.email}
                       type="email"
-                      placeholder="johndoe@abc.com"
+                      placeholder="example@example.com"
                     />
                   </Form.Group>
                 </Col>
@@ -132,10 +135,10 @@ const CustomerPopUp = () => {
                     <Form.Label>Customer Address</Form.Label>
                     <Form.Control
                       onChange={(e) =>
-                        onChangeValue("CustomerAddress", e.target.value)
+                        onChangeAddressValue("CustomerAddress", e.target.value)
                       }
                       id="CustomerAddress"
-                      defaultValue={data.name}
+                      defaultValue={customer_address.address_line_1}
                       type="text"
                       as="textarea"
                       rows={1}
