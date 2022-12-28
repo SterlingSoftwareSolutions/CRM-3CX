@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
+
 import AnimatedNumber from "animated-number-react";
 
 const NumberCards = (props) => {

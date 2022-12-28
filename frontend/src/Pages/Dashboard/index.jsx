@@ -1,8 +1,17 @@
+
 import { Col, Row } from "antd";
 import React from "react";
 import "./index.css";
-
 import AnimatedNumber from "./AnimatedNumber";
+import { Card, Col, Row } from "antd";
+import React from "react";
+import { ReactComponent as Users } from "../../Assets/users.svg";
+import { ReactComponent as InBoundCalls } from "../../Assets/incomingcalls.svg";
+import { ReactComponent as OpenInquiry } from "../../Assets/open.svg";
+import { ReactComponent as ClosedInquiries } from "../../Assets/closed.svg";
+import { ReactComponent as OutBoundCalls } from "../../Assets/outgoingcalls.svg";
+import "./index.css";
+import NumberCards from "../../Components/NumberCards";
 
 const projectdata = [
   { name: "Abans", value: 207 },
@@ -49,6 +58,26 @@ const Dashboard = () => {
     <div>
       <Row style={{ marginTop: "5%" }}>
         <AnimatedNumber />
+      <Row>
+        <Card>
+          <Row>
+            <div>
+              <Users /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <OutBoundCalls /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <InBoundCalls /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <OpenInquiry /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <ClosedInquiries /> <NumberCards value={200} /> Name
+            </div>
+          </Row>
+        </Card>
       </Row>
       <Row>
         <Col span={16}></Col>
