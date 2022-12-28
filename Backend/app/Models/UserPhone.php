@@ -12,7 +12,7 @@ class UserPhone extends Model
 
     protected $fillable = [
         'user_id',
-        'mobile',
+        'phone',
         'company'
     ];
 

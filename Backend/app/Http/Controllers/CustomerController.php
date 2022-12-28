@@ -14,8 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-
-        return Customer::all();
+        return response()->success(Customer::all());
     }
 
     /**
@@ -40,7 +39,7 @@ class CustomerController extends Controller
             'phone' => 'required|unique:customers'
         ]);
 
-        return Customer::create($request->all());
+        return response()->success(Customer::create($request->all()));
     }
 
     /**
@@ -51,9 +50,11 @@ class CustomerController extends Controller
      */
     public function show($phone)
     {
-        return Customer::where('phone', $phone)
+        return response()->success(
+            Customer::where('phone', $phone)
             ->with('customer_address')
-            ->get();
+            ->firstOrFail()
+        );
     }
 
     /**
@@ -80,12 +81,16 @@ class CustomerController extends Controller
             'phone' => 'unique:customers'
         ]);
 
-        $customer = Customer::where('phone', $phone);
-        if ($customer->count() == 1) {
-            $customer->update($request->all());
-            return 0;
+        $customer = Customer::where('phone', $phone)->firstOrFail();
+        $customer->update($request->all());
+
+        if($request->phone){
+            return response()->success(
+                Customer::where('phone', $request->phone)
+                ->firstOrFail()
+            );
         }
-        return 1; // customer doesn't exist
+        return response()->success($customer);
     }
 
     /**
@@ -96,13 +101,10 @@ class CustomerController extends Controller
      */
     public function destroy($phone)
     {
-        $customer = Customer::where('phone', $phone);
-        if ($customer->count() == 1) {
-             $customer->delete();
-             return 0;
-        }
-        return 1; // customer doesn't exist
-    }
+        $customer = Customer::where('phone', $phone)->firstOrFail();
+        $customer->delete();
+        return response()->success(null);
+    }   
 
     /**
      * Find resources from storage.
@@ -112,6 +114,6 @@ class CustomerController extends Controller
      */
     public function search($name)
     {
-        return Customer::where('name', 'like', '%' . $name . '%')->get();
+        return response()->success(Customer::where('name', 'like', '%' . $name . '%')->get());
     }
 }
