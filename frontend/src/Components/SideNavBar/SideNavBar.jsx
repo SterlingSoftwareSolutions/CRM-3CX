@@ -3,32 +3,14 @@ import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 import "./SideNavBar.css";
-import { Dashboard } from "@mui/icons-material";
+import { ReactComponent as DashboardIcon } from "../../Assets/icons/dashboard.svg";
+import { ReactComponent as InquireIcon } from "../../Assets/icons/inquire.svg";
+import { ReactComponent as UsersIcon } from "../../Assets/icons/users.svg";
+import { ReactComponent as AgentsIcon } from "../../Assets/icons/support-svgrepo-com.svg";
+import { ReactComponent as Logo } from "../../Assets/icons/sterling_logo.svg";
 
 const SideNavBar = () => {
   const [isExpanded, setExpandedState] = useState(false);
-  // const menuItems = [
-  //   {
-  //     text: "Dashboard",
-  //     icon: "icon/grid.svg",
-  //     href: "/",
-  //   },
-  //   {
-  //     text: "Inquire",
-  //     icon: "icon/grid.svg",
-  //     href: "/inquire",
-  //   },
-  //   {
-  //     text: "Users",
-  //     icon: "icon/grid.svg",
-  //     href: "/users",
-  //   },
-  //   {
-  //     text: "Agents",
-  //     icon: "icon/grid.svg",
-  //     href: "/agents",
-  //   },
-  // ];
 
   return (
     <div
@@ -42,7 +24,7 @@ const SideNavBar = () => {
         <div className="nav-heading">
           {isExpanded && (
             <div className="nav-brand">
-              <h2>Sterling BPO CRM</h2>
+              {/* <Logo /> */}
             </div>
           )}
           <button
@@ -58,11 +40,7 @@ const SideNavBar = () => {
         </div>
         <div className="nav-menu"></div>
         <div className="nav-menu">
-          <img
-            src={require("./icons/dashboard.png")}
-            className="nav-menu-img"
-            alt="img"
-          />
+          <DashboardIcon />
           <a
             href={"/"}
             className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
@@ -71,11 +49,7 @@ const SideNavBar = () => {
           </a>
         </div>
         <div className="nav-menu">
-          <img
-            src={require("./icons//inquiry.png")}
-            className="nav-menu-img"
-            alt="img"
-          />
+          <InquireIcon />
           <a
             href={"/inquire"}
             className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
@@ -84,11 +58,7 @@ const SideNavBar = () => {
           </a>
         </div>
         <div className="nav-menu">
-          <img
-            src={require("./icons/users.png")}
-            className="nav-menu-img"
-            alt="img"
-          />
+          <UsersIcon />
           <a
             href={"/users"}
             className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
@@ -97,11 +67,7 @@ const SideNavBar = () => {
           </a>
         </div>
         <div className="nav-menu">
-          <img
-            src={require("./icons/agent.png")}
-            className="nav-menu-img"
-            alt="img"
-          />
+          <AgentsIcon />
           <a
             href={"/agents"}
             className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
