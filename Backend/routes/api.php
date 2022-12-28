@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // User Phones
+
 Route::resource('user_phones', UserPhoneController::class);
 
 // Customers
@@ -30,6 +31,18 @@ Route::get('/customers/search/{name}',[CustomerController::class, 'search']);
 // Customer Addresses
 Route::resource('customer_addresses', CustomerAddressController::class);
 Route::get('/customer_addresses/{id}/customer',[CustomerAddressController::class, 'customer']);
+=======
+Route::get('user_phones/{userPhone}/user', [UserPhoneController::class, 'user']);
+Route::resource('user_phones', UserPhoneController::class);
+
+// Customers
+Route::get('/customers/search/{name}',[CustomerController::class, 'search']);
+Route::resource('customers', CustomerController::class);
+
+// Customer Addresses
+Route::resource('customer_addresses', CustomerAddressController::class);
+Route::get('/customer_addresses/customerAdress/customer',[CustomerAddressController::class, 'customer']);
+
 
 // Call types
 Route::resource('call_types', CallTypeController::class);
