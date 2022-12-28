@@ -1,6 +1,8 @@
 .side-nav-container {
-  background-color: var(--body);
-  width: 300px;
+
+  background-color: var(--dark);
+  width: 250px;
+
   height: 100vh;
   position: relative;
   color: var(--light);
@@ -128,7 +130,6 @@ nav.heading {
   margin: auto;
   width: 4.5em;
 }
-
 
 .menu-item:hover {
   background-color: var(--primary);
