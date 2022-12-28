@@ -91,11 +91,18 @@ class CustomerAddressController extends Controller
     /**
      * find the customer this address is for
      *
-     * @param \App\Models\CustomerAddress  $customerAddress
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function customer(CustomerAddress $customerAddress)
+    public function customer($id)
     {
-        return $customerAddress->first()->customer()->first();
+        $customerAddress = CustomerAddress::find($id);
+
+        if($customerAddress){
+            return $customerAddress
+            ->customer()
+            ->first();
+        }
+        return 1;
     }
 }
