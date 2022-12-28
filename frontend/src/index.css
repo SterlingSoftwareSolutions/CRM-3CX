@@ -1,3 +1,10 @@
+:root {
+  --prmary: #55717e;
+  --dark: #061b28;
+  --gray: #756388;
+  --light: #ffffff;
+}
+
 body {
   background-color: #fffdfa !important;
 }

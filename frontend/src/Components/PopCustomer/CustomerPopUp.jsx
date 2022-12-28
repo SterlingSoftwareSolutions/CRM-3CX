@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Form, Modal, ModalHeader, Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import "./CustomerPopUp.css";
@@ -12,19 +12,28 @@ const CustomerPopUp = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [data, setData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    location: "",
+    comment: "",
+  });
 
-  const api = "http://127.0.0.1:8000/api/customer/"; //api url
+  const api = "http://127.0.0.1:8000/api/customers/"; //api url
   const [url, setUrl] = useState("None");
+  
 
   //Get the data from api
   const fetchData = (page) => {
     try {
       fetch(api + page)
         .then((response) => response.json())
-        .then((customerdata) => setData(customerdata))
+        .then((customerdata) => setData(customerdata[1]))
         .catch((err) => {
           console.log(err.message);
         });
+        console.log(data);
     } catch (error) {
       alert(error);
     }
@@ -36,19 +45,17 @@ const CustomerPopUp = () => {
     var page = url.substring(url.lastIndexOf("=") + 1);
     setUrl(page);
     fetchData(page);
-  });
+    // formRef.current.value = "Hello"
+  },[]);
 
-  const [data, setData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    location: "",
-    comment: "",
-  });
+  
 
   const onChangeValue = (key, value) => {
     setData((prev) => ({ ...prev, [key]: value }));
+    console.log(data)
   };
+
+  console.log(data)
 
   //post method
   let handleSubmit = async (e) => {
@@ -95,9 +102,12 @@ const CustomerPopUp = () => {
                     <Form.Control
                       onChange={(e) => onChangeValue("name", e.target.value)}
                       id="name"
-                      defaultValue={data.name}
+                      
                       type="text"
                       placeholder="Customer Name"
+                      name="name"
+                      value={data.name} 
+                     
                     />
                   </Form.Group>
                 </Col>
