@@ -14,7 +14,7 @@ class UserPhoneController extends Controller
      */
     public function index()
     {
-        return UserPhone::all();
+        return response()->success(UserPhone::all());
     }
 
     /**
@@ -36,10 +36,10 @@ class UserPhoneController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // validation
+            'phone' => 'required|unique:user_phones',
+            'user_id' => 'required|exists:users,id'
         ]);
-
-        return UserPhone::create($request->all());
+        return response()->success(UserPhone::create($request->all()));
     }
 
     /**
@@ -48,9 +48,9 @@ class UserPhoneController extends Controller
      * @param  \App\Models\UserPhone  $userPhone
      * @return \Illuminate\Http\Response
      */
-    public function show(UserPhone  $userPhone)
+    public function show(UserPhone $userPhone)
     {
-        return $userPhone;
+        return response()->success($userPhone);
     }
 
     /**
@@ -73,8 +73,12 @@ class UserPhoneController extends Controller
      */
     public function update(Request $request, UserPhone  $userPhone)
     {
+        $request->validate([
+            'phone' => 'unique:user_phones',
+            'user_id' => 'exists:users,id'
+        ]);
         $userPhone->update($request->all());
-        return $userPhone;
+        return response()->success($userPhone);
     }
 
     /**
@@ -83,8 +87,20 @@ class UserPhoneController extends Controller
      * @param  \App\Models\UserPhone  $userPhone
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserPhone  $userPhone)
+    public function destroy(UserPhone $userPhone)
     {
         $userPhone->delete();
+        return response()->success(null);
+    }
+
+    /**
+     * Get the specified phone's user
+     *
+     * @param  \App\Models\UserPhone  $userPhone
+     * @return \Illuminate\Http\Response
+     */
+    public function user(UserPhone $userPhone)
+    {
+        return response()->success($userPhone->user);
     }
 }
