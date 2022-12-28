@@ -1,16 +1,16 @@
 import React from "react";
-import { ReactComponent as Users } from "../../Assets/users.svg";
-import { ReactComponent as InBoundCalls } from "../../Assets/incomingcalls.svg";
-import { ReactComponent as OpenInquiry } from "../../Assets/open.svg";
-import { ReactComponent as ClosedInquiries } from "../../Assets/closed.svg";
-import { ReactComponent as OutBoundCalls } from "../../Assets/outgoingcalls.svg";
-import "./index.css";
-import NumberCards from "../../Components/NumberCards";
+import { ReactComponent as Users } from "../../../Assets/users.svg";
+import { ReactComponent as InBoundCalls } from "../../../Assets/incomingcalls.svg";
+import { ReactComponent as OpenInquiry } from "../../../Assets/open.svg";
+import { ReactComponent as ClosedInquiries } from "../../../Assets/closed.svg";
+import { ReactComponent as OutBoundCalls } from "../../../Assets/outgoingcalls.svg";
+import "../index.css";
+import NumberCards from "../../../Components/NumberCards";
 import { Card, Col, Row } from "antd";
 
 const AnimatedNumber = () => {
   return (
-    <Card>
+    <Card style={{ width: "1100px" }}>
       <Row>
         <div className="card-one-style">
           <Row>

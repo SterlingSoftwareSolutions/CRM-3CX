@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/charts": "^1.4.2",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -24,6 +25,7 @@
     "react-hook-form": "^7.41.0",
     "react-icons": "^4.7.1",
     "react-icons-kit": "^2.0.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "recharts": "^2.2.0",
