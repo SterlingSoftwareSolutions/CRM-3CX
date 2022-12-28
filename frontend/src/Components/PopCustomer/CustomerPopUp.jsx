@@ -29,7 +29,7 @@ const CustomerPopUp = () => {
     try {
       fetch(api + page)
         .then((response) => response.json())
-        .then((customerdata) => setData(customerdata[1]))
+        .then((customerdata) => setData(customerdata.data))
         .catch((err) => {
           console.log(err.message);
         });
