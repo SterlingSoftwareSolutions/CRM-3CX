@@ -2,9 +2,7 @@ import { Col, Row } from "antd";
 import React from "react";
 import "./index.css";
 
-import AnimatedNumber from "./Components/AnimatedNumber";
-import AgentList from "./Components/AgentList";
-import PieCharts from "./Components/PieCharts";
+import AnimatedNumber from "./AnimatedNumber";
 
 const projectdata = [
   { name: "Abans", value: 207 },
@@ -49,20 +47,36 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 const Dashboard = () => {
   return (
     <div>
-      <Row style={{ marginTop: "5%", width: "1100px" }}>
-        <AnimatedNumber />
+      <Row>
+        <Card>
+          <Row>
+            <div>
+              <Users /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <OutBoundCalls /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <InBoundCalls /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <OpenInquiry /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <ClosedInquiries /> <NumberCards value={200} /> Name
+            </div>
+          </Row>
+        </Card>
       </Row>
       <Row>
         <Col span={16}></Col>
-        <Col span={8}>
-          <AgentList />
-        </Col>
+        <Col span={8}></Col>
       </Row>
       <Row>
-        <Col span={6}>{/* <PieCharts /> */}</Col>
-        <Col span={6}>{/* <PieCharts /> */}</Col>
-        <Col span={6}>{/* <PieCharts /> */}</Col>
-        <Col span={6}>{/* <PieCharts /> */}</Col>
+        <Col span={6}></Col>
+        <Col span={6}></Col>
+        <Col span={6}></Col>
+        <Col span={6}></Col>
       </Row>
     </div>
   );
