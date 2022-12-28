@@ -1,3 +1,8 @@
+
+import { Col, Row } from "antd";
+import React from "react";
+import "./index.css";
+import AnimatedNumber from "./AnimatedNumber";
 import { Card, Col, Row } from "antd";
 import React from "react";
 import { ReactComponent as Users } from "../../Assets/users.svg";
@@ -51,6 +56,8 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 const Dashboard = () => {
   return (
     <div>
+      <Row style={{ marginTop: "5%" }}>
+        <AnimatedNumber />
       <Row>
         <Card>
           <Row>

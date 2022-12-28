@@ -5,6 +5,7 @@ import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
 import Dashboard from "./Pages/Dashboard/index";
 import SideNavBar from "./Components/SideNavBar/SideNavBar";
 import Types from "./Components/Inquiries/Types";
+
 import { Col, Row } from "antd";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     <Row>
       <BrowserRouter>
         <Col span={4}>
-         <SideNavBar />      
+          <SideNavBar />
         </Col>
         <Col span={20}>
           <Routes>
