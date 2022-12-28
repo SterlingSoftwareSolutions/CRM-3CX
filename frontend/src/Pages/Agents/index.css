@@ -1,0 +1,45 @@
+.agent{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,td{
+    border:1px solid white;
+    text-align: left;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+}
+
+th{
+    background-color: #75c9fa;
+}
+
+td{
+    background-color: #cdebfd;
+}
+
+input{
+    padding: 5px;
+    margin: 2px;
+}
+
+button{
+    padding: 8px;
+    background: #1E98D7;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover{
+    background: #1878a8;
+}

@@ -10,7 +10,6 @@
 }
 
 body {
-  background:var(--main-bg-color) !important;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -49,31 +48,23 @@ body, html, .App, #root, .auth-wrapper {
 }
 .auth-wrapper h3 {
   text-align: center;
-  margin: 0;
-  line-height: 1;
-  padding-bottom: 20px;
 }
-.custom-control-label {
-  font-weight: 400;
-  padding-left: 10px;
+
+.button-style {
+  margin: 20% 0 5% 0;
+  background: #1bc5d5;
+  color: white;
+  border: none;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 6px;
+  width: 92px;
 }
-.forgot-password,
-.forgot-password a {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: var(--text-color);
-  margin: 0;
+
+.input-style {
+  margin-top: 40px;
 }
-.forgot-password a {
-  color: var(--main-bg-color);
-}
-i {
-  position: absolute;
-  top: 52.5%;
-  right: 39%;
-}
-i:hover {
-  color: var(--main-bg-color);
-  cursor: pointer;
+
+.d-grid {
+  float: right;
 }
