@@ -1,7 +1,7 @@
 .side-nav-container {
 
   background-color: var(--body);
-  width: 200px;
+  width: 180px;
 
   height: 100vh;
   position: relative;
@@ -11,7 +11,7 @@
 }
 
 .side-nav-container-NX {
-  width: 85px;
+  width: 62px;
 }
 
 .nav-upper,
@@ -19,6 +19,7 @@
 nav-menu,
 menu-item {
   display: grid;
+  height: 90px;
 }
 
 nav.heading {
@@ -96,7 +97,7 @@ nav.heading {
 
 .nav-menu {
   grid-template-rows: repeat(4, 1fr);
-  margin-top: 50px;
+  margin-top: 10px;
   margin-left: 20px;
   display: flex;
 }

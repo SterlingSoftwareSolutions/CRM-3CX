@@ -25,7 +25,7 @@ const SideNavBar = () => {
           {isExpanded && (
             <div className="nav-brand">
               {/* <Logo /> */}
-              <h2>CRM</h2>
+              <h2>Sterling</h2>
             </div>
           )}
           <button
