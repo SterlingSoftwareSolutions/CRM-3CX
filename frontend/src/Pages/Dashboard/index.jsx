@@ -47,8 +47,26 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 const Dashboard = () => {
   return (
     <div>
-      <Row style={{ marginTop: "5%" }}>
-        <AnimatedNumber />
+      <Row>
+        <Card>
+          <Row>
+            <div>
+              <Users /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <OutBoundCalls /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <InBoundCalls /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <OpenInquiry /> <NumberCards value={200} /> Name
+            </div>
+            <div>
+              <ClosedInquiries /> <NumberCards value={200} /> Name
+            </div>
+          </Row>
+        </Card>
       </Row>
       <Row>
         <Col span={16}></Col>

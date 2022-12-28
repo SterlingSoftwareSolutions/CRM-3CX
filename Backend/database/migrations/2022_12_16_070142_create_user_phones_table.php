@@ -15,7 +15,7 @@ class CreateUserPhonesTable extends Migration
     {
         Schema::create('user_phones', function (Blueprint $table) {
             $table->id();
-            $table->string('mobile');
+            $table->string('phone');
             $table->string('company')->nullable();
             $table->foreignId('user_id')
                 ->constrained()
