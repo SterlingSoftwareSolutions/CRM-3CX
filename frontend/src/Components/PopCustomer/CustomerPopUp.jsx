@@ -1,3 +1,4 @@
+import { emptyObject } from "@jest/expect-utils";
 import React, { useEffect, useRef, useState } from "react";
 import { Form, Modal, ModalHeader, Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
@@ -22,18 +23,22 @@ const CustomerPopUp = () => {
 
   const api = "http://127.0.0.1:8000/api/customers/"; //api url
   const [url, setUrl] = useState("None");
-  
 
   //Get the data from api
   const fetchData = (page) => {
     try {
       fetch(api + page)
         .then((response) => response.json())
-        .then((customerdata) => setData(customerdata.data))
+        .then((customerdata) => {
+          if (customerdata.success) {
+            setData(customerdata.data);
+          } else {
+            setData(emptyObject);
+          }
+        })
         .catch((err) => {
           console.log(err.message);
         });
-        console.log(data);
     } catch (error) {
       alert(error);
     }
@@ -46,27 +51,25 @@ const CustomerPopUp = () => {
     setUrl(page);
     fetchData(page);
     // formRef.current.value = "Hello"
-  },[]);
-
-  
+  }, []);
 
   const onChangeValue = (key, value) => {
     setData((prev) => ({ ...prev, [key]: value }));
-    console.log(data)
   };
-
-  console.log(data)
 
   //post method
   let handleSubmit = async (e) => {
     data.phone = url;
-    console.log(data);
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    };
-    fetch(api, requestOptions).then((response) => response.json());
+    const response =await fetch("http://127.0.0.1:8000/api/customers/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  console.log(response);
+  const result =await response.json();
+  console.log(result);
     handleClose();
   };
 
@@ -102,12 +105,10 @@ const CustomerPopUp = () => {
                     <Form.Control
                       onChange={(e) => onChangeValue("name", e.target.value)}
                       id="name"
-                      
                       type="text"
                       placeholder="Customer Name"
                       name="name"
-                      value={data.name} 
-                     
+                      value={data.name}
                     />
                   </Form.Group>
                 </Col>
