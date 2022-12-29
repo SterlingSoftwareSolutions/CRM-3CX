@@ -14,3 +14,9 @@
   color: white;
   border: none;
 }
+
+.input-label{
+  color: red;
+  font-size: 12px;
+  margin-left: 40px;
+}

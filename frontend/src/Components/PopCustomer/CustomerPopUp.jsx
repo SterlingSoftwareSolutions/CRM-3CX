@@ -11,6 +11,8 @@ const CustomerPopUp = () => {
   const api = "http://127.0.0.1:8000/api/customers/"; //api url
   const [url, setUrl] = useState("None");
   const [Iscostomer_available, setcustomeravailability] = useState(false);
+  const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const [customer_address, setCustomerData] = useState({
     address_line_1: "",
@@ -61,6 +63,14 @@ const CustomerPopUp = () => {
 
   let handleSubmit = async (e) => {
     data.phone = url;
+    const regEx =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (data.name.length == 0) {
+      setError(true);
+    }
+    if (!regEx.test(data.email)) {
+      setEmailError("Email is Invalid!");
+    } else setEmailError("");
     const response = await fetch(api, {
       method: "POST",
       headers: {
@@ -110,6 +120,13 @@ const CustomerPopUp = () => {
                       name="name"
                       value={data.name}
                     />
+                    {error && data.name.length <= 0 ? (
+                      <Form.Label className="input-label">
+                        Customer Name cannot be empty
+                      </Form.Label>
+                    ) : (
+                      ""
+                    )}
                   </Form.Group>
                 </Col>
               </Row>
@@ -125,6 +142,9 @@ const CustomerPopUp = () => {
                       type="email"
                       placeholder="example@example.com"
                     />
+                    <Form.Label className="input-label">
+                      {emailError}
+                    </Form.Label>
                   </Form.Group>
                 </Col>
               </Row>
