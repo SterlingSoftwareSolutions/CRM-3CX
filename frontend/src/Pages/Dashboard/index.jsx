@@ -3,6 +3,13 @@ import {useNavigate} from 'react-router-dom';
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 
+<<<<<<< HEAD
+=======
+import AnimatedNumber from "./Components/AnimatedNumber";
+import AgentList from "./Components/AgentList";
+import PieCharts from "./Components/PieCharts";
+
+>>>>>>> origin/Develop
 const projectdata = [
   { name: "Abans", value: 207 },
   { name: "Koko", value: 302 },
@@ -54,6 +61,7 @@ const Dashboard = () => {
 
   return (
     <div>
+<<<<<<< HEAD
       <Row>
         {/* <Card>
           <Row>
@@ -74,12 +82,19 @@ const Dashboard = () => {
             </div>
           </Row>
         </Card> */}
+=======
+      <Row style={{ marginTop: "5%", width: "1100px" }}>
+        <AnimatedNumber />
+>>>>>>> origin/Develop
       </Row>
       <Row>
-        <Col span={16}></Col>
-        <Col span={8}></Col>
+        <Col span={13}></Col>
+        <Col span={11}>
+          <AgentList />
+        </Col>
       </Row>
       <Row>
+<<<<<<< HEAD
         <Col span={6}>
    
           <h1>Hello bokka</h1>
@@ -87,6 +102,12 @@ const Dashboard = () => {
         <Col span={6}></Col>
         <Col span={6}></Col>
         <Col span={6}></Col>
+=======
+        <Col span={6}>{/* <PieCharts /> */}</Col>
+        <Col span={6}>{/* <PieCharts /> */}</Col>
+        <Col span={6}>{/* <PieCharts /> */}</Col>
+        <Col span={6}>{/* <PieCharts /> */}</Col>
+>>>>>>> origin/Develop
       </Row>
     </div>
   );

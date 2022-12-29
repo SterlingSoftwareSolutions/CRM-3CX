@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { Link } from 'react-router-dom';
 
 const Types = () => {
-
   useEffect(() => {
     handleShow(true);
   }, []);
-
-
 
   //popup the page in this section
   const [show, setShow] = useState(false);
@@ -17,9 +15,15 @@ const Types = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const api = "http://127.0.0.1:8000/api/call_types"; //api url
+  //save data localstorage
+  useEffect(() => {
+    localStorage.setItem("value", JSON.stringify(filter));
+  }, [filter]);
 
-  //calling Api get method 
+  //Get api url
+  const api = "http://127.0.0.1:8000/api/call_types";
+
+  //calling Api get method
   const fetchArray = async () => {
     try {
       let res = await fetch(api);
@@ -42,7 +46,6 @@ const Types = () => {
     fetchArray();
   }, []);
 
- 
   return (
     <Modal onHide={handleClose} show={show}>
       <ModalHeader>
@@ -67,18 +70,22 @@ const Types = () => {
         </Form>
         <Modal.Footer>
           {/* close button */}
+          <Link to='/customer/:phone'>
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
             onClick={handleClose}>
-            Close
+            Back
           </Button>
+          </Link>
           {/* Next button */}
+          <Link to='/inquiry'>
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}>
             Next
-          </Button>
+          </Button></Link>
+          
         </Modal.Footer>
       </Modal.Body>
     </Modal>

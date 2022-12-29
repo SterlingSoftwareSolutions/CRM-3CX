@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import "./inquiries.css";
+import { Link } from "react-router-dom";
 
 const Inquiry = () => {
   useEffect(() => {
@@ -11,15 +13,28 @@ const Inquiry = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [arr, setArr] = useState([]);
+  const [error , setError] = useState(false);
+
   const [filter, setFilter] = useState("");
+
+  //get local storage id
+  useEffect(() => {
+    const item = JSON.parse(localStorage.getItem("value"));
+    if (filter) {
+      setFilter(filter);
+    }
+
+  }, []);
 
   //set path api
   const api = "http://127.0.0.1:8000/api/inquiries";
 
   const [data, setData] = useState({
+    brand:"",
     availibility: "",
+    model:"",
     action: "",
+    follow:"",
     remark: "",
     feedback: "",
     catagory: "",
@@ -30,60 +45,28 @@ const Inquiry = () => {
   };
 
 
-  useEffect(() => {
-    fetchData();
-  });
-
-  //Get the data from api
-  const fetchData = (inque) => {
-    try {
-      fetch(api + inque)
-        .then((response) => response.json())
-        .then((inquirydata) => setData(inquirydata))
-        .catch((err) => {
-          console.log(err.message);
-        });
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  //api get dropdawn list
-  const fetchArray = async () => {
-    try {
-      let res = await fetch(api);
-      res = await res.json();
-      if (res.error) {
-        console.error(res.error);
-        alert(res.error);
-      } else {
-        let arrayTemp = ["", ...new Set(res.map((brand) => brand))];
-        setArr(arrayTemp);
-        console.log(arr);
-      }
  
-    } catch (error) {
-      console.error(error);
-      alert(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchArray();
-  }, []);
-
   //post method
   let handleSubmit = async (e) => {
+    //error message 
+    if(data.brand.length === 0 && data.availibility.length === 0 && data.model.length === 0
+      && data.follow.length === 0 && data.catagory.length === 0 ){
+      setError(true);
+    }
     console.log(data);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     };
-    fetch(api, requestOptions).then((response) => response.json());
+    const responce = await fetch(api, requestOptions).then((response) => response.json());
+    console.log(JSON.stringify(responce));
     handleClose();
   };
 
+  //required field
+
+  
   return (
     <div>
       <Modal onHide={handleClose} show={show}>
@@ -93,21 +76,21 @@ const Inquiry = () => {
         </ModalHeader>
 
         <Modal.Body>
-          <Form>
+          <Form >
             {/* Brand link addres phone text line */}
             <Form.Group className="mb-3">
               <Form.Label>Brand</Form.Label>
-              <Form.Select
-                aria-label="Default select example"
-                id="arrayselect"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}>
-                {arr.map((brand, index) => (
-                  <option key={index} value={brand.id}>
-                    {brand.name}
-                  </option>
-                ))}
-              </Form.Select>
+              <Form.Control
+                onChange={(e) => onChangeValue("brand", e.target.value)}
+                id="brand"
+                value={data.brand}
+                type="text"
+                placeholder="Brand"
+              />
+              {/* error message */}
+             {error && data.brand.length<=0 ?
+             <Form.Label className="form-validation">This field is required</Form.Label>:""}
+
             </Form.Group>
             {/* Brand Availibility text line */}
             <Form.Group className="mb-3">
@@ -119,22 +102,24 @@ const Inquiry = () => {
                 type="text"
                 placeholder="BrandAvailibility"
               />
+                {/* error message */}
+               {error ? 
+             <Form.Label className="form-validation">This field is required</Form.Label> :""}
             </Form.Group>
 
             {/* Brand or Model text line */}
             <Form.Group className="mb-3">
               <Form.Label>Brand or Model</Form.Label>
-              <Form.Select
-                aria-label="Default select example"
-                id="arrayselect"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}>
-                {arr.map((item, index) => (
-                  <option key={index} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </Form.Select>
+              <Form.Control
+                onChange={(e) => onChangeValue("model", e.target.value)}
+                id="model"
+                value={data.model}
+                type="text"
+                placeholder="Brand or Model"
+              />
+                {/* error message */}
+              {error ? 
+             <Form.Label className="form-validation">This field is required</Form.Label> :""}
             </Form.Group>
 
             {/* Action text line */}
@@ -152,17 +137,16 @@ const Inquiry = () => {
             {/* email text line */}
             <Form.Group className="mb-3">
               <Form.Label>Follow or Closeup</Form.Label>
-              <Form.Select
-                aria-label="Default select example"
-                id="arrayselect"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}>
-                {arr.map((item, index) => (
-                  <option key={index} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </Form.Select>
+              <Form.Control
+                onChange={(e) => onChangeValue("follow", e.target.value)}
+                id="follow"
+                value={data.follow}
+                type="text"
+                placeholder="Type.."
+              />
+                {/* error message */}
+              {error ? 
+             <Form.Label className="form-validation">This field is required</Form.Label> :""}
             </Form.Group>
 
             {/* Status Remark text line */}
@@ -176,6 +160,7 @@ const Inquiry = () => {
                 placeholder="Status Remark"
               />
             </Form.Group>
+
             {/* feedback text line */}
             <Form.Group className="mb-3">
               <Form.Label>Feedback</Form.Label>
@@ -188,6 +173,7 @@ const Inquiry = () => {
                 placeholder="Feedback"
               />
             </Form.Group>
+
             {/* Product catagory text line */}
             <Form.Group className="mb-3">
               <Form.Label>Product Catagory</Form.Label>
@@ -199,22 +185,30 @@ const Inquiry = () => {
                 className="form-control"
                 placeholder="Product Catagory"
               />
+                {/* error message */}
+              {error ? 
+             <Form.Label className="form-validation">This field is required</Form.Label> :""}
             </Form.Group>
+            
           </Form>
         </Modal.Body>
         <Modal.Footer>
           {/* close button */}
+          <Link to ='/types'>
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}>
             Back
           </Button>
+          </Link>
           {/* Next button */}
+          
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
-            onClick={(e) => handleSubmit(e)}>
-            Next
+            onClick={(e) => handleSubmit(e)}
+          >
+            Save
           </Button>
         </Modal.Footer>
       </Modal>

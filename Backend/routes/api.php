@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerAddressController;
 use App\Http\Controllers\CallTypeController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+// Users
+Route::get('users/count', [UserController::class, 'count']);
+Route::resource('users', UserController::class);
+
 // User Phones
 Route::get('user_phones/{userPhone}/user', [UserPhoneController::class, 'user']);
 Route::resource('user_phones', UserPhoneController::class);
@@ -35,16 +40,19 @@ Route::resource('customers', CustomerController::class);
 
 // Customer Addresses
 Route::resource('customer_addresses', CustomerAddressController::class);
-Route::get('/customer_addresses/customerAdress/customer',[CustomerAddressController::class, 'customer']);
+Route::get('/customer_addresses/{customerAddress}/customer',[CustomerAddressController::class, 'customer']);
 
 // Inquiries
+Route::get('inquiries/count', [InquiryController::class, 'count']);
 Route::resource('inquiries', InquiryController::class);
 
 // Call types
 Route::resource('call_types', CallTypeController::class);
+Route::get('call_types/{callType}/inquiries', [CallTypeController::class, 'inquiries']);
 
 // Feedbacks
 Route::resource('feedbacks', FeedbackController::class);
+Route::get('/feedbacks/{feedback}/inquiry',[FeedbackController::class, 'inquiry']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -53,5 +61,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:sanctum']], function() {
     // Logut
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/token', function (Request $request) {
+        $token = $request->session()->token();
+        $token = csrf_token();
+        return $token;
+    });
 
 });

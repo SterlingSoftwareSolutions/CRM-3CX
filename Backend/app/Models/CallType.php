@@ -13,7 +13,7 @@ class CallType extends Model
         'comment'
     ];
 
-    function inquiry()
+    function inquiries()
     {
         return $this->hasMany(Inquiry::class);
     }

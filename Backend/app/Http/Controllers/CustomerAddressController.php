@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerAddress;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as Codes;
 
 class CustomerAddressController extends Controller
 {
@@ -14,7 +15,7 @@ class CustomerAddressController extends Controller
      */
     public function index()
     {
-        return CustomerAddress::all();
+        return response()->success(CustomerAddress::all());
     }
 
     /**
@@ -36,10 +37,13 @@ class CustomerAddressController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // validation
+            'customer_id' => 'required|exists:customers,id'
         ]);
 
-        return CustomerAddress::create($request->all());
+        return response()->success(
+            CustomerAddress::create($request->all()),
+            Codes::HTTP_CREATED
+        );
     }
 
     /**
@@ -50,7 +54,7 @@ class CustomerAddressController extends Controller
      */
     public function show(CustomerAddress $customerAddress)
     {
-        return $customerAddress;
+        return response()->success($customerAddress);
     }
 
     /**
@@ -73,8 +77,12 @@ class CustomerAddressController extends Controller
      */
     public function update(Request $request, CustomerAddress $customerAddress)
     {
+        $request->validate([
+            'customer_id' => 'exists:customers,id'
+        ]);
+
         $customerAddress->update($request->all());
-        return $customerAddress;
+        return response()->success($customerAddress);
     }
 
     /**
@@ -86,23 +94,19 @@ class CustomerAddressController extends Controller
     public function destroy(CustomerAddress $customerAddress)
     {
         $customerAddress->delete();
+        return response()->success('Customer Address Deleted');
     }
 
     /**
      * find the customer this address is for
      *
-     * @param  int $id
+     * @param  \App\Models\CustomerAddress  $customerAddress
      * @return \Illuminate\Http\Response
      */
-    public function customer($id)
+    public function customer(CustomerAddress $customerAddress)
     {
-        $customerAddress = CustomerAddress::find($id);
-
-        if($customerAddress){
-            return $customerAddress
-            ->customer()
-            ->first();
-        }
-        return 1;
+        return response()->success(
+            $customerAddress->customer
+        );
     }
 }

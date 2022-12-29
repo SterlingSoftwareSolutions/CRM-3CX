@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CallType;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response as Codes;
 
-class CallTypeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class CallTypeController extends Controller
      */
     public function index()
     {
-        return response()->success(CallType::all());
+        return response()->success(User::all());
     }
 
     /**
@@ -36,34 +36,27 @@ class CallTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            // validation
-        ]);
-
-        return response()->success(
-            CallType::create($request->all()),
-            Codes::HTTP_CREATED
-        );
+        return response()->error('Not Allowed', Codes::HTTP_METHOD_NOT_ALLOWED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CallType  $callType
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return response()->success(CallType::find($id));
+        return response()->success($user);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CallType  $callType
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(CallType $callType)
+    public function edit(User $user)
     {
         //
     }
@@ -72,37 +65,35 @@ class CallTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CallType  $callType
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CallType $callType)
+    public function update(Request $request, User $user)
     {
-        $callType->update($request->all());
-        return response()->success($callType);
+        return response()->error('Not Allowed', Codes::HTTP_METHOD_NOT_ALLOWED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  CallType  $callType
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CallType $callType)
+    public function destroy(User $user)
     {
-        $callType->delete();
-        return response()->success("Call Type Deleted");
+        return response()->error('Not Allowed', Codes::HTTP_METHOD_NOT_ALLOWED);
     }
 
     /**
-     * Get all the inquiries that have this call type
+     * Remove the specified resource from storage.
      *
-     * @param  CallType  $callType
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function inquiries(CallType $callType)
+    public function count()
     {
-        return response()->success(
-            $callType->inquiries
-        );
+        return response()->success([
+            "count" => User::count()
+        ]);
     }
 }
