@@ -15,6 +15,7 @@ const CustomerPopUp = () => {
 
   const [customer_address, setCustomerData] = useState({
     address_line_1: "",
+    address_line_2: "",
   });
   const [data, setData] = useState({
     name: "",
@@ -26,7 +27,7 @@ const CustomerPopUp = () => {
 
   const fetchData = (customer_number) => {
     try {
-      fetch("http://localhost:8000" + customer_api + customer_number)
+      fetch(customer_api + customer_number)
         .then((response) => response.json())
         .then(async (customerdata) => {
           if (customerdata.success) {
@@ -66,14 +67,13 @@ const CustomerPopUp = () => {
   let handleSubmit = async (e) => {
     data.phone = url;
     let method = Iscostomer_available ? "PUT" : "POST";
+    let TempCustomerApi = Iscostomer_available
+      ? customer_api + url
+      : customer_api;
+    let TempCustomerAddressApi = Iscostomer_available
+      ? customer_address_api + url
+      : customer_address_api;
 
-    let tempapi =
-      "http://localhost:8000" +
-      (Iscostomer_available ? customer_api + url : customer_api);
-
-    console.log(method + tempapi);
-
-   
     if (method === "PUT") {
       delete data.id;
       delete data.phone;
@@ -81,8 +81,7 @@ const CustomerPopUp = () => {
       delete data.updated_at;
       delete data.customer_address;
     }
-    console.log(JSON.stringify(data));
-    const response = await fetch(tempapi, {
+    const response = await fetch(TempCustomerApi, {
       method: method,
       headers: {
         "Content-Type": "application/json",
@@ -90,18 +89,26 @@ const CustomerPopUp = () => {
       body: JSON.stringify(data),
     });
     const result = await response.json();
-    console.log(JSON.stringify(result));
 
-    const customer_address_responce = await fetch(tempapi, {
+    let new_customer_id = result.data.id;
+    if (method === "POST") {
+      customer_address.customer_id=new_customer_id;
+    }
+    else if(method === "PUT"){
+      delete customer_address.id;
+      delete customer_address.created_at;
+      delete customer_address.updated_at;
+    }
+
+    const customer_address_responce = await fetch(TempCustomerAddressApi, {
       method: method,
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(customer_address),
     });
-
     const customer_address_result = await customer_address_responce.json();
-    // console.log(JSON.stringify(customer_address_result));
+    console.log(customer_address);
     handleClose();
   };
 
@@ -168,9 +175,9 @@ const CustomerPopUp = () => {
                     <Form.Label>Customer Address</Form.Label>
                     <Form.Control
                       onChange={(e) =>
-                        onChangeAddressValue("CustomerAddress", e.target.value)
+                        onChangeAddressValue("address_line_1", e.target.value)
                       }
-                      id="CustomerAddress"
+                      id="address_line_1"
                       defaultValue={customer_address.address_line_1}
                       type="text"
                       as="textarea"
