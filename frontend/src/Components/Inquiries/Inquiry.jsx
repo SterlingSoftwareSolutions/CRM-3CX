@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import "./inquiries.css";
+import { Link } from "react-router-dom";
 
 const Inquiry = () => {
   useEffect(() => {
@@ -193,18 +194,21 @@ const Inquiry = () => {
         </Modal.Body>
         <Modal.Footer>
           {/* close button */}
+          <Link to ='/types'>
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}>
             Back
           </Button>
+          </Link>
           {/* Next button */}
+          
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
             onClick={(e) => handleSubmit(e)}
           >
-            Next
+            Save
           </Button>
         </Modal.Footer>
       </Modal>

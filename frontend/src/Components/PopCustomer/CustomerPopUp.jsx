@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Form, Modal, ModalHeader, Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import "./CustomerPopUp.css";
+import { Link } from "react-router-dom";
 
 const CustomerPopUp = () => {
   const [show, setShow] = useState(false);
@@ -231,12 +232,14 @@ const CustomerPopUp = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          <Link to='/types'>
           <Button
             className="btn btn mt-3 button-style"
             onClick={(e) => handleSubmit(e)}
           >
             Next
           </Button>
+          </Link>
         </Modal.Footer>
       </Modal>
     </div>
