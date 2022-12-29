@@ -6,13 +6,14 @@ import Dashboard from "./Pages/Dashboard/index";
 import SideNavBar from "./Components/SideNavBar/SideNavBar";
 import Types from "./Components/Inquiries/Types";
 import { Col, Row } from "antd";
+import Inquiry from "./Components/Inquiries/Inquiry";
 
 function App() {
   return (
     <Row>
       <BrowserRouter>
         <Col span={4}>
-         <SideNavBar />      
+          <SideNavBar />
         </Col>
         <Col span={20}>
           <Routes>
@@ -22,6 +23,7 @@ function App() {
             <Route path="*" element={<Dashboard />} />
             <Route path="/customer/:phone" element={<CustomerPopUp />} />
             <Route path="/types" element={<Types />} />
+            <Route path="/inquiry" element={<Inquiry />} />
           </Routes>
         </Col>
       </BrowserRouter>

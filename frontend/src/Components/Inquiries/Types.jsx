@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { Link } from 'react-router-dom';
 
 const Types = () => {
   useEffect(() => {
@@ -69,18 +70,22 @@ const Types = () => {
         </Form>
         <Modal.Footer>
           {/* close button */}
+          <Link to='/customer/:phone'>
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
             onClick={handleClose}>
-            Close
+            Back
           </Button>
+          </Link>
           {/* Next button */}
+          <Link to='/inquiry'>
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}>
             Next
-          </Button>
+          </Button></Link>
+          
         </Modal.Footer>
       </Modal.Body>
     </Modal>
