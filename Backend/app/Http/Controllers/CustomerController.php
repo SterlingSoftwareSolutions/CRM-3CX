@@ -107,7 +107,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::where('phone', $phone)->firstOrFail();
         $customer->delete();
-        return response()->success("Customer Deleted");
+        return response()->success('Customer Deleted');
     }   
 
     /**

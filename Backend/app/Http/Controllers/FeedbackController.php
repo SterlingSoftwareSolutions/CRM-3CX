@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as Codes;
 
 class FeedbackController extends Controller
 {
@@ -14,7 +15,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        return Feedback::all();
+        return response()->success(Feedback::all());
     }
 
     /**
@@ -36,10 +37,13 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // validation
+            'inquiry_id' => 'required|exists:inquiries,id'
         ]);
 
-        return Feedback::create($request->all());
+        return response()->success(
+            Feedback::create($request->all()),
+            Codes::HTTP_CREATED
+        );
     }
 
     /**
@@ -50,7 +54,7 @@ class FeedbackController extends Controller
      */
     public function show(Feedback  $feedback)
     {
-        return $feedback;
+        return response()->success($feedback);
     }
 
     /**
@@ -73,8 +77,12 @@ class FeedbackController extends Controller
      */
     public function update(Request $request, Feedback  $feedback)
     {
+        $request->validate([
+            'inquiry_id' => 'exists:inquiries,id'
+        ]);
+
         $feedback->update($request->all());
-        return $feedback;
+        return response()->success($feedback);
     }
 
     /**
@@ -86,5 +94,17 @@ class FeedbackController extends Controller
     public function destroy(Feedback  $feedback)
     {
         $feedback->delete();
+        return response()->success('Feedback Deleted');
+    }
+
+    /**
+     * Get the inquiriy specified feedback is for
+     *
+     * @param  \App\Models\Feedback  $feedback
+     * @return \Illuminate\Http\Response
+     */
+    public function inquiry(Feedback $feedback)
+    {
+        return response()->success($feedback->inquiry);
     }
 }

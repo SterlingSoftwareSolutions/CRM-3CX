@@ -35,7 +35,7 @@ Route::resource('customers', CustomerController::class);
 
 // Customer Addresses
 Route::resource('customer_addresses', CustomerAddressController::class);
-Route::get('/customer_addresses/customerAdress/customer',[CustomerAddressController::class, 'customer']);
+Route::get('/customer_addresses/{customerAddress}/customer',[CustomerAddressController::class, 'customer']);
 
 // Inquiries
 Route::resource('inquiries', InquiryController::class);
@@ -45,6 +45,7 @@ Route::resource('call_types', CallTypeController::class);
 
 // Feedbacks
 Route::resource('feedbacks', FeedbackController::class);
+Route::get('/feedbacks/{feedback}/inquiry',[FeedbackController::class, 'inquiry']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
