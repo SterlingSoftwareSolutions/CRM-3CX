@@ -4,7 +4,6 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
 import Dashboard from "./Pages/Dashboard/index";
 import SideNavBar from "./Components/SideNavBar/SideNavBar";
-import Types from "./Components/Inquiries/Types";
 import { Col, Row } from "antd";
 import Inquiry from "./Components/Inquiries/Inquiry";
 

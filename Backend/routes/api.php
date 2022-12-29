@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserPhoneController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerAddressController;
@@ -20,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Authentication
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
 // User Phones
 Route::get('user_phones/{userPhone}/user', [UserPhoneController::class, 'user']);
 Route::resource('user_phones', UserPhoneController::class);
@@ -32,15 +37,21 @@ Route::resource('customers', CustomerController::class);
 Route::resource('customer_addresses', CustomerAddressController::class);
 Route::get('/customer_addresses/customerAdress/customer',[CustomerAddressController::class, 'customer']);
 
-// Call types
-Route::resource('call_types', CallTypeController::class);
-
 // Inquiries
 Route::resource('inquiries', InquiryController::class);
+
+// Call types
+Route::resource('call_types', CallTypeController::class);
 
 // Feedbacks
 Route::resource('feedbacks', FeedbackController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['middleware' => ['auth:sanctum']], function() {
+    // Logut
+    Route::post('/logout', [AuthController::class, 'logout']);
+
 });

@@ -14,7 +14,7 @@ class InquiryController extends Controller
      */
     public function index()
     {
-        return Inquiry::all();
+        return response()->success(Inquiry::all());
     }
 
     /**
@@ -36,10 +36,12 @@ class InquiryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // validation
+            'user_id' => 'required|exists:users,id',
+            'customer_id' => 'required|exists:customers,id',
+            'call_type_id' => 'required|exists:call_types,id'
         ]);
 
-        return Inquiry::create($request->all());
+        return response()->success(Inquiry::create($request->all()));
     }
 
     /**
@@ -50,7 +52,11 @@ class InquiryController extends Controller
      */
     public function show(Inquiry  $inquiry)
     {
-        return $inquiry;
+        // return response()->success(
+        //     $inquiry->with('feedback')
+        // );
+
+        return $inquiry::with('feedback')->get();
     }
 
 
@@ -74,18 +80,26 @@ class InquiryController extends Controller
      */
     public function update(Request $request, Inquiry  $inquiry)
     {
+        $request->validate([
+            'user_id' => 'exists:users,id',
+            'customer_id' => 'exists:customers,id',
+            'call_type_id' => 'exists:call_types,id'
+        ]);
+
         $inquiry->update($request->all());
-        return $inquiry;
+        return response()->success($inquiry);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param \App\Models\Inquiry  $inquiry
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Inquiry $inquiry)
     {
-        Inquiry::destroy($id);
+
+        $inquiry->delete();
+        return response()->success(null);
     }
 }
