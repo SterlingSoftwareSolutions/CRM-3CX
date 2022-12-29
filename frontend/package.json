@@ -55,5 +55,6 @@
   },
   "devDependencies": {
     "react-router-dom": "^6.6.1"
-  }
+  },
+  "proxy": "http://127.0.0.1:8000/"
 }

@@ -8,14 +8,15 @@ const CustomerPopUp = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const api = "http://127.0.0.1:8000/api/customers/"; //api url
+  const customer_api = "/api/customers/";
+  const customer_address_api = "/api/customer_addresses/";
   const [url, setUrl] = useState("None");
   const [Iscostomer_available, setcustomeravailability] = useState(false);
   const [error, setError] = useState("");
-  const [emailError, setEmailError] = useState("");
 
   const [customer_address, setCustomerData] = useState({
     address_line_1: "",
+    address_line_2: "",
   });
   const [data, setData] = useState({
     name: "",
@@ -27,12 +28,15 @@ const CustomerPopUp = () => {
 
   const fetchData = (customer_number) => {
     try {
-      fetch(api + customer_number)
+      fetch(customer_api + customer_number)
         .then((response) => response.json())
         .then(async (customerdata) => {
           if (customerdata.success) {
             setData(customerdata.data);
             await setCustomerData(customerdata.data.customer_address[0]);
+            if (!customerdata.data.customer_address[0]) {
+              await setCustomerData(emptyObject);
+            }
             setcustomeravailability(true);
           } else {
             setData(emptyObject);
@@ -63,22 +67,52 @@ const CustomerPopUp = () => {
 
   let handleSubmit = async (e) => {
     data.phone = url;
-    const regEx =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (data.name.length == 0) {
+   if (data.name.length == 0) {
       setError(true);
     }
-    if (!regEx.test(data.email)) {
-      setEmailError("Email is Invalid!");
-    } else setEmailError("");
-    const response = await fetch(api, {
-      method: "POST",
+
+    let method = Iscostomer_available ? "PUT" : "POST";
+    let TempCustomerApi = Iscostomer_available
+      ? customer_api + url
+      : customer_api;
+    let TempCustomerAddressApi = Iscostomer_available
+      ? customer_address_api + url
+      : customer_address_api;
+
+    if (method === "PUT") {
+      delete data.id;
+      delete data.phone;
+      delete data.created_at;
+      delete data.updated_at;
+      delete data.customer_address;
+    }
+    const response = await fetch(TempCustomerApi, {
+      method: method,
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
     const result = await response.json();
+
+    let new_customer_id = result.data.id;
+    if (method === "POST") {
+      customer_address.customer_id = new_customer_id;
+    } else if (method === "PUT") {
+      delete customer_address.id;
+      delete customer_address.created_at;
+      delete customer_address.updated_at;
+    }
+
+    const customer_address_responce = await fetch(TempCustomerAddressApi, {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(customer_address),
+    });
+    const customer_address_result = await customer_address_responce.json();
+    console.log(customer_address);
     handleClose();
   };
 
@@ -142,9 +176,6 @@ const CustomerPopUp = () => {
                       type="email"
                       placeholder="example@example.com"
                     />
-                    <Form.Label className="input-label">
-                      {emailError}
-                    </Form.Label>
                   </Form.Group>
                 </Col>
               </Row>
@@ -155,13 +186,13 @@ const CustomerPopUp = () => {
                     <Form.Label>Customer Address</Form.Label>
                     <Form.Control
                       onChange={(e) =>
-                        onChangeAddressValue("CustomerAddress", e.target.value)
+                        onChangeAddressValue("address_line_1", e.target.value)
                       }
-                      id="CustomerAddress"
+                      id="address_line_1"
                       defaultValue={customer_address.address_line_1}
                       type="text"
                       as="textarea"
-                      rows={1}
+                      rows={3}
                       placeholder="Customer Address"
                     />
                   </Form.Group>
@@ -200,7 +231,6 @@ const CustomerPopUp = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          {/* Next button */}
           <Button
             className="btn btn mt-3 button-style"
             onClick={(e) => handleSubmit(e)}
