@@ -8,11 +8,9 @@ import Types from "./Components/Inquiries/Types";
 import Login from "./Pages/LoginPage/index";
 import { Col, Row } from "antd";
 import Inquiry from "./Components/Inquiries/Inquiry";
-import Types from "./Components/Inquiries/Types";
 
 function App() {
   const token = sessionStorage.getItem('token');
-
   return (
     <div>
       <BrowserRouter>

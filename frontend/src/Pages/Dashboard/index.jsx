@@ -3,13 +3,10 @@ import {useNavigate} from 'react-router-dom';
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 
-<<<<<<< HEAD
-=======
 import AnimatedNumber from "./Components/AnimatedNumber";
 import AgentList from "./Components/AgentList";
 import PieCharts from "./Components/PieCharts";
 
->>>>>>> origin/Develop
 const projectdata = [
   { name: "Abans", value: 207 },
   { name: "Koko", value: 302 },
@@ -61,31 +58,8 @@ const Dashboard = () => {
 
   return (
     <div>
-<<<<<<< HEAD
-      <Row>
-        {/* <Card>
-          <Row>
-            <div>
-              <Users /> <NumberCards value={200} /> Name
-            </div>
-            <div>
-              <OutBoundCalls /> <NumberCards value={200} /> Name
-            </div>
-            <div>
-              <InBoundCalls /> <NumberCards value={200} /> Name
-            </div>
-            <div>
-              <OpenInquiry /> <NumberCards value={200} /> Name
-            </div>
-            <div>
-              <ClosedInquiries /> <NumberCards value={200} /> Name
-            </div>
-          </Row>
-        </Card> */}
-=======
       <Row style={{ marginTop: "5%", width: "1100px" }}>
         <AnimatedNumber />
->>>>>>> origin/Develop
       </Row>
       <Row>
         <Col span={13}></Col>
@@ -94,20 +68,10 @@ const Dashboard = () => {
         </Col>
       </Row>
       <Row>
-<<<<<<< HEAD
-        <Col span={6}>
-   
-          <h1>Hello bokka</h1>
-        </Col>
-        <Col span={6}></Col>
-        <Col span={6}></Col>
-        <Col span={6}></Col>
-=======
         <Col span={6}>{/* <PieCharts /> */}</Col>
         <Col span={6}>{/* <PieCharts /> */}</Col>
         <Col span={6}>{/* <PieCharts /> */}</Col>
         <Col span={6}>{/* <PieCharts /> */}</Col>
->>>>>>> origin/Develop
       </Row>
     </div>
   );
