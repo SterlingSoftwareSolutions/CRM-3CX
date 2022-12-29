@@ -48,7 +48,7 @@ const Dashboard = () => {
   return (
     <div>
       <Row>
-        <Card>
+        {/* <Card>
           <Row>
             <div>
               <Users /> <NumberCards value={200} /> Name
@@ -66,7 +66,7 @@ const Dashboard = () => {
               <ClosedInquiries /> <NumberCards value={200} /> Name
             </div>
           </Row>
-        </Card>
+        </Card> */}
       </Row>
       <Row>
         <Col span={16}></Col>
