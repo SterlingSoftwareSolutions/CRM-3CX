@@ -12,6 +12,7 @@ const CustomerPopUp = () => {
   const customer_address_api = "/api/customer_addresses/";
   const [url, setUrl] = useState("None");
   const [Iscostomer_available, setcustomeravailability] = useState(false);
+  const [error, setError] = useState("");
 
   const [customer_address, setCustomerData] = useState({
     address_line_1: "",
@@ -66,6 +67,10 @@ const CustomerPopUp = () => {
 
   let handleSubmit = async (e) => {
     data.phone = url;
+   if (data.name.length == 0) {
+      setError(true);
+    }
+
     let method = Iscostomer_available ? "PUT" : "POST";
     let TempCustomerApi = Iscostomer_available
       ? customer_api + url
@@ -92,9 +97,8 @@ const CustomerPopUp = () => {
 
     let new_customer_id = result.data.id;
     if (method === "POST") {
-      customer_address.customer_id=new_customer_id;
-    }
-    else if(method === "PUT"){
+      customer_address.customer_id = new_customer_id;
+    } else if (method === "PUT") {
       delete customer_address.id;
       delete customer_address.created_at;
       delete customer_address.updated_at;
@@ -150,6 +154,13 @@ const CustomerPopUp = () => {
                       name="name"
                       value={data.name}
                     />
+                    {error && data.name.length <= 0 ? (
+                      <Form.Label className="input-label">
+                        Customer Name cannot be empty
+                      </Form.Label>
+                    ) : (
+                      ""
+                    )}
                   </Form.Group>
                 </Col>
               </Row>
