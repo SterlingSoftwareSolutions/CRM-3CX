@@ -5,6 +5,7 @@ API Reference for the CRM-3CX Backend
 ## user authentication
 
 _**EXAMPLE**_
+
 ```plaintext
 "id":  1,
 "name":  "somebody",
@@ -78,6 +79,53 @@ Get includes addresses as an array - one\_to\_many
 Find customers by name  
 (returns an array of customers that match)
 
+## customer\_addresses
+
+_**EXAMPLE**_
+
+```plaintext
+"id": 27,
+"address_line_1": "2750 Somewhere, Over There",
+"customer_id": "50",
+"created_at": "2022-12-29T05:00:19.000000Z",
+"updated_at": "2022-12-29T05:22:21.000000Z"
+```
+
+_**ROUTES**_
+
+**/customer\_addresses** \- GET/POST  
+Get customer addresses list/add new
+
+**/customer\_addresses/{id}** - GET/PUT/DELETE
+
+**/customer\_addresses/{id}/customer** \- GET
+
+Get the customer this address is for
+
+
+## call\_types
+
+_**EXAMPLE**_
+
+```plaintext
+"id": 10,
+"name": "Wrong No.",
+"comment": "The caller dialed the wrong number"
+"created_at": "2022-12-29T05:00:19.000000Z",
+"updated_at": "2022-12-29T05:00:19.000000Z"
+```
+
+_**ROUTES**_
+
+**/call\_types** \- GET/POST  
+Get customer addresses list/add new
+
+**/call\_types/{id}** - GET/PUT/DELETE
+
+**/call\_types/{id}/inquiries** \- GET
+
+Get all the inquiries that have this call type
+
 ## inquiries
 
 _**EXAMPLE**_
@@ -118,7 +166,7 @@ _**EXAMPLE**_
 
 _**ROUTES**_
 
-**/feedbacks** \- GET/POST  
+**/feedbacks** - GET/POST  
 Get feedbacks list/add new
 
 **/feedbacks/{id}** - GET/PUT/DELETE
@@ -126,26 +174,3 @@ Get feedbacks list/add new
 **/feedbacks/{id}/inquiry** - GET
 
 get the inquiry this feedback is for
-
-## customer\_addresses
-
-_**EXAMPLE**_
-
-```plaintext
-"id": 27,
-"address_line_1": "2750 Somewhere, Over There",
-"customer_id": "50",
-"created_at": "2022-12-29T05:00:19.000000Z",
-"updated_at": "2022-12-29T05:22:21.000000Z"
-```
-
-_**ROUTES**_
-
-**/customer\_addresses**\- GET/POST  
-Get customer addresses list/add new
-
-**/customer\_addresses/{id}** - GET/PUT/DELETE
-
-**/customer\_addresses/{id}/customer**\- GET
-
-get the customer this address is for

@@ -42,6 +42,7 @@ Route::resource('inquiries', InquiryController::class);
 
 // Call types
 Route::resource('call_types', CallTypeController::class);
+Route::get('call_types/{callType}/inquiries', [CallTypeController::class, 'inquiries']);
 
 // Feedbacks
 Route::resource('feedbacks', FeedbackController::class);

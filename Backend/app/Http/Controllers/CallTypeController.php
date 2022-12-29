@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CallType;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as Codes;
 
 class CallTypeController extends Controller
 {
@@ -14,7 +15,7 @@ class CallTypeController extends Controller
      */
     public function index()
     {
-        return CallType::all();
+        return response()->success(CallType::all());
     }
 
     /**
@@ -39,7 +40,10 @@ class CallTypeController extends Controller
             // validation
         ]);
 
-        return CallType::create($request->all());
+        return response()->success(
+            CallType::create($request->all()),
+            Codes::HTTP_CREATED
+        );
     }
 
     /**
@@ -50,7 +54,7 @@ class CallTypeController extends Controller
      */
     public function show($id)
     {
-        return CallType::find($id);
+        return response()->success(CallType::find($id));
     }
 
     /**
@@ -71,21 +75,34 @@ class CallTypeController extends Controller
      * @param  \App\Models\CallType  $callType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CallType $callType)
     {
-        $calltype = CallType::findorfail($id);
-        $calltype->update($request->all());
-        return $calltype;
+        $callType->update($request->all());
+        return response()->success($callType);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  $id
+     * @param  CallType  $callType
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CallType $callType)
     {
-        CallType::destroy($id);
+        $callType->delete();
+        return response()->success("Call Type Deleted");
+    }
+
+    /**
+     * Get all the inquiries that have this call type
+     *
+     * @param  CallType  $callType
+     * @return \Illuminate\Http\Response
+     */
+    public function inquiries(CallType $callType)
+    {
+        return response()->success(
+            $callType->inquiries
+        );
     }
 }

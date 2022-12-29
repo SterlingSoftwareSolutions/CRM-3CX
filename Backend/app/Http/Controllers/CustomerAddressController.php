@@ -41,7 +41,8 @@ class CustomerAddressController extends Controller
         ]);
 
         return response()->success(
-            CustomerAddress::create($request->all())
+            CustomerAddress::create($request->all()),
+            Codes::HTTP_CREATED
         );
     }
 
