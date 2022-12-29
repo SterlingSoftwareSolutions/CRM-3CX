@@ -29,11 +29,13 @@ const AgentList = () => {
     <div
       id="scrollableDiv"
       style={{
+        width: "381px",
         margin: "15px 40px 0 0",
         height: 400,
         overflow: "auto",
         padding: "0 16px",
         border: "1px solid rgba(140, 140, 140, 0.35)",
+        borderRadius: "6px",
       }}
     >
       <InfiniteScroll
@@ -53,6 +55,7 @@ const AgentList = () => {
         scrollableTarget="scrollableDiv"
       >
         <List
+          header={<h1 className="agent-title">Agents</h1>}
           dataSource={data}
           renderItem={(item) => (
             <List.Item key={item.email}>
@@ -61,7 +64,6 @@ const AgentList = () => {
                 title={item.name.last}
                 description={item.email}
               />
-              <div>Content</div>
             </List.Item>
           )}
         />

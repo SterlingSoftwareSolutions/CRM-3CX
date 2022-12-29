@@ -10,7 +10,7 @@ import { Card, Col, Row } from "antd";
 
 const AnimatedNumber = () => {
   return (
-    <Card style={{ width: "1100px" }}>
+    <Card style={{ width: "1000px" }}>
       <Row>
         <div className="card-one-style">
           <Row>
@@ -34,7 +34,7 @@ const AnimatedNumber = () => {
               <p className="number-style">
                 <NumberCards value={44} />
               </p>
-              <p>Total Agents</p>
+              <p>InBound Calls Per Day</p>
             </Col>
           </Row>
         </div>
@@ -47,7 +47,7 @@ const AnimatedNumber = () => {
               <p className="number-style">
                 <NumberCards value={52} />
               </p>
-              <p>Total Agents</p>
+              <p>OutBound Calls Per Day</p>
             </Col>
           </Row>
         </div>
@@ -60,7 +60,7 @@ const AnimatedNumber = () => {
               <p className="number-style">
                 <NumberCards value={18} />
               </p>
-              <p>Total Agents</p>
+              <p>Resolved Inquiries</p>
             </Col>
           </Row>
         </div>
@@ -73,7 +73,7 @@ const AnimatedNumber = () => {
               <p className="number-style">
                 <NumberCards value={25} />
               </p>
-              <p>Total Agents</p>
+              <p>Unresolved Inquiries</p>
             </Col>
           </Row>
         </div>
