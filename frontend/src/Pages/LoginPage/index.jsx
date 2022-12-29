@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { Card, Form, Input, Checkbox } from "antd";
+import {useNavigate} from 'react-router-dom';
 
 const LoginPage = () => {
+  const [email, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (data.error) {
+        setError(data.error);
+        alert(data.error);
+      } else {
+        sessionStorage.setItem('token', data.data.token);
+        navigate('/');
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again.");
+    }
+  };
+
   return (
     <Card
       title="Login"
@@ -14,7 +43,8 @@ const LoginPage = () => {
         <Form.Item
           className="input-style"
           label="Username"
-          name="username"
+          name="email"
+          onChange={(e) => setUsername(e.target.value)}
           rules={[{ required: true, message: "Please input your username!" }]}
         >
           <Input />
@@ -24,13 +54,14 @@ const LoginPage = () => {
           className="input-style"
           label="Password"
           name="password"
+          onChange={(e) => setPassword(e.target.value)}
           rules={[{ required: true, message: "Please input your password!" }]}
         >
           <Input.Password />
         </Form.Item>
 
         <div className="d-grid">
-          <button type="submit" className="button-style">
+          <button onClick={handleSubmit} type="submit" className="button-style">
             Login
           </button>
         </div>

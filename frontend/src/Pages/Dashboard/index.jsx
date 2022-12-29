@@ -1,8 +1,7 @@
 import { Col, Row } from "antd";
-import React from "react";
+import {useNavigate} from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-
-import AnimatedNumber from "./AnimatedNumber";
 
 const projectdata = [
   { name: "Abans", value: 207 },
@@ -45,6 +44,14 @@ const unresolveddata = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 
 const Dashboard = () => {
+  const token = sessionStorage.getItem('token');
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (token === null || "") {
+      navigate('/login')
+    }
+  }, []);
+
   return (
     <div>
       <Row>
@@ -73,7 +80,10 @@ const Dashboard = () => {
         <Col span={8}></Col>
       </Row>
       <Row>
-        <Col span={6}></Col>
+        <Col span={6}>
+   
+          <h1>Hello bokka</h1>
+        </Col>
         <Col span={6}></Col>
         <Col span={6}></Col>
         <Col span={6}></Col>
