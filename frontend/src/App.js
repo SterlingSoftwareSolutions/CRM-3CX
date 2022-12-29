@@ -6,6 +6,7 @@ import Dashboard from "./Pages/Dashboard/index";
 import SideNavBar from "./Components/SideNavBar/SideNavBar";
 import { Col, Row } from "antd";
 import Inquiry from "./Components/Inquiries/Inquiry";
+import Types from "./Components/Inquiries/Types";
 
 function App() {
   return (
