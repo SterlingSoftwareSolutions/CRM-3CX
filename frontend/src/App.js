@@ -5,6 +5,7 @@ import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
 import Dashboard from "./Pages/Dashboard/index";
 import SideNavBar from "./Components/SideNavBar/SideNavBar";
 import { Col, Row } from "antd";
+import Inquiry from "./Components/Inquiries/Inquiry";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
             <Route path="agents" element={<CustomerPopUp />} />
             <Route path="contact" element={<Dashboard />} />
             <Route path="*" element={<Dashboard />} />
+            <Route path="/customer/:phone" element={<CustomerPopUp />} />
+            <Route path="/types" element={<Types />} />
+            <Route path="/inquiry" element={<Inquiry />} />
           </Routes>
         </Col>
       </BrowserRouter>
