@@ -1,5 +1,6 @@
 import { Col, Row } from "antd";
-import React from "react";
+import {useNavigate} from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 
 import AnimatedNumber from "./Components/AnimatedNumber";
@@ -47,6 +48,14 @@ const unresolveddata = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 
 const Dashboard = () => {
+  const token = sessionStorage.getItem('token');
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (token === null || "") {
+      navigate('/login')
+    }
+  }, []);
+
   return (
     <div>
       <Row style={{ marginTop: "5%", width: "1100px" }}>
