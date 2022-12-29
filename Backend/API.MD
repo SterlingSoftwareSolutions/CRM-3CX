@@ -1,33 +1,61 @@
+## **API REFERENCE**
 
-
-# API ROUTES
+API Reference for the CRM-3CX Backend
 
 ## user authentication
 
-***EXAMPLE***
-```
+_**EXAMPLE**_
+
+```plaintext
 "id":  1,
 "name":  "somebody",
 "email":  "somebody@example.io",
+"password" : "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
 "email_verified_at":  null,
 "created_at":  "2022-12-28T09:40:09.000000Z",
 "updated_at":  "2022-12-28T09:40:09.000000Z"
 ```
-***ROUTES***
 
-**/register** - POST
-register a new user
+_**ROUTES**_
 
-**/login** - POST
-log in as an existing user
+**/register** - POST  
+Register a new user  
+(password\_confirmation required)
 
-**/logout** - POST
-log out and clear auth keys
+**/login** - POST  
+Log in as an existing user
 
-## user_phones
+**/logout** - POST  
+Log out and clear auth keys
 
-***EXAMPLE***
+## users
+
+_**EXAMPLE**_
+
+```plaintext
+"id": 1,
+"name": "username",
+"email": "username@example.io",
+"email_verified_at": "2022-12-29T09:10:52.000000Z",
+"created_at": "2022-12-29T09:10:52.000000Z",
+"updated_at": "2022-12-29T09:10:52.000000Z"
 ```
+
+_**ROUTES**_
+
+**/users** - GET  
+get all users
+
+**/user/{id}** - GET
+
+**/user/count** - GET  
+get number of users
+
+## user\_phones
+
+_**EXAMPLE**_
+
+```plaintext
 "id":  1,
 "phone":  "1234567890",
 "company":  'Some Company,
@@ -36,20 +64,21 @@ log out and clear auth keys
 "updated_at":  "2022-12-22T09:22:48.000000Z"
 ```
 
-***ROUTES***
+_**ROUTES**_
 
-**/user_phones** - GET/POST
+**/user\_phones** - GET/POST  
 get all user phones/add new
 
-**/user_phones/{id}** - GET/PUT/DELETE
+**/user\_phones/{id}** - GET/PUT/DELETE
 
-**/user_phones/{id}/user** - GET
+**/user\_phones/{id}/user** - GET  
 get this phone's user
 
 ## customers
 
-***EXAMPLE***
-```
+_**EXAMPLE**_
+
+```plaintext
 "id":  1,
 "name": 'Example Name' ,
 "phone":  "000000000",
@@ -60,15 +89,117 @@ get this phone's user
 "updated_at":  "2022-12-28T04:25:19.000000Z"
 ```
 
-***ROUTES***
+_**ROUTES**_
 
-**/customers** - GET/POST
-get customer list/add new
+**/customers** - GET/POST  
+Get customer list/add new
 
-**/customers/{phone}** - GET/PUT/DELETE
-get includes addresses as an array - one_to_many
+**/customers/{phone}** - GET/PUT/DELETE  
+Get includes addresses as an array - one\_to\_many
 
-**/customers/search/{query}** - GET
-find customers by name
-(returns array of customers that match)
+**/customers/search/{query}** - GET  
+Find customers by name  
+(returns an array of customers that match)
 
+## customer\_addresses
+
+_**EXAMPLE**_
+
+```plaintext
+"id": 27,
+"address_line_1": "2750 Somewhere, Over There",
+"customer_id": "50",
+"created_at": "2022-12-29T05:00:19.000000Z",
+"updated_at": "2022-12-29T05:22:21.000000Z"
+```
+
+_**ROUTES**_
+
+**/customer\_addresses** - GET/POST  
+Get customer addresses list/add new
+
+**/customer\_addresses/{id}** - GET/PUT/DELETE
+
+**/customer\_addresses/{id}/customer** - GET
+
+Get the customer this address is for
+
+## call\_types
+
+_**EXAMPLE**_
+
+```plaintext
+"id": 10,
+"name": "Wrong No.",
+"comment": "The caller dialed the wrong number"
+"created_at": "2022-12-29T05:00:19.000000Z",
+"updated_at": "2022-12-29T05:00:19.000000Z"
+```
+
+_**ROUTES**_
+
+**/call\_types** - GET/POST  
+Get customer addresses list/add new
+
+**/call\_types/{id}** - GET/PUT/DELETE
+
+**/call\_types/{id}/inquiries** - GET
+
+Get all the inquiries that have this call type
+
+## inquiries
+
+_**EXAMPLE**_
+
+```plaintext
+"id": 1,
+"brand": "Brand",
+"brand_availability": "Available",
+"product_category": "Home",
+"action": "Refund",
+"status_remark": "Completed Successfully",
+"user_id": 4,
+"customer_id": 27,
+"call_type_id": 1,
+"created_at": "2022-12-29T03:03:01.000000Z",
+"updated_at": "2022-12-29T03:03:01.000000Z",
+```
+
+_**ROUTES**_
+
+**/inquiries** - GET/POST  
+Get inquiries list/add new
+
+**/inquiries/{id}** - GET/PUT/DELETE  
+Get includes feedback - one\_to\_many
+
+**/inquiries/count** - GET  
+Get number of inquiries - total, open, closed
+
+## feedbacks
+
+_**EXAMPLE**_
+
+```plaintext
+"id": 91,
+"feedback": "Great service, 10/10",
+"inquiry_id": "92",
+"created_at": "2022-12-29T05:03:06.000000Z",
+"updated_at": "2022-12-29T05:03:15.000000Z"
+```
+
+_**ROUTES**_
+
+**/feedbacks** - GET/POST  
+Get feedbacks list/add new
+
+**/feedbacks/{id}** - GET/PUT/DELETE
+
+**/feedbacks/{id}/inquiry** - GET
+
+get the inquiry this feedback is for
+
+## CSRF Token
+
+**/token** - GET  
+Get the CSRF token for current session (when logged in)

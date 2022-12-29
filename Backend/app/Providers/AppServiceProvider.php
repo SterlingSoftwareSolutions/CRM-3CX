@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
-
+use Symfony\Component\HttpFoundation\Response as Codes;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,14 +24,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Response::macro('success', function ($data, $code = 200){
+        Response::macro('success', function ($data, $code = Codes::HTTP_OK){
             return response()->json([
                 'success' => true,
                 'data' => $data
             ], $code);
         });
 
-        Response::macro('error', function ($error, $status_code){
+        Response::macro('error', function ($error, $status_code = Codes::HTTP_NOT_FOUND){
             return response()->json([
                 'success' => false,
                 'error' => $error

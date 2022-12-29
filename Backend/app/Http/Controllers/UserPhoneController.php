@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserPhone;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as Codes;
 
 class UserPhoneController extends Controller
 {
@@ -39,7 +40,10 @@ class UserPhoneController extends Controller
             'phone' => 'required|unique:user_phones',
             'user_id' => 'required|exists:users,id'
         ]);
-        return response()->success(UserPhone::create($request->all()));
+        return response()->success(
+            UserPhone::create($request->all()),
+            Codes::HTTP_CREATED
+        );
     }
 
     /**
