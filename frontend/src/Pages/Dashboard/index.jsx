@@ -53,8 +53,8 @@ const Dashboard = () => {
         <AnimatedNumber />
       </Row>
       <Row>
-        <Col span={16}></Col>
-        <Col span={8}>
+        <Col span={13}></Col>
+        <Col span={11}>
           <AgentList />
         </Col>
       </Row>
