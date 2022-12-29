@@ -17,7 +17,8 @@ class Inquiry extends Model
         'brand_availability',
         'action',
         'product_category',
-        'status_remark'
+        'status_remark',
+        'open'
     ];
 
     public function call_type()

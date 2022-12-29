@@ -19,8 +19,7 @@ _**EXAMPLE**_
 _**ROUTES**_
 
 **/register** - POST  
-Register a new user
-
+Register a new user  
 (password\_confirmation required)
 
 **/login** - POST  
@@ -28,6 +27,29 @@ Log in as an existing user
 
 **/logout** - POST  
 Log out and clear auth keys
+
+## users
+
+_**EXAMPLE**_
+
+```plaintext
+"id": 1,
+"name": "username",
+"email": "username@example.io",
+"email_verified_at": "2022-12-29T09:10:52.000000Z",
+"created_at": "2022-12-29T09:10:52.000000Z",
+"updated_at": "2022-12-29T09:10:52.000000Z"
+```
+
+_**ROUTES**_
+
+**/users** - GET  
+get all users
+
+**/user/{id}** - GET
+
+**/user/count** - GET  
+get number of users
 
 ## user\_phones
 
@@ -93,15 +115,14 @@ _**EXAMPLE**_
 
 _**ROUTES**_
 
-**/customer\_addresses** \- GET/POST  
+**/customer\_addresses** - GET/POST  
 Get customer addresses list/add new
 
 **/customer\_addresses/{id}** - GET/PUT/DELETE
 
-**/customer\_addresses/{id}/customer** \- GET
+**/customer\_addresses/{id}/customer** - GET
 
 Get the customer this address is for
-
 
 ## call\_types
 
@@ -117,12 +138,12 @@ _**EXAMPLE**_
 
 _**ROUTES**_
 
-**/call\_types** \- GET/POST  
+**/call\_types** - GET/POST  
 Get customer addresses list/add new
 
 **/call\_types/{id}** - GET/PUT/DELETE
 
-**/call\_types/{id}/inquiries** \- GET
+**/call\_types/{id}/inquiries** - GET
 
 Get all the inquiries that have this call type
 
@@ -152,6 +173,9 @@ Get inquiries list/add new
 **/inquiries/{id}** - GET/PUT/DELETE  
 Get includes feedback - one\_to\_many
 
+**/inquiries/count** - GET  
+Get number of inquiries - total, open, closed
+
 ## feedbacks
 
 _**EXAMPLE**_
@@ -176,5 +200,6 @@ Get feedbacks list/add new
 get the inquiry this feedback is for
 
 ## CSRF Token
+
 **/token** - GET  
 Get the CSRF token for current session (when logged in)

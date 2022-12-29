@@ -23,6 +23,7 @@ class InquiryFactory extends Factory
             'product_category' => $this->faker->realText(10),
             'action' => $this->faker->realText(10),
             'status_remark' => $this->faker->realText(50),
+            'open' => $this->faker->boolean(30)
         ];
     }
 }

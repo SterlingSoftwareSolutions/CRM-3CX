@@ -96,13 +96,26 @@ class InquiryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Inquiry  $inquiry
      * @return \Illuminate\Http\Response
      */
     public function destroy(Inquiry $inquiry)
     {
-
         $inquiry->delete();
         return response()->success("Inquiry Deleted");
     }
+
+    /**
+     * Number of open inquiries
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function count()
+    {
+        return response()->success([
+            'total' => Inquiry::count(),
+            'open' => Inquiry::where('open', true)->count(),
+            'closed' => Inquiry::where('open', false)->count()
+        ]);
+    }
+
 }
