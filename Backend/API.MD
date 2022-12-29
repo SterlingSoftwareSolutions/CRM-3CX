@@ -174,3 +174,7 @@ Get feedbacks list/add new
 **/feedbacks/{id}/inquiry** - GET
 
 get the inquiry this feedback is for
+
+## CSRF Token
+**/token** - GET  
+Get the CSRF token for current session (when logged in)

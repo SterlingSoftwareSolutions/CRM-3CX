@@ -56,4 +56,10 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     // Logut
     Route::post('/logout', [AuthController::class, 'logout']);
 
+    Route::get('/token', function (Request $request) {
+        $token = $request->session()->token();
+        $token = csrf_token();
+        return $token;
+    });
+
 });
