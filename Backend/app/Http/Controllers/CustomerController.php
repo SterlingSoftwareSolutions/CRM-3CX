@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response as Codes;
 
 class CustomerController extends Controller
 {
@@ -39,7 +40,10 @@ class CustomerController extends Controller
             'phone' => 'required|unique:customers'
         ]);
 
-        return response()->success(Customer::create($request->all()));
+        return response()->success(
+            Customer::create($request->all()),
+            Codes::HTTP_CREATED
+        );
     }
 
     /**
@@ -87,7 +91,7 @@ class CustomerController extends Controller
         if($request->phone){
             return response()->success(
                 Customer::where('phone', $request->phone)
-                ->firstOrFail()
+                ->firstOrFail(),
             );
         }
         return response()->success($customer);
@@ -103,7 +107,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::where('phone', $phone)->firstOrFail();
         $customer->delete();
-        return response()->success(null);
+        return response()->success("Customer Deleted");
     }   
 
     /**
