@@ -12,7 +12,7 @@ function App() {
     <Row>
       <BrowserRouter>
         <Col span={4}>
-         <SideNavBar />      
+          <SideNavBar />
         </Col>
         <Col span={20}>
           <Routes>
