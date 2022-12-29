@@ -8,7 +8,8 @@ const CustomerPopUp = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const api = "http://127.0.0.1:8000/api/customers/"; //api url
+  const customer_api = "/api/customers/";
+  const customer_address_api = "/api/customer_addresses/";
   const [url, setUrl] = useState("None");
   const [Iscostomer_available, setcustomeravailability] = useState(false);
 
@@ -25,12 +26,15 @@ const CustomerPopUp = () => {
 
   const fetchData = (customer_number) => {
     try {
-      fetch(api + customer_number)
+      fetch("http://localhost:8000" + customer_api + customer_number)
         .then((response) => response.json())
         .then(async (customerdata) => {
           if (customerdata.success) {
             setData(customerdata.data);
             await setCustomerData(customerdata.data.customer_address[0]);
+            if (!customerdata.data.customer_address[0]) {
+              await setCustomerData(emptyObject);
+            }
             setcustomeravailability(true);
           } else {
             setData(emptyObject);
@@ -61,14 +65,43 @@ const CustomerPopUp = () => {
 
   let handleSubmit = async (e) => {
     data.phone = url;
-    const response = await fetch(api, {
-      method: "POST",
+    let method = Iscostomer_available ? "PUT" : "POST";
+
+    let tempapi =
+      "http://localhost:8000" +
+      (Iscostomer_available ? customer_api + url : customer_api);
+
+    console.log(method + tempapi);
+
+   
+    if (method === "PUT") {
+      delete data.id;
+      delete data.phone;
+      delete data.created_at;
+      delete data.updated_at;
+      delete data.customer_address;
+    }
+    console.log(JSON.stringify(data));
+    const response = await fetch(tempapi, {
+      method: method,
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
     const result = await response.json();
+    console.log(JSON.stringify(result));
+
+    const customer_address_responce = await fetch(tempapi, {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(customer_address),
+    });
+
+    const customer_address_result = await customer_address_responce.json();
+    // console.log(JSON.stringify(customer_address_result));
     handleClose();
   };
 
@@ -141,7 +174,7 @@ const CustomerPopUp = () => {
                       defaultValue={customer_address.address_line_1}
                       type="text"
                       as="textarea"
-                      rows={1}
+                      rows={3}
                       placeholder="Customer Address"
                     />
                   </Form.Group>
@@ -180,7 +213,6 @@ const CustomerPopUp = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          {/* Next button */}
           <Button
             className="btn btn mt-3 button-style"
             onClick={(e) => handleSubmit(e)}
