@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
 import { Button, Image, Row } from "antd";
+import { useNavigate } from "react-router-dom";
 
 import "./SideNavBar.css";
 import { ReactComponent as DashboardIcon } from "../../Assets/icons/dashboard.svg";
@@ -13,16 +13,31 @@ import { ReactComponent as SidebarOpen } from "../../Assets/sidebar-show.svg";
 import { ReactComponent as SidebarHide } from "../../Assets/sidebar-hide.svg";
 
 const SideNavBar = () => {
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const [isExpanded, setExpandedState] = useState(false);
 
+  let logout = () => {
+    setTimeout(() => {
+      setLoading(false);
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.reload();
+      navigate("/login");
+    }, []);
+  };
   return (
     <>
       <div class="fixed-header">
         <div class="container">
           <div className="logout">
             <Row>
-              <p className="logout-title">Logout</p>
-              <Logout />
+              <a onClick={logout} className="logout-title">
+                Logout
+              </a>
+              <a onClick={logout} className="logout-title">
+                <Logout />
+              </a>
             </Row>
           </div>
         </div>
