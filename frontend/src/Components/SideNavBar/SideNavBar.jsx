@@ -42,7 +42,9 @@ const SideNavBar = () => {
 
                 <Button
                   type="link"
-                  className="sidebar-visible"
+                  className={
+                    isExpanded ? "sidebar-visible" : "sidebar-collapsed"
+                  }
                   onClick={() => setExpandedState(!isExpanded)}
                   icon={isExpanded ? <SidebarHide /> : <SidebarOpen />}
                 />
@@ -58,7 +60,7 @@ const SideNavBar = () => {
               {isExpanded && <p className="menu-item-sidebar">{"Dashboard"}</p>}
             </a>
           </div>
-          <div className="nav-menu">
+          <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
             <a
               href={"/inquire"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
@@ -67,7 +69,7 @@ const SideNavBar = () => {
               {isExpanded && <p className="menu-item-sidebar">{"Inquire"}</p>}
             </a>
           </div>
-          <div className="nav-menu">
+          <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
             <a
               href={"/users"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
@@ -76,7 +78,7 @@ const SideNavBar = () => {
               {isExpanded && <p className="menu-item-sidebar">{"Users"}</p>}
             </a>
           </div>
-          <div className="nav-menu">
+          <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
             <a
               href={"/agents"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}

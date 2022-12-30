@@ -112,3 +112,6 @@ menu-item {
 .menu-item-sidebar {
   margin-left: 10px;
 }
+.sidebar-collapsed {
+  margin: 14%;
+}
