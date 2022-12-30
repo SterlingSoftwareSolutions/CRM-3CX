@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./index.css";
 import { Card, Form, Input, Checkbox } from "antd";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Dashboard from "../Dashboard/index";
 
 const LoginPage = () => {
   const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [authenticated, setauthenticated] = useState(sessionStorage.getItem(sessionStorage.getItem("authenticated") || false));
+  const [authenticated, setauthenticated] = useState(
+    sessionStorage.getItem(sessionStorage.getItem("authenticated") || false)
+  );
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -26,10 +28,10 @@ const LoginPage = () => {
         setError(data.error);
         alert(data.error);
       } else {
-        sessionStorage.setItem('token', data.data.token);
+        sessionStorage.setItem("token", data.data.token);
         sessionStorage.setItem("authenticated", true);
         setauthenticated(true);
-        navigate('/');
+        navigate("/");
         window.location.reload();
       }
     } catch (error) {

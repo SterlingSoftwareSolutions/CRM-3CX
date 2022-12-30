@@ -10,7 +10,7 @@ const AgentList = () => {
       return;
     }
     setLoading(true);
-    fetch("http://localhost:8000/api/users")
+    fetch("/api/users")
       .then((res) => res.json())
       .then((body) => {
         setData([...data, ...body.data]);
