@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as Users } from "../../../Assets/users.svg";
 import { ReactComponent as InBoundCalls } from "../../../Assets/incomingcalls.svg";
 import { ReactComponent as OpenInquiry } from "../../../Assets/open.svg";
@@ -9,6 +9,47 @@ import NumberCards from "../../../Components/NumberCards";
 import { Card, Col, Row } from "antd";
 
 const AnimatedNumber = () => {
+  const token = sessionStorage.getItem("token");
+  const [totalAgents, setTotalAgentData] = useState([]);
+  const [TotalInquiries, setTotalInquiriestData] = useState([]);
+  const [Resolvedinquiries, setResolvedinquiriesData] = useState([]);
+  const [Unesolvedinquiries, setUnesolvedinquiriesData] = useState([]);
+
+  useEffect(() => {
+    // Api call For the User Count
+    fetch("/api/users/count", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => res.json())
+      .then((body) => {
+        setTotalAgentData(body.data.agents);
+      })
+      .catch(() => {
+        console.log("Error in User Count Api in Dashboard");
+      });
+
+      // Api call For the inquiries Count
+    fetch("/api/inquiries/count", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => res.json())
+      .then((body) => {
+        setTotalInquiriestData(body.data.total);
+        setResolvedinquiriesData(body.data.closed);
+        setUnesolvedinquiriesData(body.data.open);
+      })
+      .catch(() => {
+        console.log("Error in inquiries Count Api in Dashboard");
+      });
+  }, []);
   return (
     <Card style={{ width: "97%" }}>
       <Row>
@@ -19,13 +60,13 @@ const AnimatedNumber = () => {
             </Col>
             <Col>
               <p className="number-style">
-                <NumberCards value={200} />
+                <NumberCards value={totalAgents} />
               </p>
               <p>Total Agents</p>
             </Col>
           </Row>
         </div>
-        <div className="card-one-style">
+        {/* <div className="card-one-style">
           <Row>
             <Col className="col-one-style">
               <InBoundCalls />
@@ -50,7 +91,20 @@ const AnimatedNumber = () => {
               <p>OutBound Calls Per Day</p>
             </Col>
           </Row>
-        </div>
+        </div> */}
+         <div className="card-one-style">
+          <Row>
+            <Col className="col-one-style">
+              <OutBoundCalls />
+            </Col>
+            <Col>
+              <p className="number-style">
+                <NumberCards value={TotalInquiries} />
+              </p>
+              <p>Total Inquiries</p>
+            </Col>
+          </Row>
+        </div> 
         <div className="card-one-style">
           <Row>
             <Col className="col-one-style">
@@ -58,7 +112,7 @@ const AnimatedNumber = () => {
             </Col>
             <Col>
               <p className="number-style">
-                <NumberCards value={18} />
+                <NumberCards value={Resolvedinquiries} />
               </p>
               <p>Resolved Inquiries</p>
             </Col>
@@ -71,7 +125,7 @@ const AnimatedNumber = () => {
             </Col>
             <Col>
               <p className="number-style">
-                <NumberCards value={25} />
+                <NumberCards value={Unesolvedinquiries} />
               </p>
               <p>Unresolved Inquiries</p>
             </Col>

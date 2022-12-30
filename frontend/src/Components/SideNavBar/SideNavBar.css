@@ -20,6 +20,10 @@ menu-item {
   height: 90px;
 }
 
+.main-sidebar-and-topbar *{
+  z-index: 50;
+}
+
 .nav-menu {
   grid-template-rows: repeat(4, 1fr);
   margin-top: 10px;

@@ -2,16 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Avatar, Divider, List, Skeleton } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProfilePic from "./ProfilePic";
+
 const AgentList = () => {
+  const token = sessionStorage.getItem("token");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const loadMoreData = () => {
+  const loadMoreData = async () => {
     if (loading) {
       return;
     }
     setLoading(true);
-    fetch("/api/users")
-      .then((res) => res.json())
+    fetch("/api/users/agents", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer ' + token,
+      },
+    }).then((res) => res.json())
       .then((body) => {
         setData([...data, ...body.data]);
         setLoading(false);

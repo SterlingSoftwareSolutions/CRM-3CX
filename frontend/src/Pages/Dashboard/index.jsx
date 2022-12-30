@@ -63,7 +63,7 @@ const Dashboard = () => {
     return <Navigate replace to="/login" />;
   } else {
     return (
-      <div>
+      <div className="dashboard-row">
         <Row style={{ marginTop: "6%", width: "1100px" }}>
           <AnimatedNumber />
         </Row>
