@@ -102,9 +102,9 @@ const AllInquiries = () => {
     { id: 2, name: "Bob", email: "bob@example.com" },
     { id: 3, name: "Charlie", email: "charlie@example.com" },
   ];
-  console.log(data);
   return (
     <div className="table-container">
+      <h2 className="inquiries-title">Inquiries</h2>
       <Table users={data} columns={columns} />
     </div>
   );
