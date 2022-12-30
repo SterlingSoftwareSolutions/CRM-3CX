@@ -57,8 +57,8 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
-      <Row style={{ marginTop: "5%", width: "1100px" }}>
+    <div className="rows">
+      <Row >
         <AnimatedNumber />
       </Row>
       <Row>

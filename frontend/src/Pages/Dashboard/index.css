@@ -30,3 +30,9 @@
 .agent-title {
   color: #857979;
 }
+/* Rows screen size*/
+.rows{
+  margin: 2%;
+  width: 1980px;
+  min-width: 390px;
+}

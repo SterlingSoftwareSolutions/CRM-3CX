@@ -10,8 +10,8 @@ import { Card, Col, Row } from "antd";
 
 const AnimatedNumber = () => {
   return (
-    <Card>
-      <Row>
+    <Card >
+      <Row className="call-navbar">
         <div className="card-one-style">
           <Row>
             <Col className="col-one-style">
