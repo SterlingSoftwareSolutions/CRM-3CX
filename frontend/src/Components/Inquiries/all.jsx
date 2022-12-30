@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Table from "../table/table";
+import "./Inquiry.css";
 
 const AllInquiries = () => {
   //popup the page in this section
@@ -20,6 +21,63 @@ const AllInquiries = () => {
       created_at: "",
     },
   ]);
+  const columns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "name",
+    },
+    {
+      title: "Brand",
+      dataIndex: "brand",
+      key: "age",
+    },
+    {
+      title: "Brand Availability",
+      dataIndex: "brand_availability",
+      key: "address",
+    },
+    {
+      title: "Product Category",
+      dataIndex: "product_category",
+      key: "address",
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "address",
+    },
+    {
+      title: "Status Remark",
+      dataIndex: "status_remark",
+      key: "address",
+    },
+    {
+      title: "Open",
+      dataIndex: "open",
+      key: "address",
+    },
+    {
+      title: "User ID",
+      dataIndex: "user_id",
+      key: "address",
+    },
+    {
+      title: "Customer ID",
+      dataIndex: "customer_id",
+      key: "address",
+    },
+    {
+      title: "Call Type ID",
+      dataIndex: "call_type_id",
+      key: "address",
+    },
+    {
+      title: "Created At",
+      dataIndex: "created_at",
+      key: "address",
+    },
+  ];
   //Get api url
   const api = "http://127.0.0.1:8000/api/inquiries";
 
@@ -46,8 +104,8 @@ const AllInquiries = () => {
   ];
   console.log(data);
   return (
-    <div>
-      <Table users={data} />
+    <div className="table-container">
+      <Table users={data} columns={columns} />
     </div>
   );
 };
