@@ -160,3 +160,25 @@ nav.heading {
   border: 2px solid var(--dark);
   background-color: var(--light);
 }
+.fixed-header {
+  width: 100%;
+  position: fixed;
+  background: #fafafa;
+  padding: 10px 0;
+  color: rgb(139, 135, 135);
+  height: 50px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  top: 0;
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.logout {
+  float: right;
+  text-align: center;
+}
+.logout-title {
+  margin: 0 12px 0 0;
+}
