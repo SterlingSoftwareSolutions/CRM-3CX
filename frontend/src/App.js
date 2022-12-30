@@ -9,7 +9,7 @@ import Types from "./Components/Inquiries/Types";
 import Login from "./Pages/LoginPage/index";
 import { Col, Row } from "antd";
 import Inquiry from "./Components/Inquiries/Inquiry";
-import AllInquiry from "./Components/Inquiries/all";
+import AllInquiry from "./Components/Inquiries/Inquiries";
 import Errorpage from "./Pages/404/404";
 
 function App() {

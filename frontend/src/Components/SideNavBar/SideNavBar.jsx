@@ -27,12 +27,12 @@ const SideNavBar = () => {
     }, []);
   };
   return (
-    <>
+    <><div className="main-sidebar-and-topbar">
       <div class="fixed-header">
         <div class="container">
           <div className="logout">
             <Row>
-              <a onClick={logout} className="logout-title">
+              <a onClick={logout} href="#fh" className="logout-title">
                 Logout
               </a>
               <a onClick={logout} className="logout-title">
@@ -104,6 +104,8 @@ const SideNavBar = () => {
           </div>
         </div>
       </div>
+    </div>
+      
     </>
   );
 };
