@@ -11,6 +11,7 @@ _**EXAMPLE**_
 "name":  "somebody",
 "email":  "somebody@example.io",
 "password" : "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+"role" : "agent",
 "email_verified_at":  null,
 "created_at":  "2022-12-28T09:40:09.000000Z",
 "updated_at":  "2022-12-28T09:40:09.000000Z"
@@ -33,23 +34,29 @@ Log out and clear auth keys
 _**EXAMPLE**_
 
 ```plaintext
-"id": 1,
-"name": "username",
-"email": "username@example.io",
-"email_verified_at": "2022-12-29T09:10:52.000000Z",
-"created_at": "2022-12-29T09:10:52.000000Z",
-"updated_at": "2022-12-29T09:10:52.000000Z"
+"id":  1,
+"name":  "somebody",
+"email":  "somebody@example.io",
+"role" : "agent",
+"email_verified_at":  null,
+"created_at":  "2022-12-28T09:40:09.000000Z",
+"updated_at":  "2022-12-28T09:40:09.000000Z"
 ```
 
 _**ROUTES**_
 
-**/users** - GET  
-get all users
+**/users** - GET/POST 
+get all users/add new
 
-**/user/{id}** - GET
+**/users/{id}** - GET/PUT/DELETE
+
+**/users/agents** - GET
+get all users with role 'agent'
+
+**/users/agents/{id}** - GET
 
 **/user/count** - GET  
-get number of users
+get number of users, total and by role
 
 ## user\_phones
 
