@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Table from "../../Components/table/table";
+import moment from "moment";
 
 const Users = () => {
   const [data, setData] = useState([
@@ -10,6 +11,10 @@ const Users = () => {
       created_at: "",
     },
   ]);
+
+  const getDate = (dateString) => {
+    return moment(dateString).format("DD-MM-YYYY");
+  };
   const columns = [
     {
       title: "ID",
@@ -28,6 +33,9 @@ const Users = () => {
     {
       title: "User Created Date",
       dataIndex: "created_at",
+      render: (key, record) => {
+        return <span>{getDate(record)}</span>;
+      },
     },
   ];
   //Get api url
@@ -38,7 +46,6 @@ const Users = () => {
     try {
       let res = await fetch(api);
       res = await res.json();
-      console.log(res.data);
       setData(res.data);
     } catch (error) {
       console.error(error);
