@@ -40,16 +40,21 @@ const Users = () => {
   ];
   //Get api url
   const api = "http://127.0.0.1:8000/api/users";
-
+  const token = sessionStorage.getItem("token");
   //calling Api get method
   const fetchArray = async () => {
     try {
-      let res = await fetch(api);
+      let res = await fetch(api,{
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
       res = await res.json();
       setData(res.data);
     } catch (error) {
-      console.error(error);
-      alert(error);
+      alert("Only Admins View");
     }
   };
   useEffect(() => {
