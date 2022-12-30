@@ -54,7 +54,7 @@ const AnimatedNumber = () => {
         <div className="card-one-style">
           <Row>
             <Col className="col-one-style">
-              <OpenInquiry />
+              <ClosedInquiries />
             </Col>
             <Col>
               <p className="number-style">
@@ -67,7 +67,7 @@ const AnimatedNumber = () => {
         <div className="card-one-style">
           <Row>
             <Col className="col-one-style">
-              <ClosedInquiries />
+              <OpenInquiry />
             </Col>
             <Col>
               <p className="number-style">
