@@ -1,9 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import Table from "../../Components/table/table";
+import moment from "moment";
 
 const Users = () => {
-  return (
-    <div>Users</div>
-  )
-}
+  const [data, setData] = useState([
+    {
+      id: 1,
+      email: "",
+      name: "",
+      created_at: "",
+    },
+  ]);
 
-export default Users
+  const getDate = (dateString) => {
+    return moment(dateString).format("DD-MM-YYYY");
+  };
+  const columns = [
+    {
+      title: "ID",
+      dataIndex: "id",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "age",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "address",
+    },
+    {
+      title: "User Created Date",
+      dataIndex: "created_at",
+      render: (key, record) => {
+        return <span>{getDate(record)}</span>;
+      },
+    },
+  ];
+  //Get api url
+  const api = "http://127.0.0.1:8000/api/users";
+
+  //calling Api get method
+  const fetchArray = async () => {
+    try {
+      let res = await fetch(api);
+      res = await res.json();
+      setData(res.data);
+    } catch (error) {
+      console.error(error);
+      alert(error);
+    }
+  };
+  useEffect(() => {
+    fetchArray();
+  }, []);
+
+  return (
+    <div className="table-container">
+      <h2 className="inquiries-title">Users</h2>
+      <Table users={data} columns={columns} />
+    </div>
+  );
+};
+
+export default Users;

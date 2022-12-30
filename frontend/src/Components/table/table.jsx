@@ -3,8 +3,6 @@ import { Table, Row } from "antd";
 import "./table";
 
 const CommonTable = ({ users, columns }) => {
-  console.log(users);
-
   return (
     <Row>
       <Table
