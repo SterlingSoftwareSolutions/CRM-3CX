@@ -13,7 +13,7 @@ const Inquiry = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [error , setError] = useState(false);
+  const [error, setError] = useState(false);
 
   const [filter, setFilter] = useState("");
 
@@ -23,18 +23,17 @@ const Inquiry = () => {
     if (filter) {
       setFilter(filter);
     }
-
   }, []);
 
   //set path api
-  const api = "http://127.0.0.1:8000/api/inquiries";
+  const api = "/api/inquiries";
 
   const [data, setData] = useState({
-    brand:"",
+    brand: "",
     availibility: "",
-    model:"",
+    model: "",
     action: "",
-    follow:"",
+    follow: "",
     remark: "",
     feedback: "",
     catagory: "",
@@ -44,13 +43,16 @@ const Inquiry = () => {
     setData((prev) => ({ ...prev, [key]: value }));
   };
 
-
- 
   //post method
   let handleSubmit = async (e) => {
-    //error message 
-    if(data.brand.length === 0 && data.availibility.length === 0 && data.model.length === 0
-      && data.follow.length === 0 && data.catagory.length === 0 ){
+    //error message
+    if (
+      data.brand.length === 0 &&
+      data.availibility.length === 0 &&
+      data.model.length === 0 &&
+      data.follow.length === 0 &&
+      data.catagory.length === 0
+    ) {
       setError(true);
     }
     console.log(data);
@@ -59,14 +61,15 @@ const Inquiry = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     };
-    const responce = await fetch(api, requestOptions).then((response) => response.json());
+    const responce = await fetch(api, requestOptions).then((response) =>
+      response.json()
+    );
     console.log(JSON.stringify(responce));
     handleClose();
   };
 
   //required field
 
-  
   return (
     <div>
       <Modal onHide={handleClose} show={show}>
@@ -76,7 +79,7 @@ const Inquiry = () => {
         </ModalHeader>
 
         <Modal.Body>
-          <Form >
+          <Form>
             {/* Brand link addres phone text line */}
             <Form.Group className="mb-3">
               <Form.Label>Brand</Form.Label>
@@ -88,9 +91,13 @@ const Inquiry = () => {
                 placeholder="Brand"
               />
               {/* error message */}
-             {error && data.brand.length<=0 ?
-             <Form.Label className="form-validation">This field is required</Form.Label>:""}
-
+              {error && data.brand.length <= 0 ? (
+                <Form.Label className="form-validation">
+                  This field is required
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </Form.Group>
             {/* Brand Availibility text line */}
             <Form.Group className="mb-3">
@@ -102,9 +109,14 @@ const Inquiry = () => {
                 type="text"
                 placeholder="BrandAvailibility"
               />
-                {/* error message */}
-               {error ? 
-             <Form.Label className="form-validation">This field is required</Form.Label> :""}
+              {/* error message */}
+              {error ? (
+                <Form.Label className="form-validation">
+                  This field is required
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </Form.Group>
 
             {/* Brand or Model text line */}
@@ -117,9 +129,14 @@ const Inquiry = () => {
                 type="text"
                 placeholder="Brand or Model"
               />
-                {/* error message */}
-              {error ? 
-             <Form.Label className="form-validation">This field is required</Form.Label> :""}
+              {/* error message */}
+              {error ? (
+                <Form.Label className="form-validation">
+                  This field is required
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </Form.Group>
 
             {/* Action text line */}
@@ -144,9 +161,14 @@ const Inquiry = () => {
                 type="text"
                 placeholder="Type.."
               />
-                {/* error message */}
-              {error ? 
-             <Form.Label className="form-validation">This field is required</Form.Label> :""}
+              {/* error message */}
+              {error ? (
+                <Form.Label className="form-validation">
+                  This field is required
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </Form.Group>
 
             {/* Status Remark text line */}
@@ -185,24 +207,29 @@ const Inquiry = () => {
                 className="form-control"
                 placeholder="Product Catagory"
               />
-                {/* error message */}
-              {error ? 
-             <Form.Label className="form-validation">This field is required</Form.Label> :""}
+              {/* error message */}
+              {error ? (
+                <Form.Label className="form-validation">
+                  This field is required
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </Form.Group>
-            
           </Form>
         </Modal.Body>
         <Modal.Footer>
           {/* close button */}
-          <Link to ='/types'>
-          <Button
-            className="btn btn mt-3"
-            style={{ backgroundColor: "#16c5d5", color: "white" }}>
-            Back
-          </Button>
+          <Link to="/types">
+            <Button
+              className="btn btn mt-3"
+              style={{ backgroundColor: "#16c5d5", color: "white" }}
+            >
+              Back
+            </Button>
           </Link>
           {/* Next button */}
-          
+
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}
