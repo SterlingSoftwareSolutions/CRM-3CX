@@ -24,10 +24,9 @@ function App() {
           <Col span={20}>
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="agents" element={<CustomerPopUp />} />
-              <Route path="contact" element={<Dashboard />} />
               <Route path="/customer/:phone" element={<CustomerPopUp />} />
               <Route path="/types" element={<Types />} />
+              <Route path="/inquiry" element={<Inquiry />} />
             </Routes>
           </Col>
         </Row>
