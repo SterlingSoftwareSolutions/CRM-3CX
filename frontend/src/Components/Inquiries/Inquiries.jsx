@@ -86,12 +86,18 @@ const AllInquiries = () => {
     },
   ];
   //Get api url
-  const api = "http://127.0.0.1:8000/api/inquiries";
-
+   const api = "http://127.0.0.1:8000/api/inquiries";
+   const token = sessionStorage.getItem("token");
   //calling Api get method
   const fetchArray = async () => {
     try {
-      let res = await fetch(api);
+      let res = await fetch(api, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      })
       res = await res.json();
       setData(res.data);
     } catch (error) {
@@ -99,6 +105,7 @@ const AllInquiries = () => {
       alert(error);
     }
   };
+
   useEffect(() => {
     fetchArray();
   }, []);
@@ -117,3 +124,4 @@ const AllInquiries = () => {
 };
 
 export default AllInquiries;
+ 
