@@ -8,6 +8,7 @@ import Types from "./Components/Inquiries/Types";
 import Login from "./Pages/LoginPage/index";
 import { Col, Row } from "antd";
 import Inquiry from "./Components/Inquiries/Inquiry";
+import AllInquiry from "./Components/Inquiries/all";
 
 function App() {
   const loggedInUser = sessionStorage.getItem("authenticated");
@@ -16,7 +17,7 @@ function App() {
   );
   return (
     <div>
-      <React.StrictMode>
+    
         <BrowserRouter>
           <Routes>
             <Route exact path="/login" element={<Login />} />
@@ -28,12 +29,13 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/customer/:phone" element={<CustomerPopUp />} />
                 <Route path="/types" element={<Types />} />
-                <Route path="/inquiry" element={<Inquiry />} />
+                <Route path="/inquiry-popup" element={<Inquiry />} />
+                <Route path="/inquiries" element={<AllInquiry />} />
               </Routes>
             </Col>
           </Row>
         </BrowserRouter>
-      </React.StrictMode>
+      
     </div>
   );
 }

@@ -79,7 +79,7 @@ const Types = () => {
           </Button>
           </Link>
           {/* Next button */}
-          <Link to='/inquiry'>
+          <Link to='/inquiry-popup'>
           <Button
             className="btn btn mt-3"
             style={{ backgroundColor: "#16c5d5", color: "white" }}>

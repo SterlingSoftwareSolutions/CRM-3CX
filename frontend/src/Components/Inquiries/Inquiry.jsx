@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, ModalHeader } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import "./inquiries.css";
+import "./Inquiry.css";
 import { Link } from "react-router-dom";
 
 const Inquiry = () => {

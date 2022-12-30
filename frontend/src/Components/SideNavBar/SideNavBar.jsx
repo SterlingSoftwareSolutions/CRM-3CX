@@ -65,7 +65,7 @@ const SideNavBar = () => {
           <div className="nav-menu">
             <InquireIcon />
             <a
-              href={"/inquire"}
+              href={"/inquiries"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
             >
               {isExpanded && <p>{"Inquire"}</p>}
