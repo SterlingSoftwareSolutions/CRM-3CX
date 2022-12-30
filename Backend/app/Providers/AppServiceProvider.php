@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         Response::macro('error', function ($error, $status_code = Codes::HTTP_NOT_FOUND){
             return response()->json([
                 'success' => false,
-                'error' => $error
+                'message' => $error
             ], $status_code);
         });
     }

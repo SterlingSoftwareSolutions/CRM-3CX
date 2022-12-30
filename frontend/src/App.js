@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
 import Dashboard from "./Pages/Dashboard/index";
+import Users from "./Pages/User/index";
 import SideNavBar from "./Components/SideNavBar/SideNavBar";
 import Types from "./Components/Inquiries/Types";
 import Login from "./Pages/LoginPage/index";
@@ -36,7 +37,6 @@ function App() {
           </Col>
         </Row>
       </BrowserRouter>
-    
     </div>
   );
 }

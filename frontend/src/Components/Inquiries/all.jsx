@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "../table/table";
 import "./Inquiry.css";
+import moment from "moment";
 
 const AllInquiries = () => {
   //popup the page in this section
@@ -21,6 +22,9 @@ const AllInquiries = () => {
       created_at: "",
     },
   ]);
+  const getDate = (dateString) => {
+    return moment(dateString).format("DD-MM-YYYY");
+  };
   const columns = [
     {
       title: "ID",
@@ -76,6 +80,9 @@ const AllInquiries = () => {
       title: "Created At",
       dataIndex: "created_at",
       key: "address",
+      render: (key, record) => {
+        return <span>{getDate(record)}</span>;
+      },
     },
   ];
   //Get api url
@@ -86,7 +93,6 @@ const AllInquiries = () => {
     try {
       let res = await fetch(api);
       res = await res.json();
-      console.log(res.data);
       setData(res.data);
     } catch (error) {
       console.error(error);
@@ -102,9 +108,9 @@ const AllInquiries = () => {
     { id: 2, name: "Bob", email: "bob@example.com" },
     { id: 3, name: "Charlie", email: "charlie@example.com" },
   ];
-  console.log(data);
   return (
     <div className="table-container">
+      <h2 className="inquiries-title">Inquiries</h2>
       <Table users={data} columns={columns} />
     </div>
   );

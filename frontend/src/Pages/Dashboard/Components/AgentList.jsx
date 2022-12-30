@@ -39,7 +39,6 @@ const AgentList = () => {
       <InfiniteScroll
         dataLength={data.length}
         next={loadMoreData}
-        hasMore={data.length < 50}
         loader={
           <Skeleton
             avatar
