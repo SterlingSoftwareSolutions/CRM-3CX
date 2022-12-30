@@ -1,5 +1,6 @@
 import { Col, Row } from "antd";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 
@@ -48,33 +49,40 @@ const unresolveddata = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 
 const Dashboard = () => {
-  const token = sessionStorage.getItem('token');
-  const navigate = useNavigate();
+  const loggedInUser = sessionStorage.getItem("authenticated");
+  const [authenticated, setauthenticated] = useState(loggedInUser?loggedInUser :false);
+
   useEffect(() => {
-    if (token === null || "") {
-      navigate('/login')
+    if (loggedInUser) {
+      setauthenticated(true);
     }
   }, []);
 
-  return (
-    <div>
-      <Row style={{ marginTop: "5%", width: "1100px" }}>
-        <AnimatedNumber />
-      </Row>
-      <Row>
-        <Col span={13}></Col>
-        <Col span={11}>
-          <AgentList />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={6}>{/* <PieCharts /> */}</Col>
-        <Col span={6}>{/* <PieCharts /> */}</Col>
-        <Col span={6}>{/* <PieCharts /> */}</Col>
-        <Col span={6}>{/* <PieCharts /> */}</Col>
-      </Row>
-    </div>
-  );
+  if (!authenticated) {
+    return <Navigate replace to="/login" />;
+  } else {
+    return (
+      <div>
+        <Row style={{ marginTop: "5%", width: "1100px" }}>
+          <AnimatedNumber />
+        </Row>
+        <Row>
+          <Col span={13}></Col>
+          <Col span={11}>
+            <AgentList />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={6}>{/* <PieCharts /> */}</Col>
+          <Col span={6}>{/* <PieCharts /> */}</Col>
+          <Col span={6}>{/* <PieCharts /> */}</Col>
+          <Col span={6}>{/* <PieCharts /> */}</Col>
+        </Row>
+      </div>
+    );
+  }
+
+  
 };
 
 export default Dashboard;
