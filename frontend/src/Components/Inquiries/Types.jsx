@@ -21,7 +21,7 @@ const Types = () => {
   }, [filter]);
 
   //Get api url
-  const api = "http://127.0.0.1:8000/api/call_types";
+  const api = "/api/call_types";
 
   //calling Api get method
   const fetchArray = async () => {
@@ -32,9 +32,9 @@ const Types = () => {
         console.error(res.error);
         alert(res.error);
       } else {
-        let arrayTemp = ["", ...new Set(res.map((item) => item))];
+        let arrayTemp = ["", ...new Set(res.data.map((item) => item))];
         setArr(arrayTemp);
-        console.log(arr);
+        console.log(res.data);
       }
     } catch (error) {
       console.error(error);
