@@ -1,0 +1,14 @@
+.errorpage{
+    width: 40vh;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 15vh;
+}
+#root{
+    width: 100%;
+}
+/* .sidebar-col{
+    flex-basis: 0;
+} */

@@ -10,6 +10,7 @@ import Login from "./Pages/LoginPage/index";
 import { Col, Row } from "antd";
 import Inquiry from "./Components/Inquiries/Inquiry";
 import AllInquiry from "./Components/Inquiries/all";
+import Errorpage from "./Pages/404/404";
 
 function App() {
   const loggedInUser = sessionStorage.getItem("authenticated");
@@ -29,9 +30,9 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/customer/:phone" element={<CustomerPopUp />} />
               <Route path="/types" element={<Types />} />
-              <Route path="/users" element={<Users />} />
               <Route path="/inquiry-popup" element={<Inquiry />} />
               <Route path="/inquiries" element={<AllInquiry />} />
+              <Route path="/*" element={<Errorpage />} />
             </Routes>
           </Col>
         </Row>
