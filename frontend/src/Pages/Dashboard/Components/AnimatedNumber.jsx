@@ -10,7 +10,7 @@ import { Card, Col, Row } from "antd";
 
 const AnimatedNumber = () => {
   return (
-    <Card style={{ width: "1000px" }}>
+    <Card style={{ width: "97%" }}>
       <Row>
         <div className="card-one-style">
           <Row>

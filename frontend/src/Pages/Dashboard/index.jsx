@@ -1,12 +1,10 @@
 import { Col, Row } from "antd";
-import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 
 import AnimatedNumber from "./Components/AnimatedNumber";
 import AgentList from "./Components/AgentList";
-import PieCharts from "./Components/PieCharts";
 
 const projectdata = [
   { name: "Abans", value: 207 },
@@ -50,7 +48,9 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 
 const Dashboard = () => {
   const loggedInUser = sessionStorage.getItem("authenticated");
-  const [authenticated, setauthenticated] = useState(loggedInUser?loggedInUser :false);
+  const [authenticated, setauthenticated] = useState(
+    loggedInUser ? loggedInUser : false
+  );
 
   useEffect(() => {
     if (loggedInUser) {
@@ -63,12 +63,12 @@ const Dashboard = () => {
   } else {
     return (
       <div>
-        <Row style={{ marginTop: "5%", width: "1100px" }}>
+        <Row style={{ marginTop: "6%", width: "1100px" }}>
           <AnimatedNumber />
         </Row>
-        <Row>
-          <Col span={13}></Col>
-          <Col span={11}>
+        <Row style={{ marginTop: "1%", width: "1100px" }}>
+          <Col span={16}></Col>
+          <Col span={8}>
             <AgentList />
           </Col>
         </Row>
@@ -81,8 +81,6 @@ const Dashboard = () => {
       </div>
     );
   }
-
-  
 };
 
 export default Dashboard;
