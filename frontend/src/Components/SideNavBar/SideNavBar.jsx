@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { Row } from "antd";
 
 import "./SideNavBar.css";
 import { ReactComponent as DashboardIcon } from "../../Assets/icons/dashboard.svg";
 import { ReactComponent as InquireIcon } from "../../Assets/icons/inquire.svg";
 import { ReactComponent as UsersIcon } from "../../Assets/icons/users.svg";
 import { ReactComponent as AgentsIcon } from "../../Assets/icons/support-svgrepo-com.svg";
-import { ReactComponent as Logo } from "../../Assets/icons/sterling_logo.svg";
+import { ReactComponent as Logout } from "../../Assets/logout.svg";
 
 const SideNavBar = () => {
   const [isExpanded, setExpandedState] = useState(false);
@@ -14,7 +15,14 @@ const SideNavBar = () => {
   return (
     <>
       <div class="fixed-header">
-        <div class="container"></div>
+        <div class="container">
+          <div className="logout">
+            <Row>
+              <p className="logout-title">Logout</p>
+              <Logout />
+            </Row>
+          </div>
+        </div>
       </div>
       <div
         className={

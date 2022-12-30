@@ -174,3 +174,11 @@ nav.heading {
   width: 80%;
   margin: 0 auto;
 }
+
+.logout {
+  float: right;
+  text-align: center;
+}
+.logout-title {
+  margin: 0 12px 0 0;
+}
