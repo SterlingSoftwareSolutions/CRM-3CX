@@ -77,7 +77,7 @@ const SideNavBar = () => {
           </div>
           <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
             <a
-              href={"/inquire"}
+              href={"/inquiries"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
             >
               <InquireIcon />
