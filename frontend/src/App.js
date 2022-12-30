@@ -32,6 +32,7 @@ function App() {
               <Route path="/types" element={<Types />} />
               <Route path="/inquiry-popup" element={<Inquiry />} />
               <Route path="/inquiries" element={<AllInquiry />} />
+              <Route path="/users" element={<Users />} />
               <Route path="/*" element={<Errorpage />} />
             </Routes>
           </Col>
