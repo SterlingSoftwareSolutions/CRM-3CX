@@ -14,6 +14,7 @@ const Types = () => {
   const [filter, setFilter] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const token = sessionStorage.getItem("token");
 
   //save data localstorage
   useEffect(() => {
@@ -26,7 +27,13 @@ const Types = () => {
   //calling Api get method
   const fetchArray = async () => {
     try {
-      let res = await fetch(api);
+      let res = await fetch(api,{
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
       res = await res.json();
       if (res.error) {
         console.error(res.error);

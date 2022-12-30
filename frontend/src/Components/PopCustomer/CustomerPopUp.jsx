@@ -14,6 +14,7 @@ const CustomerPopUp = () => {
   const [url, setUrl] = useState("None");
   const [Iscostomer_available, setcustomeravailability] = useState(false);
   const [error, setError] = useState("");
+  const token = sessionStorage.getItem("token");
 
   const [customer_address, setCustomerData] = useState({
     address_line_1: "",
@@ -91,6 +92,7 @@ const CustomerPopUp = () => {
       method: method,
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify(data),
     });
@@ -109,6 +111,7 @@ const CustomerPopUp = () => {
       method: method,
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify(customer_address),
     });

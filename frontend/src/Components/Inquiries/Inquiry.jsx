@@ -14,8 +14,57 @@ const Inquiry = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [error, setError] = useState(false);
-
+  const token = sessionStorage.getItem("token");
   const [filter, setFilter] = useState("");
+  const [arr, setArr] = useState([
+    { name: "TV" },
+    { name: "Mobile Phone" },
+    { name: "Air Conditioners" },
+    { name: "Apple Products" },
+    { name: "Audio" },
+    { name: "Computers" },
+    { name: "Refrigerator " },
+    { name: "Washing Machine" },
+    { name: "Home Appliances" },
+    { name: "Kitchen Appliances" },
+    { name: "Built-In Appliances & Ovens" },
+    { name: "Small Appliances" },
+    { name: "Watch" },
+    { name: "Generators" },
+    { name: "The Face Shop" },
+    { name: "Skechers" },
+    { name: "Under Armour" },
+    { name: "Hyundai" },
+    { name: "Bathware" },
+    { name: "Sanitary Ware" },
+    { name: "Medical Devices" },
+    { name: "Cooking Appliances" },
+    { name: "Clothing" },
+    { name: "Home Needs" },
+    { name: "Health & Beauty" },
+    { name: "Baby & Kids" },
+    { name: "Sports & Fitness" },
+    { name: "Daily Essentials" },
+    { name: "Special Offer" },
+    { name: "Other" },
+  ]);
+  const [brand_availability, setbrand_availability] = useState([
+    { name: "Yes" },
+    { name: "No" },
+  ]);
+  const [followupStatus, setfollowupStatus] = useState([
+    { name: "Follow Up" },
+    { name: "Close" },
+  ]);
+  const [feedbacks, setFeedbacks] = useState([
+    { feedback: "Not Intrested" },
+    { feedback: "Actively Purchasing" },
+    { feedback: "Pending Purchasing" },
+    { feedback: "Purchase from different store" },
+    { feedback: "Discounted amount not worth" },
+    { feedback: "No answer" },
+    { feedback: "Looking for Insallment plan - No credit Card" },
+  ]);
 
   //get local storage id
   useEffect(() => {
@@ -55,10 +104,13 @@ const Inquiry = () => {
     ) {
       setError(true);
     }
-    console.log(data);
+    console.log(arr);
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
       body: JSON.stringify(data),
     };
     const responce = await fetch(api, requestOptions).then((response) =>
@@ -75,40 +127,28 @@ const Inquiry = () => {
       <Modal onHide={handleClose} show={show}>
         <ModalHeader>
           {/* page header title */}
-          <Modal.Title>Inquiries</Modal.Title>
+          <Modal.Title>Add Inquiry</Modal.Title>
         </ModalHeader>
 
         <Modal.Body>
           <Form>
-            {/* Brand link addres phone text line */}
+            {/* Product Category */}
             <Form.Group className="mb-3">
-              <Form.Label>Brand</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("brand", e.target.value)}
-                id="brand"
-                value={data.brand}
-                type="text"
-                placeholder="Brand"
-              />
-              {/* error message */}
-              {error && data.brand.length <= 0 ? (
-                <Form.Label className="form-validation">
-                  This field is required
-                </Form.Label>
-              ) : (
-                ""
-              )}
-            </Form.Group>
-            {/* Brand Availibility text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Brand Availibility</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("availibility", e.target.value)}
-                id="availibility"
-                value={data.availibility}
-                type="text"
-                placeholder="BrandAvailibility"
-              />
+              <Form.Label>Product Category</Form.Label>
+              <Form.Select
+                aria-label="Product Category"
+                id="arrayselect"
+                value={filter}
+                onChange={(e) =>
+                  onChangeValue("product_category", e.target.value)
+                }
+              >
+                {arr.map((item, index) => (
+                  <option key={index} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </Form.Select>
               {/* error message */}
               {error ? (
                 <Form.Label className="form-validation">
@@ -139,28 +179,75 @@ const Inquiry = () => {
               )}
             </Form.Group>
 
-            {/* Action text line */}
+            {/* Brand Availablility */}
             <Form.Group className="mb-3">
-              <Form.Label>Action</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("action", e.target.value)}
-                id="action"
-                value={data.action}
-                type="text"
-                placeholder="Action"
-              />
+              <Form.Label>Brand Availablility</Form.Label>
+              <Form.Select
+                aria-label="Brand Availablility"
+                id="arrayselect"
+                value={filter}
+                onChange={(e) =>
+                  onChangeValue("brand_availability", e.target.value)
+                }
+              >
+                {brand_availability.map((item, index) => (
+                  <option key={index} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </Form.Select>
+              {/* error message */}
+              {error ? (
+                <Form.Label className="form-validation">
+                  This field is required
+                </Form.Label>
+              ) : (
+                ""
+              )}
             </Form.Group>
 
-            {/* email text line */}
+            {/* Feedback */}
+            <Form.Group className="mb-3">
+              <Form.Label>Feedback</Form.Label>
+              <Form.Select
+                aria-label="Feedback"
+                id="arrayselect"
+                value={filter}
+                onChange={(e) => onChangeValue("feedback", e.target.value)}
+              >
+                {feedbacks.map((item, index) => (
+                  <option key={index} value={item.feedback}>
+                    {item.feedback}
+                  </option>
+                ))}
+              </Form.Select>
+              {/* error message */}
+              {error ? (
+                <Form.Label className="form-validation">
+                  This field is required
+                </Form.Label>
+              ) : (
+                ""
+              )}
+            </Form.Group>
+
+            {/* Follow or Closeup */}
             <Form.Group className="mb-3">
               <Form.Label>Follow or Closeup</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("follow", e.target.value)}
-                id="follow"
-                value={data.follow}
-                type="text"
-                placeholder="Type.."
-              />
+              <Form.Select
+                aria-label="Brand Availablility"
+                id="arrayselect"
+                value={filter}
+                onChange={(e) =>
+                  onChangeValue("brand_availability", e.target.value)
+                }
+              >
+                {followupStatus.map((item, index) => (
+                  <option key={index} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </Form.Select>
               {/* error message */}
               {error ? (
                 <Form.Label className="form-validation">
@@ -182,42 +269,9 @@ const Inquiry = () => {
                 placeholder="Status Remark"
               />
             </Form.Group>
-
-            {/* feedback text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Feedback</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("feedback", e.target.value)}
-                id="feedback"
-                value={data.feedback}
-                type="text"
-                className="form-control"
-                placeholder="Feedback"
-              />
-            </Form.Group>
-
-            {/* Product catagory text line */}
-            <Form.Group className="mb-3">
-              <Form.Label>Product Catagory</Form.Label>
-              <Form.Control
-                onChange={(e) => onChangeValue("catagory", e.target.value)}
-                id="catagory"
-                value={data.catagory}
-                type="text"
-                className="form-control"
-                placeholder="Product Catagory"
-              />
-              {/* error message */}
-              {error ? (
-                <Form.Label className="form-validation">
-                  This field is required
-                </Form.Label>
-              ) : (
-                ""
-              )}
-            </Form.Group>
           </Form>
         </Modal.Body>
+
         <Modal.Footer>
           {/* close button */}
           <Link to="/types">
