@@ -2,9 +2,11 @@ import { Col, Row } from "antd";
 import { Navigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./index.css";
-
 import AnimatedNumber from "./Components/AnimatedNumber";
 import AgentList from "./Components/AgentList";
+import PieCharts from "./Components/PieCharts";
+import { CircleLoader } from "react-spinners";
+
 
 const projectdata = [
   { name: "Abans", value: 207 },
@@ -47,6 +49,7 @@ const unresolveddata = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 
 const Dashboard = () => {
+  const [shouldRefresh, setShouldRefresh] = useState(false);
   const loggedInUser = sessionStorage.getItem("authenticated");
   const [authenticated, setauthenticated] = useState(
     loggedInUser ? loggedInUser : false
