@@ -31,8 +31,19 @@
   color: #857979;
 }
 /* Rows screen size*/
-.rows{
-  margin: 2%;
-  width: 1980px;
+.rows {
+  margin: 2%; 
+  width: 580px;
   min-width: 390px;
+  margin-left: 100px;
+  height: 75px;
+}
+ 
+
+@media screen and(min-width:576px) {
+ 
+   #scrollableDiv{
+    width: 200px; float: left;
+    margin: 50px;
+   }
 }
