@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { Row } from "antd";
+import { Button, Image, Row } from "antd";
 
 import "./SideNavBar.css";
 import { ReactComponent as DashboardIcon } from "../../Assets/icons/dashboard.svg";
@@ -8,6 +8,9 @@ import { ReactComponent as InquireIcon } from "../../Assets/icons/inquire.svg";
 import { ReactComponent as UsersIcon } from "../../Assets/icons/users.svg";
 import { ReactComponent as AgentsIcon } from "../../Assets/icons/support-svgrepo-com.svg";
 import { ReactComponent as Logout } from "../../Assets/logout.svg";
+import { ReactComponent as Logo } from "../../Assets/icons/logo.svg";
+import { ReactComponent as SidebarOpen } from "../../Assets/sidebar-show.svg";
+import { ReactComponent as SidebarHide } from "../../Assets/sidebar-hide.svg";
 
 const SideNavBar = () => {
   const [isExpanded, setExpandedState] = useState(false);
@@ -33,60 +36,55 @@ const SideNavBar = () => {
       >
         <div className="nav-upper">
           <div className="nav-heading">
-            {isExpanded && (
-              <div className="nav-brand">
-                {/* <Logo /> */}
-                <h2>Sterling</h2>
-              </div>
-            )}
-            <button
-              className={
-                isExpanded
-                  ? "hamburger hamburger-in"
-                  : "hamburger hamburger-out"
-              }
-              onClick={() => setExpandedState(!isExpanded)}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
+            <div className="container-one">
+              <Row>
+                {isExpanded && <Logo />}
+
+                <Button
+                  type="link"
+                  className={
+                    isExpanded ? "sidebar-visible" : "sidebar-collapsed"
+                  }
+                  onClick={() => setExpandedState(!isExpanded)}
+                  icon={isExpanded ? <SidebarHide /> : <SidebarOpen />}
+                />
+              </Row>
+            </div>
           </div>
-          <div className="nav-menu"></div>
-          <div className="nav-menu">
-            <DashboardIcon />
+          <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
             <a
               href={"/"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
             >
-              {isExpanded && <p>{"Dashboard"}</p>}
+              <DashboardIcon />
+              {isExpanded && <p className="menu-item-sidebar">{"Dashboard"}</p>}
             </a>
           </div>
-          <div className="nav-menu">
-            <InquireIcon />
+          <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
             <a
               href={"/inquire"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
             >
-              {isExpanded && <p>{"Inquire"}</p>}
+              <InquireIcon />
+              {isExpanded && <p className="menu-item-sidebar">{"Inquire"}</p>}
             </a>
           </div>
-          <div className="nav-menu">
-            <UsersIcon />
+          <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
             <a
               href={"/users"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
             >
-              {isExpanded && <p>{"Users"}</p>}
+              <UsersIcon />
+              {isExpanded && <p className="menu-item-sidebar">{"Users"}</p>}
             </a>
           </div>
-          <div className="nav-menu">
-            <AgentsIcon />
+          <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
             <a
               href={"/agents"}
               className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
             >
-              {isExpanded && <p>{"Agents"}</p>}
+              <AgentsIcon />
+              {isExpanded && <p className="menu-item-sidebar">{"Agents"}</p>}
             </a>
           </div>
         </div>

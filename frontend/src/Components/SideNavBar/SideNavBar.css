@@ -1,7 +1,6 @@
 .side-nav-container {
   background-color: var(--body);
-  width: 180px;
-
+  width: 196px;
   height: 100vh;
   position: relative;
   color: var(--dark);
@@ -21,84 +20,16 @@ menu-item {
   height: 90px;
 }
 
-nav.heading {
-  grid-template-columns: 2fr, 1fr;
-  grid-template-rows: 1fr;
-  height: 75px;
-}
-
-.nav-brand {
-  display: flex;
-  width: 150px;
-  height: 100px;
-}
-
-.nav-brand img {
-  width: 170px;
-  padding: 0 10px;
-}
-
-.hamburger {
-  position: absolute;
-  right: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin: auto -37px;
-  background-color: var(--primary);
-  border: 2px solid var(--dark);
-  padding: 20px;
-  border-radius: 90px;
-  height: 71px;
-  width: 74px;
-}
-
-.hamburger span {
-  display: block;
-  margin-top: 5px;
-  background-color: var(--dark);
-  border-radius: 15px;
-  height: 4px;
-  width: 30px;
-}
-
-.hamburger:hover span {
-  margin: auto;
-}
-
-.hamburger-in:hover span:nth-child(1) {
-  width: 25px;
-  transform: translate(-3px, 8px) rotate(30deg);
-}
-
-.hamburger-in:hover span:nth-child(2) {
-  display: none;
-}
-
-.hamburger-in:hover span:nth-child(3) {
-  width: 25px;
-  transform: translate(-3px, -8px) rotate(-30deg);
-}
-
-.hamburger-out:hover span:nth-child(1) {
-  width: 25px;
-  transform: translate(0px, 8px) rotate(-30deg);
-}
-
-.hamburger-out:hover span:nth-child(2) {
-  display: none;
-}
-
-.hamburger-out:hover span:nth-child(3) {
-  width: 25px;
-  transform: translate(0px, -8px) rotate(30deg);
-}
-
 .nav-menu {
   grid-template-rows: repeat(4, 1fr);
   margin-top: 10px;
-  margin-left: 20px;
   display: flex;
+}
+.nav-menu-collapsed {
+  grid-template-rows: repeat(4, 1fr);
+  margin-top: 10px;
+  display: flex;
+  margin-left: 20px;
 }
 
 .nav-img {
@@ -112,7 +43,6 @@ nav.heading {
   width: 50px;
   height: 50px;
 }
-
 .nav-menu-img {
   width: 50px;
   height: 50px;
@@ -148,18 +78,6 @@ nav.heading {
   display: block;
 }
 
-.tooltip {
-  display: none;
-  position: absolute;
-  left: 99%;
-  bottom: 80%;
-  width: auto;
-  padding: 4px, 8px;
-  border-radius: 15px 15px 15px 0;
-  white-space: nowrap;
-  border: 2px solid var(--dark);
-  background-color: var(--light);
-}
 .fixed-header {
   width: 100%;
   position: fixed;
@@ -181,4 +99,19 @@ nav.heading {
 }
 .logout-title {
   margin: 0 12px 0 0;
+}
+
+.sidebar-visible {
+  margin: 1%;
+}
+
+.container-one {
+  margin-left: 5px;
+}
+
+.menu-item-sidebar {
+  margin-left: 10px;
+}
+.sidebar-collapsed {
+  margin: 14%;
 }

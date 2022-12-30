@@ -5,8 +5,6 @@ import "./index.css";
 import AnimatedNumber from "./Components/AnimatedNumber";
 import AgentList from "./Components/AgentList";
 import PieCharts from "./Components/PieCharts";
-import { CircleLoader } from "react-spinners";
-
 
 const projectdata = [
   { name: "Abans", value: 207 },
