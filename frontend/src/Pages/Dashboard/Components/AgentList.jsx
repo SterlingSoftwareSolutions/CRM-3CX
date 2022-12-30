@@ -10,12 +10,10 @@ const AgentList = () => {
       return;
     }
     setLoading(true);
-    fetch(
-      "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
-    )
+    fetch("http://localhost:8000/api/users")
       .then((res) => res.json())
       .then((body) => {
-        setData([...data, ...body.results]);
+        setData([...data, ...body.data]);
         setLoading(false);
       })
       .catch(() => {
@@ -29,7 +27,7 @@ const AgentList = () => {
     <div
       id="scrollableDiv"
       style={{
-        width: "381px",
+        width: "90%",
         margin: "15px 40px 0 0",
         height: 400,
         overflow: "auto",
@@ -60,8 +58,8 @@ const AgentList = () => {
           renderItem={(item) => (
             <List.Item key={item.email}>
               <List.Item.Meta
-                avatar={<ProfilePic agentName={item.name.last} />}
-                title={item.name.last}
+                avatar={<ProfilePic agentName={item.name} />}
+                title={item.name}
                 description={item.email}
               />
             </List.Item>

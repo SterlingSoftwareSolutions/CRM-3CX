@@ -1,12 +1,12 @@
 import { Col, Row } from "antd";
 import { Navigate } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
-
 import AnimatedNumber from "./Components/AnimatedNumber";
 import AgentList from "./Components/AgentList";
 import PieCharts from "./Components/PieCharts";
 import { CircleLoader } from "react-spinners";
+
 
 const projectdata = [
   { name: "Abans", value: 207 },
@@ -66,12 +66,12 @@ const Dashboard = () => {
   } else {
     return (
       <div>
-        <Row style={{ marginTop: "5%", width: "1100px" }}>
+        <Row style={{ marginTop: "6%", width: "1100px" }}>
           <AnimatedNumber />
         </Row>
-        <Row>
-          <Col span={13}></Col>
-          <Col span={11}>
+        <Row style={{ marginTop: "1%", width: "1100px" }}>
+          <Col span={16}></Col>
+          <Col span={8}>
             <AgentList />
           </Col>
         </Row>
