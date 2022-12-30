@@ -30,6 +30,7 @@ const LoginPage = () => {
         sessionStorage.setItem("authenticated", true);
         setauthenticated(true);
         navigate('/');
+        window.location.reload();
       }
     } catch (error) {
       setError("An error occurred. Please try again.");
