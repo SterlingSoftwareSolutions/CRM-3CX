@@ -108,7 +108,7 @@ const SideNavBar = () => {
             </div>
             <div className={isExpanded ? "nav-menu" : "nav-menu-collapsed"}>
               <a
-                href={"/agents"}
+                href={"/customers"}
                 className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
               >
                 <Customers />
