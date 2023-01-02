@@ -32,18 +32,40 @@
 }
 /* Rows screen size*/
 .rows {
-  margin: 2%; 
+  margin: 2%;
   width: 580px;
   min-width: 390px;
   margin-left: 100px;
   height: 75px;
 }
- 
 
 @media screen and(min-width:576px) {
- 
-   #scrollableDiv{
-    width: 200px; float: left;
+  #scrollableDiv {
+    width: 180%;
     margin: 50px;
-   }
+  }
+  #card {
+    width: 100px;
+  }
+  #rows {
+    width: 100px;
+  }
+  .collapse {
+    width: 50px;
+  }
+  .agents {
+    width: 150px;
+    float: right;
+    margin-right: 45%;
+  }
+  .call-navbar {
+    width: 100px;
+    margin-right: 100%;
+  }
+}
+
+@media screen and(min-width:1366px) {
+}
+
+@media screen and(min-width:1920px) {
 }
