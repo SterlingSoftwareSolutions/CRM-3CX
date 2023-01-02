@@ -14,7 +14,7 @@ const CustomerPopUp = () => {
   const [url, setUrl] = useState("None");
   const [Iscostomer_available, setcustomeravailability] = useState(false);
   const [error, setError] = useState("");
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   const [customer_address, setCustomerData] = useState({
     address_line_1: "",
@@ -105,7 +105,7 @@ const CustomerPopUp = () => {
     const result = await response.json();
 
     let new_customer_id = result.data.id;
-    sessionStorage.setItem("customer_id", new_customer_id);
+    localStorage.setItem("customer_id", new_customer_id);
     if (method === "POST") {
       customer_address.customer_id = new_customer_id;
     } else if (method === "PUT") {

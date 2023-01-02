@@ -9,7 +9,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [authenticated, setauthenticated] = useState(
-    sessionStorage.getItem(sessionStorage.getItem("authenticated") || false)
+    localStorage.getItem(localStorage.getItem("authenticated") || false)
   );
   const navigate = useNavigate();
 
@@ -28,9 +28,9 @@ const LoginPage = () => {
         setError(data.error);
         alert(data.error);
       } else {
-        sessionStorage.setItem("user_id", data.data.user.id);
-        sessionStorage.setItem("token", data.data.token);
-        sessionStorage.setItem("authenticated", true);
+        localStorage.setItem("user_id", data.data.user.id);
+        localStorage.setItem("token", data.data.token);
+        localStorage.setItem("authenticated", true);
         setauthenticated(true);
         navigate("/");
         window.location.reload();

@@ -14,11 +14,11 @@ const Types = () => {
   const [filter, setFilter] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   
-  //save data localstorage
+  //save data localStorage
   useEffect(() => {
-    sessionStorage.setItem("call_type_id", filter);
+    localStorage.setItem("call_type_id", filter);
   }, [filter]);
 
   //Get api url

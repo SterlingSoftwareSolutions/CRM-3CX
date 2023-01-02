@@ -48,7 +48,7 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#fc4242"];
 
 const Dashboard = () => {
   const [shouldRefresh, setShouldRefresh] = useState(false);
-  const loggedInUser = sessionStorage.getItem("authenticated");
+  const loggedInUser = localStorage.getItem("authenticated");
   const [authenticated, setauthenticated] = useState(
     loggedInUser ? loggedInUser : false
   );

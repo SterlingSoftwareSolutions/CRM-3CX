@@ -22,7 +22,7 @@ const SideNavBar = () => {
     setTimeout(() => {
       setLoading(false);
       localStorage.clear();
-      sessionStorage.clear();
+      localStorage.clear();
       window.location.reload();
       navigate("/login");
     }, []);

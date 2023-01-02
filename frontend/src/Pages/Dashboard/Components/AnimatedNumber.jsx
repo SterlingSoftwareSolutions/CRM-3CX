@@ -9,7 +9,7 @@ import NumberCards from "../../../Components/NumberCards";
 import { Card, Col, Row } from "antd";
 
 const AnimatedNumber = () => {
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const [totalAgents, setTotalAgentData] = useState([]);
   const [TotalInquiries, setTotalInquiriestData] = useState([]);
   const [Resolvedinquiries, setResolvedinquiriesData] = useState([]);

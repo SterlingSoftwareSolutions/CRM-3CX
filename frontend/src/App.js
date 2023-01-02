@@ -14,7 +14,7 @@ import AllInquiry from "./Components/Inquiries/Inquiries";
 import Errorpage from "./Pages/404/404";
 
 function App() {
-  const loggedInUser = sessionStorage.getItem("authenticated");
+  const loggedInUser = localStorage.getItem("authenticated");
   const [authenticated, setauthenticated] = useState(
     loggedInUser ? loggedInUser : false
   );

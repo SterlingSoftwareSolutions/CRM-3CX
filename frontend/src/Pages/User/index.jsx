@@ -40,7 +40,7 @@ const Users = () => {
   ];
   //Get api url
   const api = "/api/users";
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   //calling Api get method
   const fetchArray = async () => {
     try {

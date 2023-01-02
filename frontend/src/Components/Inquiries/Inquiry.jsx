@@ -14,10 +14,10 @@ const Inquiry = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [error, setError] = useState(false);
-  const token = sessionStorage.getItem("token");
-  const call_type_id = sessionStorage.getItem("call_type_id");
-  const user_id = sessionStorage.getItem("user_id");
-  const customer_id = sessionStorage.getItem("customer_id");
+  const token = localStorage.getItem("token");
+  const call_type_id = localStorage.getItem("call_type_id");
+  const user_id = localStorage.getItem("user_id");
+  const customer_id = localStorage.getItem("customer_id");
   const [product_category, setproduct_category] = useState("");
   const [brand_availability_selet, set_select_brand_availability] =
     useState("");

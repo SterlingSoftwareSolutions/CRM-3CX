@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ProfilePic from "./ProfilePic";
 
 const AgentList = () => {
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const loadMoreData = async () => {

@@ -3,7 +3,7 @@ import Table from "../../Components/table/table";
 import moment from "moment";
 
 const CustomerTable = () => {
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const [data, setData] = useState([
     {
       id: 1,
