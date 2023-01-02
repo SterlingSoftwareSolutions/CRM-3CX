@@ -40,22 +40,17 @@ const CustomerTable = () => {
   ];
   //Get api url
   const api = "http://127.0.0.1:8000/api/customers";
-  const token = sessionStorage.getItem("token");
+
   //calling Api get method
   const fetchArray = async () => {
     try {
-      let res = await fetch(api, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-      });
+      let res = await fetch(api);
       res = await res.json();
       console.log(res.data);
       setData(res.data);
     } catch (error) {
-      alert("Only Admins View");
+      console.error(error);
+      alert(error);
     }
   };
   useEffect(() => {
