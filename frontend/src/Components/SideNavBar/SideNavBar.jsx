@@ -34,7 +34,7 @@ const SideNavBar = () => {
           <div className="container">
             <div className="logout">
               <Row>
-                <a onClick={logout} href="#fh" className="logout-title">
+                <a onClick={logout} className="logout-title">
                   <p>Logout</p>
                 </a>
                 <a onClick={logout} className="logout-title">
