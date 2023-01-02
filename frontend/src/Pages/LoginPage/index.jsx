@@ -28,6 +28,7 @@ const LoginPage = () => {
         setError(data.error);
         alert(data.error);
       } else {
+        sessionStorage.setItem("user_id", data.data.user.id);
         sessionStorage.setItem("token", data.data.token);
         sessionStorage.setItem("authenticated", true);
         setauthenticated(true);
