@@ -15,8 +15,17 @@ const Inquiry = () => {
   const handleShow = () => setShow(true);
   const [error, setError] = useState(false);
   const token = sessionStorage.getItem("token");
+  const call_type_id = sessionStorage.getItem("call_type_id");
+  const user_id = sessionStorage.getItem("user_id");
+  const customer_id = sessionStorage.getItem("customer_id");
+  const [product_category, setproduct_category] = useState("");
+  const [brand_availability_selet, set_select_brand_availability] =
+    useState("");
+  const [feedback, setfeedback] = useState("");
+  const [followOrCloseup, setfollowOrCloseup] = useState("");
   const [filter, setFilter] = useState("");
   const [arr, setArr] = useState([
+    { name: " " },
     { name: "TV" },
     { name: "Mobile Phone" },
     { name: "Air Conditioners" },
@@ -49,14 +58,17 @@ const Inquiry = () => {
     { name: "Other" },
   ]);
   const [brand_availability, setbrand_availability] = useState([
+    { name: " " },
     { name: "Yes" },
     { name: "No" },
   ]);
   const [followupStatus, setfollowupStatus] = useState([
-    { name: "Follow Up" },
-    { name: "Close" },
+    { id: "", name: " " },
+    { id: 1, name: "Follow Up" },
+    { id: 0, name: "Close" },
   ]);
   const [feedbacks, setFeedbacks] = useState([
+    { feedback: " " },
     { feedback: "Not Intrested" },
     { feedback: "Actively Purchasing" },
     { feedback: "Pending Purchasing" },
@@ -66,26 +78,19 @@ const Inquiry = () => {
     { feedback: "Looking for Insallment plan - No credit Card" },
   ]);
 
-  //get local storage id
-  useEffect(() => {
-    const item = JSON.parse(localStorage.getItem("value"));
-    if (filter) {
-      setFilter(filter);
-    }
-  }, []);
-
   //set path api
   const api = "/api/inquiries";
 
   const [data, setData] = useState({
     brand: "",
-    availibility: "",
-    model: "",
-    action: "",
-    follow: "",
-    remark: "",
+    brand_availability: "",
+    open: "",
+    status_remark: "",
     feedback: "",
-    catagory: "",
+    product_category: "",
+    user_id: "",
+    customer_id: "",
+    call_type_id: "",
   });
 
   const onChangeValue = (key, value) => {
@@ -98,13 +103,19 @@ const Inquiry = () => {
     if (
       data.brand.length === 0 &&
       data.availibility.length === 0 &&
-      data.model.length === 0 &&
       data.follow.length === 0 &&
       data.catagory.length === 0
     ) {
       setError(true);
     }
-    console.log(arr);
+    data.call_type_id = call_type_id;
+    data.customer_id = customer_id;
+    data.user_id = user_id;
+    data.product_category = product_category;
+    data.user_id = user_id;
+    data.brand_availability = brand_availability_selet;
+    data.feedback = feedback;
+    data.open = followOrCloseup;
     const requestOptions = {
       method: "POST",
       headers: {
@@ -121,7 +132,6 @@ const Inquiry = () => {
   };
 
   //required field
-
   return (
     <div>
       <Modal onHide={handleClose} show={show}>
@@ -137,11 +147,9 @@ const Inquiry = () => {
               <Form.Label>Product Category</Form.Label>
               <Form.Select
                 aria-label="Product Category"
-                id="arrayselect"
-                value={filter}
-                onChange={(e) =>
-                  onChangeValue("product_category", e.target.value)
-                }
+                id="product_category"
+                value={product_category}
+                onChange={(e) => setproduct_category(e.target.value)}
               >
                 {arr.map((item, index) => (
                   <option key={index} value={item.name}>
@@ -163,9 +171,9 @@ const Inquiry = () => {
             <Form.Group className="mb-3">
               <Form.Label>Brand or Model</Form.Label>
               <Form.Control
-                onChange={(e) => onChangeValue("model", e.target.value)}
-                id="model"
-                value={data.model}
+                onChange={(e) => onChangeValue("brand", e.target.value)}
+                id="brand"
+                value={data.brand}
                 type="text"
                 placeholder="Brand or Model"
               />
@@ -184,11 +192,9 @@ const Inquiry = () => {
               <Form.Label>Brand Availablility</Form.Label>
               <Form.Select
                 aria-label="Brand Availablility"
-                id="arrayselect"
-                value={filter}
-                onChange={(e) =>
-                  onChangeValue("brand_availability", e.target.value)
-                }
+                id="brandcd_availability"
+                onChange={(e) => set_select_brand_availability(e.target.value)}
+                value={brand_availability_selet}
               >
                 {brand_availability.map((item, index) => (
                   <option key={index} value={item.name}>
@@ -212,8 +218,8 @@ const Inquiry = () => {
               <Form.Select
                 aria-label="Feedback"
                 id="arrayselect"
-                value={filter}
-                onChange={(e) => onChangeValue("feedback", e.target.value)}
+                value={feedback}
+                onChange={(e) => setfeedback(e.target.value)}
               >
                 {feedbacks.map((item, index) => (
                   <option key={index} value={item.feedback}>
@@ -235,15 +241,13 @@ const Inquiry = () => {
             <Form.Group className="mb-3">
               <Form.Label>Follow or Closeup</Form.Label>
               <Form.Select
-                aria-label="Brand Availablility"
-                id="arrayselect"
-                value={filter}
-                onChange={(e) =>
-                  onChangeValue("brand_availability", e.target.value)
-                }
+                aria-label="action"
+                id="action"
+                value={followOrCloseup}
+                onChange={(e) => setfollowOrCloseup(e.target.value)}
               >
                 {followupStatus.map((item, index) => (
-                  <option key={index} value={item.name}>
+                  <option key={index} value={item.id}>
                     {item.name}
                   </option>
                 ))}
@@ -262,9 +266,9 @@ const Inquiry = () => {
             <Form.Group className="mb-3">
               <Form.Label>Status Remark</Form.Label>
               <Form.Control
-                onChange={(e) => onChangeValue("remark", e.target.value)}
-                id="remark"
-                value={data.remark}
+                onChange={(e) => onChangeValue("status_remark", e.target.value)}
+                id="status_remark"
+                value={data.status_remark}
                 type="text"
                 placeholder="Status Remark"
               />

@@ -15,10 +15,10 @@ const Types = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const token = sessionStorage.getItem("token");
-
+  
   //save data localstorage
   useEffect(() => {
-    localStorage.setItem("value", JSON.stringify(filter));
+    sessionStorage.setItem("call_type_id", filter);
   }, [filter]);
 
   //Get api url

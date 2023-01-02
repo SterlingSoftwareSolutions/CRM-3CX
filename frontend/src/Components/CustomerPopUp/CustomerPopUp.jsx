@@ -28,11 +28,17 @@ const CustomerPopUp = () => {
     comment: "",
   });
 
-  const fetchData = (customer_number) => {
+  const fetchData = async (customer_number) => {
     try {
-      fetch(customer_api + customer_number)
+      fetch(customer_api + customer_number, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        }
+      })
         .then((response) => response.json())
-        .then(async (customerdata) => {
+        .then(async (customerdata) => {         
           if (customerdata.success) {
             setData(customerdata.data);
             await setCustomerData(customerdata.data.customer_address[0]);
@@ -99,6 +105,7 @@ const CustomerPopUp = () => {
     const result = await response.json();
 
     let new_customer_id = result.data.id;
+    sessionStorage.setItem("customer_id", new_customer_id);
     if (method === "POST") {
       customer_address.customer_id = new_customer_id;
     } else if (method === "PUT") {
