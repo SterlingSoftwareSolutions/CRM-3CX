@@ -40,6 +40,11 @@ body {
   height: 325px;
 }
 
+.error {
+  color: red;
+  margin-left: 35px;
+}
+
 .ant-card-head-title {
   text-align: center;
 }
