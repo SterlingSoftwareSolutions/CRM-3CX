@@ -1,22 +1,29 @@
 .input-style {
   margin-bottom: 5%;
+  margin-top: 3px!important;
+  margin-bottom: 3px!important;
 }
 .modal-content {
   width: 125%;
 }
 
 .form-style {
-  margin: 4%;
+  margin: 0.5%;
+  
 }
 
 .button-style {
   background-color: #16c5d5;
   color: white;
   border: none;
+  margin-bottom: 10px !important;
 }
 
 .input-label{
   color: red;
   font-size: 12px;
   margin-left: 40px;
+}
+.footer{
+  margin-bottom: 0.5% !important;
 }

@@ -201,7 +201,7 @@ const CustomerPopUp = () => {
                       defaultValue={customer_address.address_line_1}
                       type="text"
                       as="textarea"
-                      rows={3}
+                      rows={2}
                       placeholder="Customer Address"
                     />
                   </Form.Group>
@@ -239,7 +239,7 @@ const CustomerPopUp = () => {
             </Col>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="footer">
           <Link to="/types">
             <Button
               className="btn btn mt-3 button-style"
