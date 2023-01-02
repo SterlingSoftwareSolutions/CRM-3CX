@@ -35,7 +35,7 @@ const LoginPage = () => {
         window.location.reload();
       }
     } catch (error) {
-      setError("An error occurred. Please try again.");
+      setError("Username or Password is Incorrect");
     }
   };
 
@@ -66,6 +66,7 @@ const LoginPage = () => {
         >
           <Input.Password />
         </Form.Item>
+        <p className="error">{error}</p>
 
         <div className="d-grid">
           <button onClick={handleSubmit} type="submit" className="button-style">
