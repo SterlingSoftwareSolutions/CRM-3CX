@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
+import CustomerPopUp from "./Components/CustomerPopUp/CustomerPopUp";
 import Dashboard from "./Pages/Dashboard/index";
 import Users from "./Pages/User/index";
 import Customers from "./Pages/Customers/index";
