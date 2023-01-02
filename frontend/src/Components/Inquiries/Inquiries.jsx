@@ -86,7 +86,7 @@ const AllInquiries = () => {
     },
   ];
   //Get api url
-   const api = "http://127.0.0.1:8000/api/inquiries";
+   const api = "/api/inquiries";
    const token = sessionStorage.getItem("token");
   //calling Api get method
   const fetchArray = async () => {
