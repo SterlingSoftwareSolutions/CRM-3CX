@@ -4,6 +4,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import CustomerPopUp from "./Components/PopCustomer/CustomerPopUp";
 import Dashboard from "./Pages/Dashboard/index";
 import Users from "./Pages/User/index";
+import Customers from "./Pages/Customers/index";
 import SideNavBar from "./Components/SideNavBar/SideNavBar";
 import Types from "./Components/Inquiries/Types";
 import Login from "./Pages/LoginPage/index";
@@ -32,6 +33,7 @@ function App() {
               <Route path="/inquiries" element={<AllInquiry />} />
               <Route path="/users" element={<Users />} />
               <Route path="/*" element={<Errorpage />} />
+              <Route path="/customers" element={<Customers />} />
             </Routes>
           </Col>
         </Row>
