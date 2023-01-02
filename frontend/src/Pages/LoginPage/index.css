@@ -51,13 +51,7 @@ body {
 
 @media (max-width: 1366px) {
   .title-style {
-    top: 65%;
-    left: 180%;
-  }
-}
-@media (min-width: 1366px) and (max-width: 1900px) {
-  .title-style {
-    top: 75%;
-    left: 200%;
+    top: 40%;
+    left: 175%;
   }
 }
