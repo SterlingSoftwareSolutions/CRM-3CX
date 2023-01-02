@@ -50,17 +50,9 @@ body {
     left: 180%;
   }
 }
-@media (max-width: 1920px) {
-  body {
-    /* min-height: 100vh; */
-    display: flex;
-    font-weight: 800;
-    font-family: "Fira Sans", sans-serif;
-  }
+@media (min-width: 1366px) and (max-width: 1900px) {
   .title-style {
-    top: 90%;
-    left: 245%;
-    width: 370px;
-    height: 370px;
+    top: 75%;
+    left: 200%;
   }
 }
