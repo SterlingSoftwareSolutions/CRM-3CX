@@ -3,6 +3,7 @@ import Table from "../../Components/table/table";
 import moment from "moment";
 
 const CustomerTable = () => {
+  const token = sessionStorage.getItem("token");
   const [data, setData] = useState([
     {
       id: 1,
@@ -39,12 +40,18 @@ const CustomerTable = () => {
     },
   ];
   //Get api url
-  const api = "http://127.0.0.1:8000/api/customers";
+  const api = "/api/customers";
 
   //calling Api get method
   const fetchArray = async () => {
     try {
-      let res = await fetch(api);
+      let res = await fetch(api,{
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
       res = await res.json();
       console.log(res.data);
       setData(res.data);
