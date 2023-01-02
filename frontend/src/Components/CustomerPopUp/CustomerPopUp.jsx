@@ -69,7 +69,7 @@ const CustomerPopUp = () => {
 
   let handleSubmit = async (e) => {
     data.phone = url;
-   if (data.name.length == 0) {
+    if (data.name.length == 0) {
       setError(true);
     }
 
@@ -122,7 +122,12 @@ const CustomerPopUp = () => {
 
   return (
     <div className="modal-style">
-      <Modal onHide={handleClose} show={show}>
+      <Modal
+        onHide={handleClose}
+        show={show}
+        backdrop="static"
+        keyboard={false}
+      >
         <ModalHeader closeButton>
           {/* page header title */}
           <Modal.Title>Add Customer</Modal.Title>
@@ -235,13 +240,13 @@ const CustomerPopUp = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Link to='/types'>
-          <Button
-            className="btn btn mt-3 button-style"
-            onClick={(e) => handleSubmit(e)}
-          >
-            Next
-          </Button>
+          <Link to="/types">
+            <Button
+              className="btn btn mt-3 button-style"
+              onClick={(e) => handleSubmit(e)}
+            >
+              Next
+            </Button>
           </Link>
         </Modal.Footer>
       </Modal>
