@@ -16,7 +16,6 @@ body {
   font-family: "Fira Sans", sans-serif;
 }
 
-
 .button-style {
   background: #1bc5d5;
   color: white;
@@ -34,11 +33,13 @@ body {
 }
 
 .title-style {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  top: 90%;
+  left: 265%;
+  width: 325px;
+  height: 325px;
 }
+
 .ant-card-head-title {
   text-align: center;
 }
