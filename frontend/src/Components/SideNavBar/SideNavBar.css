@@ -20,7 +20,7 @@ menu-item {
   height: 90px;
 }
 
-.main-sidebar-and-topbar *{
+.main-sidebar-and-topbar * {
   z-index: 50;
 }
 
@@ -62,9 +62,11 @@ menu-item {
   margin: auto 40px;
   border-radius: 10px;
   position: relative;
+  text-align: center;
 }
 
 .menu-item-NX {
+  text-align: center;
   margin: auto;
   width: 4.5em;
 }
@@ -102,7 +104,11 @@ menu-item {
   text-align: center;
 }
 .logout-title {
-  margin: 0 12px 0 0;
+  margin: 3px 12px 0 0;
+  font-size: 17px;
+  text-decoration: none;
+  color: #363535;
+  font-weight: 600;
 }
 
 .sidebar-visible {
