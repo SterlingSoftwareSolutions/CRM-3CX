@@ -13,7 +13,7 @@
 
 .card-one-style {
   min-width: 150px;
-  margin: 0px 20px 0 0;
+  margin: 0px 10px 10 0;
   padding: 0;
   color: rgb(185, 175, 175);
 }
@@ -24,7 +24,7 @@
 }
 
 .col-one-style {
-  margin: 16px 10px 0 0;
+  margin: 15px 10px 0 0;
 }
 
 .agent-title {
@@ -32,40 +32,67 @@
 }
 /* Rows screen size*/
 .rows {
-  margin: 2%;
-  width: 580px;
-  min-width: 390px;
-  margin-left: 100px;
-  height: 75px;
+  margin: 50px;
+  width: 1035px;
+  display: inline-flexbox;
+  margin-left: 10px;
 }
 
-@media screen and(min-width:576px) {
-  #scrollableDiv {
+@media screen and (max-width: 1200px) {
+  .scrollableDiv {
     width: 180%;
     margin: 50px;
   }
-  #card {
-    width: 100px;
+  .rows {
+    margin: 10px;
+    min-width: 900px;
+    display: inline-flexbox;
+    margin-left: 10px;
+    padding-right: 60%;
   }
-  #rows {
-    width: 100px;
-  }
-  .collapse {
-    width: 50px;
-  }
-  .agents {
-    width: 150px;
-    float: right;
-    margin-right: 45%;
-  }
-  .call-navbar {
-    width: 100px;
-    margin-right: 100%;
+  .card-one-style {
+    padding: 10px !important;
+    margin: 10px;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
   }
 }
 
-@media screen and(min-width:1366px) {
+@media screen and(max-width:1366px) {
+  .scrollableDiv {
+    width: 180%;
+    margin: 50px;
+  }
+  .rows {
+    margin: 10px;
+    /* min-width: 900px; */
+    display: inline-flexbox;
+    margin-left: 10px;
+    padding-right: 60%;
+  }
+  .card-one-style {
+    padding: 10px !important;
+    margin: 10px;
+    display: -webkit-flex;
+  }
 }
 
-@media screen and(min-width:1920px) {
+@media screen and(max-width:1920px) {
+  .scrollableDiv {
+    width: 180%;
+    margin: 50px;
+  }
+  .rows {
+    margin: 10px;
+    min-width: 900px;
+    display: inline-flexbox;
+    margin-left: 10px;
+    padding-right: 60%;
+  }
+  .card-one-style {
+    padding: 10px !important;
+    margin: 10px;
+    display: -webkit-flex;
+  }
 }

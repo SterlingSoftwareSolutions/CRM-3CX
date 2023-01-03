@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Avatar, Divider, List, Skeleton } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProfilePic from "./ProfilePic";
+import "../index.css";
 const AgentList = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -30,7 +31,7 @@ const AgentList = () => {
       id="scrollableDiv"
       style={{
         width: "381px",
-        margin: "15px 40px 0 0",
+        marginRight: "15px 40px 0 0",
         height: 400,
         overflow: "auto",
         padding: "0 16px",
